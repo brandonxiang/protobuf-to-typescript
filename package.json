@@ -1,0 +1,8 @@
+{
+  "name": "pb-to-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/brandonxiang/pb-to-typescript.git",
+  "author": "Weiping Xiang <weiping.xiang@shopee.com>",
+  "license": "MIT"
+}
