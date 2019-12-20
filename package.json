@@ -4,5 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/brandonxiang/pb-to-typescript.git",
   "author": "Weiping Xiang <weiping.xiang@shopee.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "protobufjs": "^6.8.8",
+    "ts-node": "^8.5.4"
+  }
 }

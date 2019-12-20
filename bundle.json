@@ -1,0 +1,28 @@
+{
+  "nested": {
+    "MyService": {
+      "methods": {
+        "MyMethod": {
+          "requestType": "MyRequest",
+          "responseType": "MyResponse"
+        }
+      }
+    },
+    "MyRequest": {
+      "fields": {
+        "path": {
+          "type": "string",
+          "id": 1
+        }
+      }
+    },
+    "MyResponse": {
+      "fields": {
+        "status": {
+          "type": "int32",
+          "id": 1
+        }
+      }
+    }
+  }
+}
