@@ -39,19 +39,26 @@ export function parseProto(source: string) {
   return parseJson(res.root.toJSON());
 }
 
-const ts = parseProto(`
-syntax = "proto3";
+export default {
+  parseProto,
+  parseJson
+};
 
-service MyService {
-    rpc MyMethod (MyRequest) returns (MyResponse);
-}
+// const ts = parseProto(`
+// syntax = "proto3";
 
-message MyRequest {
-    string path = 1;
-}
+// service MyService {
+//     rpc MyMethod (MyRequest) returns (MyResponse);
+// }
 
-message MyResponse {
-    int32 status = 1;
-}
-`);
-console.log(ts);
+// message MyRequest {
+//     string path = 1;
+// }
+
+// message MyResponse {
+//     int32 status = 1;
+// }
+// `);
+// console.log(ts);
+
+

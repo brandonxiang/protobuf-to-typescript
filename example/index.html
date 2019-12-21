@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Protobuf to Typescript</title>
+    <style>
+      body {
+        font-family: Sans-Serif;
+      }
+      h1, h2 {
+        margin: 16px 8px;
+      }
+      .col {
+        width: calc(50% - 16px);
+        float: left;
+        margin: 0 8px;
+      }
+      textarea {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>One simple webpage to convert Protocol Buffers to TypeScript definition files.</h1>
+      <h2>Dentists hate him!</h2>
+      <div class="col">
+        Protocol buffer:
+        <br>
+<textarea name="" id="protobuf" rows="40" oninput="onProtobuf()">
+syntax = "proto3";
+
+service MyService {
+    rpc MyMethod (MyRequest) returns (MyResponse);
+}
+
+message MyRequest {
+    string path = 1;
+}
+
+message MyResponse {
+    int32 status = 1;
+}
+</textarea>
+      </div>
+      <div class="col">
+        Typescript d.ts:
+        <br>
+        <textarea name="" id="typescript" rows="40"></textarea>
+      </div>
+    </div>
+    <script src="https://unpkg.com/protobufjs@6.8.8/dist/protobuf.min.js"></script>
+    <script src="../dist/index.umd.js"></script>
+    <script>
+      function onProtobuf() {
+        var src = document.getElementById("protobuf").value;
+        var ts = pbToTypescript.parseProto(src);
+        document.getElementById("typescript").value = ts;
+      }
+
+      onProtobuf()
+
+    </script>
+  </body>
+</html>

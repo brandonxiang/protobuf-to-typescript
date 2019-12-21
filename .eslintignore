@@ -1,0 +1,7 @@
+/build
+/config
+/deploy
+/node_modules
+/public
+/scripts
+/dist
