@@ -40,6 +40,6 @@ export function printField(name: string, content: FieldContent) {
   const strs = item.params.map(param => `${param.name}: ${param.type}`);
 
   return (
-    `interface ${item.name} {\n` + `  ${strs.join('/n')};\n` + `}\n` + `\n`
+    `interface ${item.name} {\n` + `  ${strs.join('\n  ')};\n` + `}\n` + `\n`
   );
 }

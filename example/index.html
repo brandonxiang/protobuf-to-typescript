@@ -17,12 +17,16 @@
       textarea {
         width: 100%;
       }
+      .error {
+        color: red;
+        display: none;
+      }
     </style>
   </head>
   <body>
     <div id="container">
       <h1>One simple webpage to convert Protocol Buffers to TypeScript definition files.</h1>
-      <h2>Dentists hate him!</h2>
+      <h2 class="error">Error!!!Please check your protobuf!</h2>
       <div class="col">
         Protocol buffer:
         <br>
@@ -51,10 +55,18 @@ message MyResponse {
     <script src="https://unpkg.com/protobufjs@6.8.8/dist/protobuf.min.js"></script>
     <script src="../dist/index.umd.js"></script>
     <script>
+      function trigger (isShow) {
+        document.querySelector('.error').style.display =  isShow ? 'block': 'none';
+      }
       function onProtobuf() {
-        var src = document.getElementById("protobuf").value;
-        var ts = pbToTypescript.parseProto(src);
-        document.getElementById("typescript").value = ts;
+          var src = document.getElementById("protobuf").value;
+          var ts = pbToTypescript.parseProto(src);
+          document.getElementById("typescript").value = ts;
+          trigger(false)    
+      }
+
+      window.onerror = () => {
+        trigger(true)
       }
 
       onProtobuf()

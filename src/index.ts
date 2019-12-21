@@ -43,22 +43,3 @@ export default {
   parseProto,
   parseJson
 };
-
-// const ts = parseProto(`
-// syntax = "proto3";
-
-// service MyService {
-//     rpc MyMethod (MyRequest) returns (MyResponse);
-// }
-
-// message MyRequest {
-//     string path = 1;
-// }
-
-// message MyResponse {
-//     int32 status = 1;
-// }
-// `);
-// console.log(ts);
-
-
