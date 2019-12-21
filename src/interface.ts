@@ -1,6 +1,7 @@
 export interface FieldContent {
   [key: string]: {
     [key: string]: string | number;
+    rule: string;
     type: string;
     id: number;
   };

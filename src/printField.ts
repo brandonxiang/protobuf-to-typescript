@@ -24,7 +24,12 @@ function readField(name: string, content: FieldContent) {
   const params = Object.keys(content).map(paramName => {
     const paramValue = content[paramName];
 
-    return { type: TYPES[paramValue.type], name: paramName, id: paramValue.id };
+    return {
+      type: TYPES[paramValue.type],
+      name: paramName,
+      rule: paramValue.rule,
+      id: paramValue.id
+    };
   });
 
   return {
@@ -37,7 +42,12 @@ function readField(name: string, content: FieldContent) {
 export function printField(name: string, content: FieldContent) {
   const item = readField(name, content);
 
-  const strs = item.params.map(param => `${param.name}: ${param.type}`);
+  const strs = item.params.map(param => {
+    if (param.rule === 'repeated') {
+      return `${param.name}: ${param.type}[]`;
+    }
+    return `${param.name}: ${param.type}`;
+  });
 
   return (
     `interface ${item.name} {\n` + `  ${strs.join('\n  ')};\n` + `}\n` + `\n`
