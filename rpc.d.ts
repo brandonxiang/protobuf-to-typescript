@@ -1,5 +1,5 @@
 interface MyMethod {
-  (params:MyRequest): Promise<MyResponse>;
+  (params: MyRequest): Promise<MyResponse>;
 }
 
 interface MyRequest {
@@ -9,4 +9,3 @@ interface MyRequest {
 interface MyResponse {
   status: number;
 }
-

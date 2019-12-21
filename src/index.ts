@@ -1,21 +1,8 @@
 import protobuf from 'protobufjs';
-import path from 'path';
 import { printField } from './printField';
 import { printMethod } from './printMethod';
-import fs from 'fs';
 
-function parseProto() {
-  protobuf.load('rpc.proto', (err, root) => {
-    if (err) {
-      console.log(err);
-    } else {
-      const output = parseJson(root!.toJSON()!);
-      fs.writeFileSync('rpc.d.ts', output, { encoding: 'utf-8' });
-    }
-  });
-}
-
-function parseJson(json: protobuf.INamespace) {
+export function parseJson(json: protobuf.INamespace) {
   const nested = json.nested;
   if (nested) {
     const output = Object.keys(nested)
@@ -35,4 +22,36 @@ function parseJson(json: protobuf.INamespace) {
   }
   return '';
 }
-parseProto();
+
+// export function loadProto() {
+//   protobuf.load('rpc.proto', (err, root) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       const output = parseJson(root!.toJSON()!);
+//       fs.writeFileSync('rpc.d.ts', output, { encoding: 'utf-8' });
+//     }
+//   });
+// }
+
+export function parseProto(source: string) {
+  const res = protobuf.parse(source);
+  return parseJson(res.root.toJSON());
+}
+
+const ts = parseProto(`
+syntax = "proto3";
+
+service MyService {
+    rpc MyMethod (MyRequest) returns (MyResponse);
+}
+
+message MyRequest {
+    string path = 1;
+}
+
+message MyResponse {
+    int32 status = 1;
+}
+`);
+console.log(ts);
