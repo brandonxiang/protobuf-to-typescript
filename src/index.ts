@@ -35,7 +35,11 @@ export function parseJson(json: protobuf.INamespace) {
 // }
 
 export function parseProto(source: string) {
-  const res = protobuf.parse(source);
+  const res = protobuf.parse(source, { keepCase: true });
+  if (res.package) {
+    const root = res.root.lookup(res.package);
+    return parseJson(root!.toJSON());
+  }
   return parseJson(res.root.toJSON());
 }
 

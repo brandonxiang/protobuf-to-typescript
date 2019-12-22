@@ -1,5 +1,4 @@
 import { parseProto } from '../src';
-import * as typescript from 'typescript';
 
 test('Field type should be converted', () => {
   const source = `
