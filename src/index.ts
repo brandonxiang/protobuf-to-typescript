@@ -40,6 +40,7 @@ export function parseProto(source: string) {
     const root = res.root.lookup(res.package);
     return parseJson(root!.toJSON());
   }
+  console.log(JSON.stringify(res.root.toJSON()));
   return parseJson(res.root.toJSON());
 }
 
@@ -47,3 +48,9 @@ export default {
   parseProto,
   parseJson
 };
+
+parseProto(`
+syntax = "proto3";
+message CheckKycInfoMatchResp {
+}
+`);

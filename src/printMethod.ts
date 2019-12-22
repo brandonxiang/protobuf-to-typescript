@@ -28,7 +28,7 @@ export function printMethod(name: string, content: MethodContent) {
       `interface ${param.name} {\n` +
       `  (${requestType}): Promise<${responseType}>;\n` +
       `}\n` +
-      `\n `
+      `\n`
     );
   });
 

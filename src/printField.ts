@@ -44,12 +44,12 @@ export function printField(name: string, content: FieldContent) {
 
   const strs = item.params.map(param => {
     if (param.rule === 'repeated') {
-      return `${param.name}: ${param.type}[]`;
+      return `  ${param.name}: ${param.type}[];\n`;
     }
-    return `${param.name}: ${param.type}`;
+    return `  ${param.name}: ${param.type};\n`;
   });
 
-  return (
-    `interface ${item.name} {\n` + `  ${strs.join(';\n  ')};\n` + `}\n` + `\n`
-  );
+  console.log(strs);
+
+  return `interface ${item.name} {\n${strs.join('')}}\n\n`;
 }

@@ -60,7 +60,7 @@ message MyResponse {
       }
       function onProtobuf() {
           var src = document.getElementById("protobuf").value;
-          var ts = pbToTypescript.parseProto(src);
+          var ts = pbToTypescript.parseProto('syntax = "proto3";' + src);
           document.getElementById("typescript").value = ts;
           trigger(false)    
       }

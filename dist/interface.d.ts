@@ -13,3 +13,6 @@ export interface MethodContent {
         responseType: string;
     };
 }
+export interface EnumContent {
+    [key: string]: number;
+}
