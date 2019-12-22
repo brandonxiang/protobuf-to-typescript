@@ -1,4 +1,5 @@
 import { parseProto } from '../src';
+import * as typescript from 'typescript';
 
 test('Field type should be converted', () => {
   const source = `
@@ -8,10 +9,8 @@ test('Field type should be converted', () => {
   }
   `;
   const ts = parseProto(source);
-  expect(ts).toContain('interface');
-  expect(ts).toContain('MyRequest');
-  expect(ts).toContain('string');
-  expect(ts).toContain('path');
+  expect(ts).toContain('interface MyRequest');
+  expect(ts).toContain('path: string');
 });
 
 test('Field Array type should be converted', () => {
@@ -22,8 +21,24 @@ test('Field Array type should be converted', () => {
   }
   `;
   const ts = parseProto(source);
-  expect(ts).toContain('interface');
-  expect(ts).toContain('MyRequest');
-  expect(ts).toContain('string[]');
-  expect(ts).toContain('path');
+  expect(ts).toContain('interface MyRequest');
+  expect(ts).toContain('path: string[]');
+});
+
+test('Field type should include another filed', () => {
+  const source = `
+  syntax = "proto3";
+  message MyRequest {
+     Group path = 1;
+  }
+  message Group {
+    int32 id = 1;
+    string name = 2;
+  }
+  `;
+  const ts = parseProto(source);
+  expect(ts).toContain('interface MyRequest');
+  expect(ts).toContain('path: Group');
+  expect(ts).toContain('id: number');
+  expect(ts).toContain('name: string');
 });

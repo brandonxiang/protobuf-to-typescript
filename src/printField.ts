@@ -25,7 +25,7 @@ function readField(name: string, content: FieldContent) {
     const paramValue = content[paramName];
 
     return {
-      type: TYPES[paramValue.type],
+      type: TYPES[paramValue.type] || paramValue.type,
       name: paramName,
       rule: paramValue.rule,
       id: paramValue.id

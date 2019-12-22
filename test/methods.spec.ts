@@ -17,8 +17,8 @@ test('Field type should be converted', () => {
   }
   `;
   const ts = parseProto(source);
-  expect(ts).toContain('string');
-  expect(ts).toContain('path');
+  expect(ts).toContain('path: string');
+  expect(ts).toContain('status: number');
   expect(ts).toContain('interface MyRequest');
   expect(ts).toContain('interface MyMethod');
   expect(ts).toContain('Promise<MyResponse>');
