@@ -25,7 +25,7 @@ test('Field Array type should be converted', () => {
   expect(ts).toContain('path: string[]');
 });
 
-test('Field type should include another filed', () => {
+test('Field type should include another field', () => {
   const source = `
   syntax = "proto3";
   message MyRequest {
@@ -39,6 +39,24 @@ test('Field type should include another filed', () => {
   const ts = parseProto(source);
   expect(ts).toContain('interface MyRequest');
   expect(ts).toContain('path: Group');
+  expect(ts).toContain('id: number');
+  expect(ts).toContain('name: string');
+});
+
+test('Field type should include another field group', () => {
+  const source = `
+  syntax = "proto3";
+  message MyRequest {
+    repeated Group path = 1;
+  }
+  message Group {
+    int32 id = 1;
+    string name = 2;
+  }
+  `;
+  const ts = parseProto(source);
+  expect(ts).toContain('interface MyRequest');
+  expect(ts).toContain('path: Group[]');
   expect(ts).toContain('id: number');
   expect(ts).toContain('name: string');
 });
