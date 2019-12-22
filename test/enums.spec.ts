@@ -12,7 +12,8 @@ test('Field type should be converted', () => {
   }
   `;
   const ts = parseProto(source);
-  console.log(ts);
-  expect(ts).toContain('interface MyRequest');
-  expect(ts).toContain('path: string');
+  expect(ts).toContain('enum PhoneType');
+  expect(ts).toContain('MOBILE;');
+  expect(ts).toContain('HOME;');
+  expect(ts).toContain('WORK;');
 });

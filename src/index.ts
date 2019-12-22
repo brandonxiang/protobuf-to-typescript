@@ -1,6 +1,7 @@
 import protobuf from 'protobufjs';
 import { printField } from './printField';
 import { printMethod } from './printMethod';
+import { printEnum } from './printEnum';
 
 export function parseJson(json: protobuf.INamespace) {
   const nested = json.nested;
@@ -12,6 +13,7 @@ export function parseJson(json: protobuf.INamespace) {
         const res = Object.keys(value).map(category => {
           if (category === 'fields') return printField(name, value[category]);
           if (category === 'methods') return printMethod(name, value[category]);
+          if (category === 'values') return printEnum(name, value[category]);
         });
         return res;
       })
@@ -40,7 +42,7 @@ export function parseProto(source: string) {
     const root = res.root.lookup(res.package);
     return parseJson(root!.toJSON());
   }
-  console.log(JSON.stringify(res.root.toJSON()));
+  // console.log(JSON.stringify(res.root.toJSON()));
   return parseJson(res.root.toJSON());
 }
 

@@ -49,7 +49,5 @@ export function printField(name: string, content: FieldContent) {
     return `  ${param.name}: ${param.type};\n`;
   });
 
-  console.log(strs);
-
   return `interface ${item.name} {\n${strs.join('')}}\n\n`;
 }
