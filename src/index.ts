@@ -1,19 +1,21 @@
-import protobuf from 'protobufjs';
+import protobuf, { IService, IType, IEnum } from 'protobufjs';
 import { printField } from './printField';
 import { printMethod } from './printMethod';
 import { printEnum } from './printEnum';
 
-export function parseJson(json: protobuf.INamespace) {
+export function parseJson(json: protobuf.INamespace): string {
   const nested = json.nested;
   if (nested) {
     const output = Object.keys(nested)
       .map(name => {
-        const value = nested[name] as { [key: string]: any };
+        const value = nested[name];
 
         const res = Object.keys(value).map(category => {
-          if (category === 'fields') return printField(name, value[category]);
-          if (category === 'methods') return printMethod(name, value[category]);
-          if (category === 'values') return printEnum(name, value[category]);
+          if (category === 'fields') return printField(name, value as IType);
+          if (category === 'methods')
+            return printMethod(name, value as IService);
+          if (category === 'values') return printEnum(name, value as IEnum);
+          if (category === 'nested') return parseJson(value);
         });
         return res;
       })

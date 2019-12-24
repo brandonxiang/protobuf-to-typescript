@@ -1,2 +1,2 @@
-import { EnumContent } from './interface';
-export declare function printEnum(name: string, content: EnumContent): string;
+import { IEnum } from 'protobufjs';
+export declare function printEnum(name: string, enumContent: IEnum): string;

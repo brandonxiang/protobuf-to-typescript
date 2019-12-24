@@ -1,4 +1,4 @@
-import { FieldContent } from './interface';
+import { IType, IField } from 'protobufjs';
 
 const TYPES: {
   [key: string]: string;
@@ -20,7 +20,12 @@ const TYPES: {
   bytes: 'string'
 };
 
-function readField(name: string, content: FieldContent) {
+function readField(
+  name: string,
+  content: {
+    [k: string]: IField;
+  }
+) {
   const params = Object.keys(content).map(paramName => {
     const paramValue = content[paramName];
 
@@ -39,7 +44,9 @@ function readField(name: string, content: FieldContent) {
   };
 }
 
-export function printField(name: string, content: FieldContent) {
+export function printField(name: string, fieldParams: IType) {
+  const content = fieldParams.fields;
+
   const item = readField(name, content);
 
   const strs = item.params.map(param => {
@@ -48,6 +55,12 @@ export function printField(name: string, content: FieldContent) {
     }
     return `  ${param.name}: ${param.type};\n`;
   });
+
+  if (fieldParams.nested) {
+    Object.keys(fieldParams.nested).forEach(key => {
+      strs.push(`  ${key}: ${key};\n`);
+    });
+  }
 
   return `interface ${item.name} {\n${strs.join('')}}\n\n`;
 }

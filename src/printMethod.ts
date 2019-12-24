@@ -1,8 +1,13 @@
-import { MethodContent } from './interface';
+import { IService, IMethod } from 'protobufjs';
 
 const EMPTY = 'google.protobuf.Empty';
 
-function readMethod(name: string, content: MethodContent) {
+function readMethod(
+  name: string,
+  content: {
+    [k: string]: IMethod;
+  }
+) {
   const params = Object.keys(content).map(paramName => {
     const paramValue = content[paramName];
 
@@ -16,7 +21,8 @@ function readMethod(name: string, content: MethodContent) {
   };
 }
 
-export function printMethod(name: string, content: MethodContent) {
+export function printMethod(name: string, methodContent: IService) {
+  const content = methodContent.methods;
   const item = readMethod(name, content);
 
   const strs = item.params.map(param => {

@@ -1,2 +1,2 @@
-import { FieldContent } from './interface';
-export declare function printField(name: string, content: FieldContent): string;
+import { IType } from 'protobufjs';
+export declare function printField(name: string, fieldParams: IType): string;
