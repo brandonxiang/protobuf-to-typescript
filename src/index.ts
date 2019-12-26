@@ -52,9 +52,3 @@ export default {
   parseProto,
   parseJson
 };
-
-parseProto(`
-syntax = "proto3";
-message CheckKycInfoMatchResp {
-}
-`);

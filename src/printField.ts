@@ -1,4 +1,4 @@
-import { IType, IField } from 'protobufjs';
+import { IType, IField, IMapField } from 'protobufjs';
 
 const TYPES: {
   [key: string]: string;
@@ -20,6 +20,13 @@ const TYPES: {
   bytes: 'string'
 };
 
+function getKeyType(p: Partial<IMapField>) {
+  if (p.keyType) {
+    return TYPES[p.keyType] || p.keyType;
+  }
+  return '';
+}
+
 function readField(
   name: string,
   content: {
@@ -31,6 +38,7 @@ function readField(
 
     return {
       type: TYPES[paramValue.type] || paramValue.type,
+      keyType: getKeyType(paramValue),
       name: paramName,
       rule: paramValue.rule,
       id: paramValue.id
@@ -52,6 +60,9 @@ export function printField(name: string, fieldParams: IType) {
   const strs = item.params.map(param => {
     if (param.rule === 'repeated') {
       return `  ${param.name}: ${param.type}[];\n`;
+    }
+    if (param.keyType) {
+      return `  ${param.name}: {[key: ${param.keyType}]: ${param.type}};\n`;
     }
     return `  ${param.name}: ${param.type};\n`;
   });
