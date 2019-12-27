@@ -13,8 +13,8 @@ export function getAllMethods(source: string) {
     alternateCommentMode: true
   });
   if (res.package) {
-    const reflect = res.root.lookup(res.package);
-    return _getAllMethods(reflect!.root);
+    const reflect = res.root.lookup(res.package) as protobuf.Root;
+    return _getAllMethods(reflect);
   }
   return _getAllMethods(res.root);
 }
@@ -85,10 +85,9 @@ export function mockResponse(source: string, methodName: string) {
     alternateCommentMode: true
   });
   if (res.package) {
-    const reflect = res.root.lookup(res.package);
-    return _mockResponse(reflect!.root, methodName);
+    console.log(res.package);
+    const reflect = res.root.lookup(res.package) as protobuf.Root;
+    return _mockResponse(reflect, methodName);
   }
   return _mockResponse(res.root, methodName);
 }
-
-

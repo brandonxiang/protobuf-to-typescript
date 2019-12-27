@@ -1,8 +1,11 @@
 import protobuf from 'protobufjs';
-export declare function parseJson(json: protobuf.INamespace): string;
+import { getAllMethods, mockResponse } from './mock';
+export declare function printTypescript(json: protobuf.INamespace): string;
 export declare function parseProto(source: string): string;
+export { getAllMethods, mockResponse };
 declare const _default: {
     parseProto: typeof parseProto;
-    parseJson: typeof parseJson;
+    getAllMethods: typeof getAllMethods;
+    mockResponse: typeof mockResponse;
 };
 export default _default;
