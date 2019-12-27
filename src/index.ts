@@ -2,8 +2,9 @@ import protobuf, { IService, IType, IEnum } from 'protobufjs';
 import { printField } from './printField';
 import { printMethod } from './printMethod';
 import { printEnum } from './printEnum';
+import { getAllMethods, mockResponse } from './mock';
 
-export function parseJson(json: protobuf.INamespace): string {
+export function printTypescript(json: protobuf.INamespace): string {
   const nested = json.nested;
   if (nested) {
     const output = Object.keys(nested)
@@ -15,7 +16,7 @@ export function parseJson(json: protobuf.INamespace): string {
           if (category === 'methods')
             return printMethod(name, value as IService);
           if (category === 'values') return printEnum(name, value as IEnum);
-          if (category === 'nested') return parseJson(value);
+          if (category === 'nested') return printTypescript(value);
         });
         return res;
       })
@@ -27,28 +28,20 @@ export function parseJson(json: protobuf.INamespace): string {
   return '';
 }
 
-// export function loadProto() {
-//   protobuf.load('rpc.proto', (err, root) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       const output = parseJson(root!.toJSON()!);
-//       fs.writeFileSync('rpc.d.ts', output, { encoding: 'utf-8' });
-//     }
-//   });
-// }
-
 export function parseProto(source: string) {
   const res = protobuf.parse(source, { keepCase: true });
   if (res.package) {
     const root = res.root.lookup(res.package);
-    return parseJson(root!.toJSON());
+    return printTypescript(root!.toJSON());
   }
   // console.log(JSON.stringify(res.root.toJSON()));
-  return parseJson(res.root.toJSON());
+  return printTypescript(res.root.toJSON());
 }
+
+export { getAllMethods, mockResponse };
 
 export default {
   parseProto,
-  parseJson
+  getAllMethods,
+  mockResponse
 };

@@ -9,7 +9,6 @@ test('Enum type should be converted', () => {
   }
   `;
   const ts = parseProto(source);
-  console.log(ts);
   expect(ts).toContain('interface MapInt32String');
   expect(ts).toContain('data:');
   expect(ts).toContain('key: number');
