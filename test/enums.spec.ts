@@ -32,7 +32,7 @@ test('Enum in a message should be converted', () => {
     }
   }
   `;
-  const ts = parseProto(source); 
+  const ts = parseProto(source);
   expect(ts).toContain('PhoneType: PhoneType');
   expect(ts).toContain('enum PhoneType');
   expect(ts).toContain('MOBILE = 0,');

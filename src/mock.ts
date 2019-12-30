@@ -62,6 +62,13 @@ function mockType(root: protobuf.Root, typeName: string): Object {
   const type = root.lookupType(typeName);
 
   return type.fieldsArray.reduce((a, b) => {
+    if (b.rule === 'repeated') {
+      const mockData = mockScalar(b.type);
+      const val = mockData
+        ? { [b.name]: [mockData] }
+        : { [b.name]: [mockType(root, b.type)] };
+      return { ...a, ...val };
+    }
     const mockData = mockScalar(b.type);
     const val = mockData
       ? { [b.name]: mockData }
@@ -75,7 +82,6 @@ function _mockResponse(root: protobuf.Root, methodName: string) {
   const firstService = root.lookupService(service!.name);
   const { responseType } = firstService.methods[methodName];
   const res = mockType(root, responseType);
-  console.log(res);
   return res;
 }
 
@@ -85,7 +91,6 @@ export function mockResponse(source: string, methodName: string) {
     alternateCommentMode: true
   });
   if (res.package) {
-    console.log(res.package);
     const reflect = res.root.lookup(res.package) as protobuf.Root;
     return _mockResponse(reflect, methodName);
   }
