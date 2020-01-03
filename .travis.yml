@@ -4,6 +4,16 @@ node_js:
   - 12
 branches:
   only: master
+cache:
+  directories:
+  - node_modules
 script:
+  - yarn build
   - yarn lint
   - yarn test
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: a530ba09a89f53b30cd515ea138b5c74fbc13081
+  on:
+    branch: master
