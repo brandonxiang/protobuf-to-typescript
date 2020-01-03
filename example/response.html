@@ -2,37 +2,16 @@
 <html>
   <head>
     <title>Protobuf to Typescript</title>
-    <style>
-      body {
-        font-family: Sans-Serif;
-      }
-      h1, h2 {
-        margin: 16px 8px;
-      }
-      .selector {
-        width: 20%;
-        float: left;
-        height: 500px;
-      }
-      .col {
-        width: calc(40% - 16px);
-        float: left;
-        margin: 0 8px;
-      }
-      textarea {
-        width: 100%;
-      }
-      .error {
-        color: red;
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="./index.css">
   </head>
   <body>
+    <header class="header">
+      <a href="./">Converter</a>
+      <a href="./response.html" class="active">Mock</a>
+    </header>
     <div id="container">
-      <h1>One simple webpage to convert Protocol Buffers to TypeScript definition files.</h1>
       <h2 class="error">Error!!!Please check your protobuf!</h2>
-      <div class="col">
+      <div class="editor">
         Protocol buffer:
         <br>
 <textarea name="" id="protobuf" rows="40" oninput="onProtobuf()">
@@ -62,7 +41,7 @@
         <br>
         <ul id="selector"></ul>
       </div>
-      <div class="col">
+      <div class="editor">
         Response Mock Result:
         <br>
         <textarea name="" id="typescript" rows="40"></textarea>
@@ -86,6 +65,7 @@
 
           methodNames.forEach((methodName) => {
             var li = document.createElement('li');
+            li.classList.add('method-item');
             li.innerText= methodName;
             li.addEventListener('click', getMockResponse)
             selector.append(li);

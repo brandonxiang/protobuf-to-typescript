@@ -1,0 +1,56 @@
+body, html {
+  font-family: Sans-Serif;
+  margin: 0;
+}
+h1, h2 {
+  margin: 16px 8px;
+}
+.col {
+  width: calc(50% - 16px);
+  float: left;
+  margin: 0 8px;
+}
+.editor {
+  width: calc(40% - 16px);
+  float: left;
+  margin: 0 8px;
+}
+textarea {
+  width: 100%;
+}
+#container {
+  padding-top: 20px;
+}
+.error {
+  color: red;
+  display: none;
+}
+.selector {
+  width: 20%;
+  float: left;
+  height: 500px;
+}
+.header {
+  height: 63px;
+  margin: auto;
+  padding: 0 60px;
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+.header a {
+  font-size: 18px;
+  line-height: 63px;
+  height: 63px;
+  padding: 10px;
+  text-decoration: none;
+  color: #111;
+}
+.header a:hover {
+  color: #1890ff;
+}
+.header .active{
+  color: #1890ff;
+  border-bottom: 3px solid #1890ff;;
+}
+.method-item {
+  cursor: pointer;
+}
