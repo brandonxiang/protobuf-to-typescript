@@ -9,7 +9,8 @@
   "license": "MIT",
   "scripts": {
     "build": "microbundle --globals protobufjs=protobuf",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --fix"
   },
   "files": [
     "dist"
