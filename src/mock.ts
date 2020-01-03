@@ -1,4 +1,4 @@
-import protobuf, { Service } from 'protobufjs';
+import protobuf, { Service, MapField } from 'protobufjs';
 
 function _getAllMethods(root: protobuf.Root) {
   const service = root.nestedArray.find(s => s instanceof Service);
@@ -62,6 +62,14 @@ function mockType(root: protobuf.Root, typeName: string): Object {
   const type = root.lookupType(typeName);
 
   return type.fieldsArray.reduce((a, b) => {
+    if (b instanceof MapField) {
+      const mockKey = mockScalar(b.keyType);
+      const mockData = mockScalar(b.type);
+      const val = mockData
+        ? { [b.name]: { [mockKey]: mockData } }
+        : { [b.name]: { [mockKey]: mockType(root, b.type) } };
+      return { ...a, ...val };
+    }
     if (b.rule === 'repeated') {
       const mockData = mockScalar(b.type);
       const val = mockData
