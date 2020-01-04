@@ -5,6 +5,9 @@ body, html {
 h1, h2 {
   margin: 16px 8px;
 }
+h3 {
+  margin: 5px 8px;
+}
 .col {
   width: calc(50% - 16px);
   float: left;
@@ -17,6 +20,8 @@ h1, h2 {
 }
 textarea {
   width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
 }
 #container {
   padding-top: 20px;
