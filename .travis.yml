@@ -10,7 +10,8 @@ cache:
 script:
   - yarn lint
   - yarn test
-  - yarn run build:example
+  - yarn run build
+  - yarn run cp:example
 deploy:
   provider: pages
   skip_cleanup: true
