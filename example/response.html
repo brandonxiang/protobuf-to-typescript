@@ -7,12 +7,12 @@
   <body>
     <header class="header">
       <a href="./">Converter</a>
-      <a href="./response.html" class="active">Mock</a>
+      <a href="./response.html" class="active">Mock Response</a>
     </header>
     <div id="container">
       <h2 class="error">Error!!!Please check your protobuf!</h2>
       <div class="editor">
-        <h3>Protocol buffer:</h3>
+        <h3>Protocol buffer</h3>
         <br>
 <textarea name="" id="protobuf" rows="40" oninput="onProtobuf()">
   syntax = "proto3";
@@ -37,12 +37,12 @@
 </textarea>
       </div>
       <div class="selector">
-        <h3>Methods:</h3>
+        <h3>Methods</h3>
         <br>
         <ul id="selector"></ul>
       </div>
       <div class="editor">
-        <h3>Response Mock Result:</h3>
+        <h3>Response Mock Result</h3>
         <br>
         <textarea name="" id="typescript" rows="40"></textarea>
       </div>
@@ -76,7 +76,7 @@
       function getMockResponse(e) {
         var src = document.getElementById("protobuf").value;
         var ts = pbToTypescript.mockResponse('syntax = "proto3";' + src, e.target.innerText);
-        document.getElementById("typescript").value = JSON.stringify(ts);
+        document.getElementById("typescript").value = JSON.stringify(ts, null, 4);
         trigger(false)    
       }
 

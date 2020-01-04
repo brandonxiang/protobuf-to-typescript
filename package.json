@@ -13,7 +13,7 @@
     "cp:example": "cp dist/index.umd.js example",
     "build": "microbundle --globals protobufjs=protobuf",
     "test": "jest",
-    "lint": "eslint --fix"
+    "lint": "eslint src/** --fix"
   },
   "files": [
     "dist"
