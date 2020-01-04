@@ -10,9 +10,10 @@ cache:
 script:
   - yarn lint
   - yarn test
-  - yarn build
+  - yarn run build:example
 deploy:
   provider: pages
+  skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
   on:

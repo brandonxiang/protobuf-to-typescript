@@ -1,6 +1,8 @@
 {
   "name": "pb-to-typescript",
   "version": "1.0.0",
+  "umd:main": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.umd.js",
@@ -8,6 +10,7 @@
   "author": "Weiping Xiang <weiping.xiang@shopee.com>",
   "license": "MIT",
   "scripts": {
+    "build:example": "microbundle  --globals protobufjs=protobuf -f umd -o example",
     "build": "microbundle --globals protobufjs=protobuf",
     "test": "jest",
     "lint": "eslint --fix"
