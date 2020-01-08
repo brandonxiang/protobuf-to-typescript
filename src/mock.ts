@@ -1,4 +1,4 @@
-import protobuf, { Service, MapField } from 'protobufjs';
+import protobuf, { Service, MapField, Enum, Field } from 'protobufjs';
 
 function _getAllMethods(root: protobuf.Root) {
   const service = root.nestedArray.find(s => s instanceof Service);
@@ -61,7 +61,7 @@ function mockScalar(type: string): any {
 function mockType(root: protobuf.Root, typeName: string): Object {
   const type = root.lookupType(typeName);
 
-  return type.fieldsArray.reduce((a, b) => {
+  const fieldMock = type.fieldsArray.reduce((a, b) => {
     if (b instanceof MapField) {
       const mockKey = mockScalar(b.keyType);
       const mockData = mockScalar(b.type);
@@ -83,6 +83,20 @@ function mockType(root: protobuf.Root, typeName: string): Object {
       : { [b.name]: mockType(root, b.type) };
     return { ...a, ...val };
   }, {});
+
+  const enumMock = type.nestedArray.reduce((a, b) => {
+    if (b instanceof Enum) {
+      const values = Object.values(b.values);
+      if (values.length) {
+        const val = { [b.name]: values[0] };
+        return { ...a, ...val };
+      }
+      return a;
+    }
+    return a;
+  }, {});
+
+  return { ...fieldMock, ...enumMock };
 }
 
 function _mockResponse(root: protobuf.Root, methodName: string) {
