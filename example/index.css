@@ -63,3 +63,7 @@ textarea, pre {
   float: right;
   padding: 0 !important;
 }
+#type-selector {
+  height: 30px;
+  margin: 15px 0;
+}

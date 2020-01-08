@@ -1,4 +1,5 @@
 import { IService, IMethod } from 'protobufjs';
+import { OptionType } from './interface';
 
 const EMPTY = 'google.protobuf.Empty';
 
@@ -21,7 +22,11 @@ function readMethod(
   };
 }
 
-export function printMethod(name: string, methodContent: IService) {
+export function printMethod(
+  name: string,
+  methodContent: IService,
+  options: OptionType
+) {
   const content = methodContent.methods;
   const item = readMethod(name, content);
 
@@ -30,8 +35,10 @@ export function printMethod(name: string, methodContent: IService) {
       param.requestType === EMPTY ? '' : `params: ${param.requestType}`;
     const responseType =
       param.responseType === EMPTY ? '{}' : param.responseType;
+
+    const prefix = options.isDefinition ? '' : 'export ';
     return (
-      `interface ${param.name} {\n` +
+      `${prefix}interface ${param.name} {\n` +
       `  (${requestType}): Promise<${responseType}>;\n` +
       `}\n` +
       `\n`

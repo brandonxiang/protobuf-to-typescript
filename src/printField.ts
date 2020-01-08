@@ -1,4 +1,5 @@
 import { IType, IField, IMapField } from 'protobufjs';
+import { OptionType } from './interface';
 
 const TYPES: {
   [key: string]: string;
@@ -52,7 +53,11 @@ function readField(
   };
 }
 
-export function printField(name: string, fieldParams: IType) {
+export function printField(
+  name: string,
+  fieldParams: IType,
+  options: OptionType
+) {
   const content = fieldParams.fields;
 
   const item = readField(name, content);
@@ -72,6 +77,7 @@ export function printField(name: string, fieldParams: IType) {
       strs.push(`  ${key}: ${key};\n`);
     });
   }
+  const prefix = options.isDefinition ? '' : 'export ';
 
-  return `interface ${item.name} {\n${strs.join('')}}\n\n`;
+  return `${prefix}interface ${item.name} {\n${strs.join('')}}\n\n`;
 }
