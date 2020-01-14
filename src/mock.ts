@@ -30,23 +30,23 @@ function mockScalar(type: string): any {
     case 'int32':
       return 10;
     case 'int64':
-      return 20;
+      return '20';
     case 'uint32':
       return 100;
     case 'uint64':
-      return 100;
+      return '100';
     case 'sint32':
       return 100;
     case 'sint64':
-      return 1200;
+      return '-1200';
     case 'fixed32':
       return 1400;
     case 'fixed64':
-      return 1500;
+      return '1500';
     case 'sfixed32':
       return 1600;
     case 'sfixed64':
-      return 1700;
+      return '-1700';
     case 'double':
       return 1.4;
     case 'float':

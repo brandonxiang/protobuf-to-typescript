@@ -46,21 +46,21 @@ message MyResponse {
       function trigger (isShow) {
         document.querySelector('.error').style.display =  isShow ? 'block': 'none';
       }
-      function onProtobuf(_isDefinition) {
-          var isDefinition = _isDefinition === undefined ? true : _isDefinition;
+      function onProtobuf() {
+          var isDefinition = !!Number(document.querySelector('#type-selector').value);
           var src = document.getElementById("protobuf").value;
           var ts = pbToTypescript.parseProto('syntax = "proto3";' + src, { isDefinition: isDefinition});
           document.getElementById("typescript").value = ts;
-          trigger(false)    
+          trigger(false)
       }
-      
+
       function onLoad() {
         document.querySelector('#type-selector').addEventListener('change', (e) => {
-          onProtobuf(!!+e.target.value);
-        })
+          onProtobuf();
+        });
         onProtobuf()
       }
-     
+
 
       window.onerror = () => {
         trigger(true)
