@@ -72,11 +72,11 @@ export function printField(
     return `  ${param.name}: ${param.type};\n`;
   });
 
-  if (fieldParams.nested) {
-    Object.keys(fieldParams.nested).forEach(key => {
-      strs.push(`  ${key}: ${key};\n`);
-    });
-  }
+  // if (fieldParams.nested) {
+  //   Object.keys(fieldParams.nested).forEach(key => {
+  //     strs.push(`  ${key}: ${key};\n`);
+  //   });
+  // }
   const prefix = options.isDefinition ? '' : 'export ';
 
   return `${prefix}interface ${item.name} {\n${strs.join('')}}\n\n`;

@@ -59,44 +59,53 @@ function mockScalar(type: string): any {
 }
 
 function mockType(root: protobuf.Root, typeName: string): Object {
-  const type = root.lookupType(typeName);
+  const type = root.lookupTypeOrEnum(typeName);
 
-  const fieldMock = type.fieldsArray.reduce((a, b) => {
-    if (b instanceof MapField) {
-      const mockKey = mockScalar(b.keyType);
-      const mockData = mockScalar(b.type);
-      const val = mockData
-        ? { [b.name]: { [mockKey]: mockData } }
-        : { [b.name]: { [mockKey]: mockType(root, b.type) } };
-      return { ...a, ...val };
-    }
-    if (b.rule === 'repeated') {
-      const mockData = mockScalar(b.type);
-      const val = mockData
-        ? { [b.name]: [mockData] }
-        : { [b.name]: [mockType(root, b.type)] };
-      return { ...a, ...val };
-    }
-    const mockData = mockScalar(b.type);
-    const val = mockData
-      ? { [b.name]: mockData }
-      : { [b.name]: mockType(root, b.type) };
-    return { ...a, ...val };
-  }, {});
+  if (type instanceof Enum) {
+    const values = Object.values(type.values);
+    return values[0];
+  }
 
-  const enumMock = type.nestedArray.reduce((a, b) => {
-    if (b instanceof Enum) {
-      const values = Object.values(b.values);
-      if (values.length) {
-        const val = { [b.name]: values[0] };
+  const fieldMock =
+    type.fieldsArray &&
+    type.fieldsArray.reduce((a, b) => {
+      if (b instanceof MapField) {
+        const mockKey = mockScalar(b.keyType);
+        const mockData = mockScalar(b.type);
+        const val = mockData
+          ? { [b.name]: { [mockKey]: mockData } }
+          : { [b.name]: { [mockKey]: mockType(root, b.type) } };
         return { ...a, ...val };
       }
-      return a;
-    }
-    return a;
-  }, {});
+      if (b.rule === 'repeated') {
+        const mockData = mockScalar(b.type);
+        const val = mockData
+          ? { [b.name]: [mockData] }
+          : { [b.name]: [mockType(root, b.type)] };
+        return { ...a, ...val };
+      }
+      const mockData = mockScalar(b.type);
+      const val = mockData
+        ? { [b.name]: mockData }
+        : { [b.name]: mockType(root, b.type) };
+      return { ...a, ...val };
+    }, {});
 
-  return { ...fieldMock, ...enumMock };
+  // const enumMock =
+  //   type.nestedArray &&
+  //   type.nestedArray.reduce((a, b) => {
+  //     if (b instanceof Enum) {
+  //       const values = Object.values(b.values);
+  //       if (values.length) {
+  //         const val = { [b.name]: values[0] };
+  //         return { ...a, ...val };
+  //       }
+  //       return a;
+  //     }
+  //     return a;
+  //   }, {});
+
+  return fieldMock;
 }
 
 function _mockResponse(root: protobuf.Root, methodName: string) {
