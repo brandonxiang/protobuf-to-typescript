@@ -8,15 +8,13 @@
     <header class="header">
       <a href="./" class="active">PB Converter</a>
       <a href="./response.html">PB Mock</a>
-      <a href="http://www.jsontots.com/">JSON Converter</a>
+      <a href="http://www.jsontots.com/" target="_blank">JSON Converter</a>
       <a class="github-link" href="https://github.com/brandonxiang/pb-to-typescript">Github</a>
     </header>
     <div id="container">
-      <h2 class="error">Error!!!Please check your protobuf!</h2>
       <div class="col">
         <h3>Protocol buffer</h3>
-        <br>
-<textarea name="" id="protobuf" rows="40" oninput="onProtobuf()">
+<textarea name="" id="protobuf" oninput="onProtobuf()">
 syntax = "proto3";
 
 service MyService {
@@ -31,21 +29,23 @@ message MyResponse {
     int32 status = 1;
 }
 </textarea>
+        <span class="rightcorner warning">Invald Protobuf</span>
       </div>
       <div class="col">
         <select id="type-selector">
           <option value="1">Typescript d.ts</option>
           <option value="0">Typescript File</option>
         </select>
-        <br>
-        <textarea name="" id="typescript" rows="40"></textarea>
+        <textarea name="" id="typescript"></textarea>
+        <span class="rightcorner button" data-clipboard-target="#typescript">Copy to clipboard</span>
       </div>
     </div>
     <script src="https://unpkg.com/protobufjs@6.8.8/dist/protobuf.min.js"></script>
+    <script src="https://cdn.bootcss.com/clipboard.js/2.0.4/clipboard.min.js"></script>
     <script src="./index.umd.js"></script>
     <script>
       function trigger (isShow) {
-        document.querySelector('.error').style.display =  isShow ? 'block': 'none';
+        document.querySelector('.warning').style.display =  isShow ? 'block': 'none';
       }
       function onProtobuf() {
           var isDefinition = !!Number(document.querySelector('#type-selector').value);
@@ -56,15 +56,14 @@ message MyResponse {
       }
 
       function onLoad() {
+        window.onerror = () => {
+          trigger(true)
+        }
         document.querySelector('#type-selector').addEventListener('change', (e) => {
           onProtobuf();
         });
         onProtobuf()
-      }
-
-
-      window.onerror = () => {
-        trigger(true)
+        new ClipboardJS('.button');
       }
 
       onLoad()

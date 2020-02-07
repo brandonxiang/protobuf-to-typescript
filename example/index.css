@@ -7,23 +7,32 @@ h1, h2 {
 }
 h3 {
   margin: 5px 8px;
+  line-height: 30px;
 }
 .col {
+  height: 100%;
   width: calc(50% - 16px);
   float: left;
   margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 .editor {
+  height: 100%;
   width: calc(40% - 16px);
   float: left;
   margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 textarea, pre {
-  width: 100%;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
 }
 #container {
+  height: calc(100vh - 83px);
   padding-top: 20px;
 }
 .error {
@@ -33,7 +42,8 @@ textarea, pre {
 .selector {
   width: 20%;
   float: left;
-  height: 500px;
+  height: calc(100vh - 83px);
+  overflow: scroll;
 }
 .header {
   height: 63px;
@@ -56,8 +66,21 @@ textarea, pre {
   color: #1890ff;
   border-bottom: 3px solid #1890ff;;
 }
+#selector {
+  padding: 0;
+}
 .method-item {
+  color: #1890ff;
+  border: 2px solid #1890ff;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
   cursor: pointer;
+  list-style-type: none;
+}
+.method-item:hover {
+  background-color: #1890ff;
+  color: #fff;
 }
 .github-link {
   float: right;
@@ -65,5 +88,28 @@ textarea, pre {
 }
 #type-selector {
   height: 30px;
-  margin: 15px 0;
+  margin: 5px 0;
+  width: 130px;
+}
+textarea {
+  flex: 1;
+}
+.rightcorner {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  border-bottom-left-radius: 10px;
+  padding: 5px 10px;
+}
+.button {
+  color: #1890ff;
+  border-left: 2px solid #1890ff;
+  border-bottom: 2px solid #1890ff;
+  cursor: pointer;
+}
+.warning {
+  display: none;
+  color: red;
+  border-left: 2px solid red;
+  border-bottom: 2px solid red;
 }
