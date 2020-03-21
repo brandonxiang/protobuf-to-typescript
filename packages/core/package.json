@@ -25,5 +25,8 @@
   },
   "bugs": {
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
+  },
+  "dependencies": {
+    "protobufjs": "^6.8.9"
   }
 }
