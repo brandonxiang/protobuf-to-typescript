@@ -1,6 +1,6 @@
 {
   "name": "pb-to-typescript",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "umd:main": "dist/index.umd.js",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
