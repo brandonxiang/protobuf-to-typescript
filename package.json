@@ -1,5 +1,5 @@
 {
-  "name": "pb-to-typescript",
+  "name": "pb-to-typescript-tool",
   "version": "1.0.2",
   "umd:main": "dist/index.umd.js",
   "types": "dist/index.d.ts",
@@ -26,14 +26,10 @@
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.2",
     "jest": "^24.9.0",
-    "microbundle": "^0.11.0",
+    "lerna": "^3.20.2",
     "prettier": "^1.19.1",
-    "rollup-plugin-typescript2": "^0.25.3",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
-  },
-  "dependencies": {
-    "protobufjs": "^6.8.8"
   }
 }
