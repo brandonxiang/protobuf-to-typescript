@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Product {
+    string product_id = 1;
+    string product_name = 2;
+}

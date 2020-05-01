@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "common/order.proto";
+
+service AppService {
+    rpc GetProduct(GetProductReq) returns (GetProductResp) {}
+}
+
+message GetProductReq {
+  uint64 product_id = 1;
+}
+
+message GetProductResp {
+  repeated ProductInfo products = 1;
+}

@@ -1,5 +1,5 @@
 import program from 'commander';
-import serveAction from './serve';
+import serveAction from './convert';
 
 const errorHandler = (e: any) => {
   console.error(e.message);
@@ -11,6 +11,8 @@ function actionRunner(fn: (...args: any[]) => Promise<any>) {
 }
 
 program
-  .command('convert [entry]')
-  .description('serve based on local protobuf files')
+  .command('convert')
+  .option('-i, --input <env>', 'input directory', '')
+  .option('-o, --output <env>', 'output directory', '')
+  .description('convert based on local protobuf ')
   .action(actionRunner(serveAction));

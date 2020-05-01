@@ -18,13 +18,15 @@
     "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
   },
   "scripts": {
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "start": "ts-node src/index.ts"
   },
   "bugs": {
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
   },
   "dependencies": {
     "commander": "^5.0.0",
+    "globby": "^11.0.0",
     "pbts": "^1.0.3",
     "protobufjs": "^6.8.9"
   },
