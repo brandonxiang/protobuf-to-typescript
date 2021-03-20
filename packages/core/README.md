@@ -1,11 +1,8 @@
-# `pb-to-typescript`
-
-> TODO: description
-
+# pbts
 ## Usage
 
 ```
-const pbToTypescript = require('pb-to-typescript');
+const pbToTypescript = require('pbts');
 
 // TODO: DEMONSTRATE API
 ```

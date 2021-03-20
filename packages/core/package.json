@@ -6,6 +6,8 @@
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
   "license": "MIT",
   "main": "lib/index.js",
+  "module": "lib/index.es.js",
+  "types": "",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,12 +20,20 @@
     "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
   },
   "scripts": {
-    "prepare": "tsc"
+    "prepare": "pnpm run build && pnpm run tsd",
+    "build": "rollup -c",
+    "tsd": "tsc --emitDeclarationOnly"
   },
   "bugs": {
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
   },
   "dependencies": {
     "protobufjs": "^6.8.9"
+  },
+  "devDependencies": {
+    "rollup": "^2.42.1",
+    "@rollup/plugin-typescript": "^8.2.0",
+    "typescript": "^4.2.3",
+    "tslib": "^2.1.0"
   }
 }

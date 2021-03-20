@@ -17,9 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
   },
-  "scripts": {
-    "prepare": "tsc"
-  },
   "bugs": {
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
   }
