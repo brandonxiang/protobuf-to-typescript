@@ -1,11 +1,5 @@
-# `pbts-web`
+# Demo Page for pb-to-typescript
 
-> TODO: description
+Due to the circular dependencies of protobuf.js, the demo page only can be served by webpack, not rollup.js.
 
-## Usage
-
-```
-const pbtsWeb = require('pbts-web');
-
-// TODO: DEMONSTRATE API
-```
+Maybe one day, rollup.js will add support for circular dependencies([Issue 658](https://github.com/rollup/plugins/pull/658)).

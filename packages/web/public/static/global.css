@@ -1,0 +1,174 @@
+/* html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	color: #333;
+	margin: 0;
+	padding: 8px;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+a {
+	color: rgb(0,100,200);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: rgb(0,80,160);
+}
+
+label {
+	display: block;
+}
+
+input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+input:disabled {
+	color: #ccc;
+}
+
+input[type="range"] {
+	height: 0;
+}
+
+button {
+	background-color: #f4f4f4;
+	outline: none;
+}
+
+button:active {
+	background-color: #ddd;
+}
+
+button:focus {
+	border-color: #666;
+} */
+
+body, html {
+  font-family: Sans-Serif;
+  margin: 0;
+}
+h1, h2 {
+  margin: 16px 8px;
+}
+h3 {
+  margin: 5px 8px;
+  line-height: 30px;
+}
+.col {
+  height: 100%;
+  width: calc(50% - 16px);
+  float: left;
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.editor {
+  height: 100%;
+  width: calc(40% - 16px);
+  float: left;
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+textarea, pre {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+#container {
+  height: calc(100vh - 83px);
+  padding-top: 20px;
+}
+.error {
+  color: red;
+  display: none;
+}
+.selector {
+  width: 20%;
+  float: left;
+  height: calc(100vh - 83px);
+  overflow: scroll;
+}
+.header {
+  height: 63px;
+  margin: auto;
+  padding: 0 60px;
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+.header a {
+  font-size: 18px;
+  line-height: 63px;
+  height: 63px;
+  padding: 10px;
+  text-decoration: none;
+  color: #111;
+}
+.header a:hover {
+  color: #1890ff;
+}
+.header .active{
+  color: #1890ff;
+  border-bottom: 3px solid #1890ff;;
+}
+.method-item {
+  color: #1890ff;
+  border: 2px solid #1890ff;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  list-style-type: none;
+}
+.method-item:hover {
+  background-color: #1890ff;
+  color: #fff;
+}
+.github-link {
+  float: right;
+  padding: 0 !important;
+}
+.type-selector {
+  height: 30px;
+  margin: 5px 0;
+  width: 130px;
+}
+textarea {
+  flex: 1;
+}
+.rightcorner {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  border-bottom-left-radius: 10px;
+  padding: 5px 10px;
+}
+.button {
+  color: #1890ff;
+  border-left: 2px solid #1890ff;
+  border-bottom: 2px solid #1890ff;
+  cursor: pointer;
+}
+.warning {
+  color: red;
+  border-left: 2px solid red;
+  border-bottom: 2px solid red;
+}
+
