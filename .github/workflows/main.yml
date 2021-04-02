@@ -21,5 +21,4 @@ jobs:
 
       - name: GitHub Action for pnpm
         uses: znck/pnpm@v0.1.0-alpha.1
-      - name: pnpm Build
         run: pnpm i
