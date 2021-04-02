@@ -20,5 +20,8 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}
-      - run: npm install -g pnpm
-      - run: pnpm install --frozen-lockfile
+
+      - name: GitHub Action for pnpm
+        uses: znck/pnpm@v0.1.0-alpha.1
+        run: pnpm i
+
