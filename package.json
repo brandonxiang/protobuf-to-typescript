@@ -10,8 +10,6 @@
   "author": "Weiping Xiang <weiping.xiang@shopee.com>",
   "license": "MIT",
   "scripts": {
-    "cp:example": "cp dist/index.umd.js example",
-    "build": "microbundle --globals protobufjs=protobuf",
     "test": "jest",
     "lint": "eslint src/** --fix"
   },

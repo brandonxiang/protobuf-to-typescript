@@ -1,5 +1,5 @@
 {
-  "name": "svelte-webpack-template",
+  "name": "@pbts/web",
   "version": "1.0.0",
   "private": true,
   "repository": "https://github.com/brandonxiang/svelte-webpack-template.git",

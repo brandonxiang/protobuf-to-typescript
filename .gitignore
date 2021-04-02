@@ -110,3 +110,5 @@ dist/
 /public/build/
 
 .DS_Store
+
+pnpm-lock.yaml
