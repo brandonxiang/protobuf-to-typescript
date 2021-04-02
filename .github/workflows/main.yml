@@ -1,11 +1,10 @@
 name: github-pages
 
-on:
-  - push
-  - pull_request
+on: push
 
 jobs:
-  runs-on: ubuntu-latest
+  pages:
+    runs-on: ubuntu-latest
 
   steps:
     build:
