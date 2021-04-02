@@ -6,7 +6,7 @@ importers:
       '@typescript-eslint/parser': 2.34.0_eslint@6.8.0+typescript@4.2.3
       eslint: 6.8.0
       eslint-config-prettier: 6.15.0_eslint@6.8.0
-      eslint-plugin-prettier: 3.3.1_eslint@6.8.0+prettier@2.2.1
+      eslint-plugin-prettier: 3.3.1_d9f75d6ea79d885f9cc83ea96476ae4d
       eslint-plugin-svelte3: 2.7.3_eslint@6.8.0
       jest: 24.9.0
       prettier: 2.2.1
@@ -84,10 +84,10 @@ importers:
       svelte-loader: 2.13.3_svelte@3.35.0
       svelte-preprocess: 2.16.0_svelte@3.35.0
       url-loader: 2.3.0_file-loader@4.3.0+webpack@4.46.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-bundle-analyzer: 3.9.0
       webpack-cli: 3.3.12_webpack@4.46.0
-      webpack-dev-server: 3.11.2_webpack@4.46.0
+      webpack-dev-server: 3.11.2_46edf965869dcc7c8d09e022f331d1ea
     specifiers:
       '@babel/core': ^7.5.5
       '@babel/plugin-syntax-dynamic-import': ^7.2.0
@@ -1570,6 +1570,7 @@ packages:
       functional-red-black-tree: 1.0.1
       regexpp: 3.1.0
       tsutils: 3.21.0_typescript@4.2.3
+      typescript: 4.2.3
     dev: true
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
@@ -1577,6 +1578,9 @@ packages:
       '@typescript-eslint/parser': ^2.0.0
       eslint: ^5.0.0 || ^6.0.0
       typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha1-b4zopGx96kpvHRcdK7j7rm2sK+k=
       tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-2.34.0.tgz'
@@ -1603,12 +1607,16 @@ packages:
       '@typescript-eslint/typescript-estree': 2.34.0_typescript@4.2.3
       eslint: 6.8.0
       eslint-visitor-keys: 1.3.0
+      typescript: 4.2.3
     dev: true
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0
       typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha1-UCUmMMoxloVCDpo5ygX+GFola8g=
       tarball: '@typescript-eslint/parser/download/@typescript-eslint/parser-2.34.0.tgz'
@@ -1621,11 +1629,15 @@ packages:
       lodash: 4.17.21
       semver: 7.3.4
       tsutils: 3.21.0_typescript@4.2.3
+      typescript: 4.2.3
     dev: true
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     peerDependencies:
       typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha1-FK62NTs57wcyzH8bgoUpSTfPN9U=
       tarball: '@typescript-eslint/typescript-estree/download/@typescript-eslint/typescript-estree-2.34.0.tgz'
@@ -2192,7 +2204,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
     dev: true
     engines:
       node: '>= 8.9'
@@ -3078,7 +3090,7 @@ packages:
       p-limit: 2.3.0
       schema-utils: 1.0.0
       serialize-javascript: 4.0.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-log: 2.0.0
     dev: true
     engines:
@@ -3197,7 +3209,7 @@ packages:
       postcss-modules-values: 2.0.0
       postcss-value-parser: 3.3.1
       schema-utils: 1.0.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
     dev: true
     engines:
       node: '>= 6.9.0'
@@ -3286,6 +3298,25 @@ packages:
     dev: true
     engines:
       node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    resolution:
+      integrity: sha1-8NIpxQXgxtjEmsVT0bE9wYP2su4=
+      tarball: debug/download/debug-4.3.1.tgz
+  /debug/4.3.1_supports-color@6.1.0:
+    dependencies:
+      supports-color: 6.1.0
+    dev: true
+    engines:
+      node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     resolution:
       integrity: sha1-8NIpxQXgxtjEmsVT0bE9wYP2su4=
       tarball: debug/download/debug-4.3.1.tgz
@@ -3779,9 +3810,10 @@ packages:
     resolution:
       integrity: sha1-f5P2y31FqS8VN6cOzAY2bhrG/tk=
       tarball: eslint-config-prettier/download/eslint-config-prettier-6.15.0.tgz?cache=0&sync_timestamp=1614215217521&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-config-prettier%2Fdownload%2Feslint-config-prettier-6.15.0.tgz
-  /eslint-plugin-prettier/3.3.1_eslint@6.8.0+prettier@2.2.1:
+  /eslint-plugin-prettier/3.3.1_d9f75d6ea79d885f9cc83ea96476ae4d:
     dependencies:
       eslint: 6.8.0
+      eslint-config-prettier: 6.15.0_eslint@6.8.0
       prettier: 2.2.1
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -3789,7 +3821,11 @@ packages:
       node: '>=6.0.0'
     peerDependencies:
       eslint: '>=5.0.0'
+      eslint-config-prettier: '*'
       prettier: '>=1.13.0'
+    peerDependenciesMeta:
+      eslint-config-prettier:
+        optional: true
     resolution:
       integrity: sha1-cHnPoklweJBQEeb4Lo3YRT0Tcbc=
       tarball: eslint-plugin-prettier/download/eslint-plugin-prettier-3.3.1.tgz
@@ -4236,7 +4272,7 @@ packages:
     dependencies:
       loader-utils: 1.4.0
       schema-utils: 2.7.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
     dev: true
     engines:
       node: '>= 8.9.0'
@@ -4924,7 +4960,7 @@ packages:
       tapable: 1.1.3
       toposort: 1.0.7
       util.promisify: 1.0.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
     deprecated: 3.x is no longer supported
     dev: true
     engines:
@@ -6595,7 +6631,7 @@ packages:
       loader-utils: 1.4.0
       normalize-url: 2.0.1
       schema-utils: 1.0.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-sources: 1.4.3
     dev: true
     engines:
@@ -8957,7 +8993,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
     dev: true
@@ -9395,13 +9431,16 @@ packages:
       loader-utils: 1.4.0
       mime: 2.5.2
       schema-utils: 2.7.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
     dev: true
     engines:
       node: '>= 8.9.0'
     peerDependencies:
       file-loader: '*'
       webpack: ^4.0.0
+    peerDependenciesMeta:
+      file-loader:
+        optional: true
     resolution:
       integrity: sha1-4OLvZY8APvuMpBsPP/v3a6uIZYs=
       tarball: url-loader/download/url-loader-2.3.0.tgz
@@ -9599,7 +9638,7 @@ packages:
       loader-utils: 1.4.0
       supports-color: 6.1.0
       v8-compile-cache: 2.3.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       yargs: 13.3.2
     dev: true
     engines:
@@ -9616,7 +9655,7 @@ packages:
       mime: 2.5.2
       mkdirp: 0.5.5
       range-parser: 1.2.1
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-log: 2.0.0
     dev: true
     engines:
@@ -9626,14 +9665,14 @@ packages:
     resolution:
       integrity: sha1-Bjk3KxQyYuK4SrldO5GnWXBhwsU=
       tarball: webpack-dev-middleware/download/webpack-dev-middleware-3.7.3.tgz
-  /webpack-dev-server/3.11.2_webpack@4.46.0:
+  /webpack-dev-server/3.11.2_46edf965869dcc7c8d09e022f331d1ea:
     dependencies:
       ansi-html: 0.0.7
       bonjour: 3.5.0
       chokidar: 2.1.8
       compression: 1.7.4
       connect-history-api-fallback: 1.6.0
-      debug: 4.3.1
+      debug: 4.3.1_supports-color@6.1.0
       del: 4.1.1
       express: 4.17.1
       html-entities: 1.4.0
@@ -9657,7 +9696,8 @@ packages:
       strip-ansi: 3.0.1
       supports-color: 6.1.0
       url: 0.11.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
+      webpack-cli: 3.3.12_webpack@4.46.0
       webpack-dev-middleware: 3.7.3_webpack@4.46.0
       webpack-log: 2.0.0
       ws: 6.2.1
@@ -9668,6 +9708,10 @@ packages:
     hasBin: true
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
+      webpack-cli: '*'
+    peerDependenciesMeta:
+      webpack-cli:
+        optional: true
     resolution:
       integrity: sha1-aV687Xakkp8NXef9c/r+GF/jNwg=
       tarball: webpack-dev-server/download/webpack-dev-server-3.11.2.tgz
@@ -9689,7 +9733,7 @@ packages:
     resolution:
       integrity: sha1-7t2OwLko+/HL/plOItLYkPMwqTM=
       tarball: webpack-sources/download/webpack-sources-1.4.3.tgz
-  /webpack/4.46.0:
+  /webpack/4.46.0_webpack-cli@3.3.12:
     dependencies:
       '@webassemblyjs/ast': 1.9.0
       '@webassemblyjs/helper-module-context': 1.9.0
@@ -9713,11 +9757,20 @@ packages:
       tapable: 1.1.3
       terser-webpack-plugin: 1.4.5_webpack@4.46.0
       watchpack: 1.7.5
+      webpack-cli: 3.3.12_webpack@4.46.0
       webpack-sources: 1.4.3
     dev: true
     engines:
       node: '>=6.11.5'
     hasBin: true
+    peerDependencies:
+      webpack-cli: '*'
+      webpack-command: '*'
+    peerDependenciesMeta:
+      webpack-cli:
+        optional: true
+      webpack-command:
+        optional: true
     resolution:
       integrity: sha1-v5tEBOogoHNgXgoBHRiNd8tq1UI=
       tarball: webpack/download/webpack-4.46.0.tgz
