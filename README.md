@@ -37,7 +37,7 @@ interface MyRequest {
 
 ## Demo 
 
-[Live Demo](https://brandonxiang.github.io/pb-to-typescript/example)
+[Live Demo](https://brandonxiang.github.io/pb-to-typescript/)
 
 ## License
 

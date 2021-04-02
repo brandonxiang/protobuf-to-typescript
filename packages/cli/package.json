@@ -1,7 +1,7 @@
 {
   "name": "pbts-cli",
   "version": "1.0.3",
-  "description": "> TODO: description",
+  "description": "cli for pb-to-typescript",
   "author": "weiping.xiang <weiping.xiang@shopee.com>",
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
   "license": "MIT",
