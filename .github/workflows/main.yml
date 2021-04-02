@@ -26,6 +26,7 @@ jobs:
           curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@dev npm@6
       - name: pnpm install
         run: pnpm install
+      - name: build pages
         run: pnpm --filter @pbts/web run build
 
       - name: GitHub Pages action
