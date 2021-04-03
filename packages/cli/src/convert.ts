@@ -20,13 +20,8 @@ const convertAction = async (params: { input: string; output: string }) => {
   const filename = join(cwd, params.input);
   const root = protobuf.loadSync(filename);
   const definition = pbts.parseProtoRoot(root, { isDefinition: true });
-  console.log(definition);
   writeFileSync(params.output, definition);
+  return 'Convert Success!';
 };
-
-// convertAction({
-//   input: '__tests__/__fixtures__/input/app/order.proto',
-//   output: '__tests__/__fixtures__/output/order.ts'
-// });
 
 export default convertAction;

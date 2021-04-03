@@ -1,5 +1,5 @@
 import program from 'commander';
-import serveAction from './convert';
+import convertAction from './convert';
 
 const errorHandler = (e: any) => {
   console.error(e.message);
@@ -15,4 +15,4 @@ program
   .option('-i, --input <env>', 'input directory', '')
   .option('-o, --output <env>', 'output directory', '')
   .description('convert based on local protobuf ')
-  .action(actionRunner(serveAction));
+  .action(actionRunner(convertAction));

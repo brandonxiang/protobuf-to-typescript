@@ -1,11 +1,17 @@
 # `pbts-cli`
 
-> TODO: description
+It is the cli for pbts. You can convert pb to ts file by command line
 
 ## Usage
 
-```
-const pbtsCli = require('pbts-cli');
+step 1 Install pbts-cli
 
-// TODO: DEMONSTRATE API
+```shell
+npm i pbts-cli
+```
+
+step 2 Convert your protobuffer to Typescript Definition File
+
+```shell
+pbts convert -i input/app/order.proto -o output/order.ts
 ```

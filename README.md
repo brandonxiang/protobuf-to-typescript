@@ -10,32 +10,11 @@ A converter to transform from Protobuf to Typescript definition files, which is 
 
 Protobuf is currently used in micro-service for back end. As a front end web developer, you can generate Typescript defination files based on Protobuf in case to develop your web page easily.
 
-## Usage
+- [pbts](./packages/core)
+- [pbts-cli](./packages/cli)
+- [pbts-web](./packages/web)
 
-
-```javascript
-import { parseProto } from 'pb-to-typescript';
-
-const source = `
-syntax = "proto3";
-message MyRequest {
-  string path = 1;
-}
-`;
-
-const ts = parseProto(source);
-```
-
-The result is as follow.
-
-```typescript
-interface MyRequest {
-  path: string;
-}
-```
-
-
-## Demo 
+## Demo
 
 [Live Demo](https://brandonxiang.github.io/pb-to-typescript/)
 
