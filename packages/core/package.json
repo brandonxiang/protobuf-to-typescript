@@ -1,8 +1,8 @@
 {
   "name": "pbts",
   "version": "1.0.3",
-  "description": "> TODO: description",
-  "author": "weiping.xiang <weiping.xiang@shopee.com>",
+  "description": "pbts core",
+  "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
   "license": "MIT",
   "main": "lib/index.js",
