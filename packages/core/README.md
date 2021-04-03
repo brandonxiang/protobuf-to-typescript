@@ -5,7 +5,7 @@ The core repo to convert protobuffer to typescript definition file.
 ## Usage
 
 ```javascript
-import { parseProto } from 'pbts';
+import { parseProto } from '@pbts/core';
 
 const source = `
 syntax = "proto3";

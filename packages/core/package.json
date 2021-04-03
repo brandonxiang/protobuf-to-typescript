@@ -1,5 +1,5 @@
 {
-  "name": "pbts",
+  "name": "@pbts/core",
   "version": "1.0.3",
   "description": "pbts core",
   "author": "weiping.xiang <1542453460@qq.com>",

@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import pbToTypescript from 'pbts';
+  import pbToTypescript from '@pbts/core';
   import ClipboardJS from 'clipboard';
   import Navbar from '../../components/Navbar.svelte';
 

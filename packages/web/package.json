@@ -1,5 +1,5 @@
 {
-  "name": "pbts-web",
+  "name": "@pbts/web",
   "version": "1.0.0",
   "private": true,
   "author": "brandonxiang <1542453460@qq.com>",
@@ -44,7 +44,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "svelte": "^3.0.0",
-    "pbts": "^1.0.3",
+    "@pbts/core": "^1.0.3",
     "clipboard": "^2.0.8"
   },
   "browserslist": [

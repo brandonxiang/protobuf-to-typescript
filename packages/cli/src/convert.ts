@@ -1,4 +1,4 @@
-import pbts from 'pbts';
+import pbts from '@pbts/core';
 import protobuf from 'protobufjs';
 import path, { join } from 'path';
 import globby from 'globby';
