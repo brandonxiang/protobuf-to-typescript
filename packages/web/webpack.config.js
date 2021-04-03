@@ -13,7 +13,7 @@ function getEntries() {
   try {
     const entries = {};
     const allEntry = globby.sync('src/pages/**/main.js');
-    allEntry.forEach(entry => {
+    allEntry.forEach((entry) => {
       const res = entry.match(/src\/pages\/(\w+)\/main\.js/);
       if (res.length) {
         entries[res[1]] = `./${entry}`;
@@ -27,7 +27,7 @@ function getEntries() {
 
 function multiHtmlPlugin(entries) {
   const pageNames = Object.keys(entries);
-  return pageNames.map(name => {
+  return pageNames.map((name) => {
     return new HtmlWebpackPlugin({
       filename: `${name}.html`,
       template: './public/index.html',
@@ -43,15 +43,20 @@ function multiHtmlPlugin(entries) {
   });
 }
 
-module.exports = function(env) {
+module.exports = function (env) {
   const entry = getEntries();
 
   const htmlPlugins = multiHtmlPlugin(entry);
 
   const config = {
     entry,
+    target: ['web'],
     resolve: {
+      alias: {
+        svelte: path.dirname(require.resolve('svelte/package.json')),
+      },
       extensions: ['.mjs', '.js', '.svelte'],
+      mainFields: ['svelte', 'browser', 'module', 'main'],
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -74,8 +79,11 @@ module.exports = function(env) {
             {
               loader: 'svelte-loader',
               options: {
-                emitCss: true,
-                hotReload: true,
+                compilerOptions: {
+                  dev: !prod,
+                },
+                emitCss: prod,
+                hotReload: !prod,
                 preprocess: require('svelte-preprocess')({
                   postcss: true,
                 }),
@@ -90,7 +98,7 @@ module.exports = function(env) {
              * MiniCssExtractPlugin doesn't support HMR.
              * For developing, use 'style-loader' instead.
              * */
-            prod ? MiniCssExtractPlugin.loader : 'style-loader',
+            MiniCssExtractPlugin.loader,
             'css-loader',
           ],
         },
@@ -118,6 +126,13 @@ module.exports = function(env) {
             name: 'public/fonts/[name].[hash:7].[ext]',
           },
         },
+        {
+          // required to prevent errors from Svelte on Webpack 5+
+          test: /node_modules\/svelte\/.*\.mjs$/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
       ],
     },
     mode,
@@ -125,7 +140,9 @@ module.exports = function(env) {
       new MiniCssExtractPlugin({
         filename: 'public/css/[name].[contenthash].css',
       }),
-      new CopyPlugin([{ from: './public/static', to: './public/static' }]),
+      new CopyPlugin({
+        patterns: [{ from: './public/static', to: './public/static' }],
+      }),
       ...htmlPlugins,
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
@@ -134,6 +151,7 @@ module.exports = function(env) {
     ],
     devtool: prod ? false : 'source-map',
     devServer: {
+      hot: true,
       contentBase: path.join(__dirname, 'public'),
       compress: true,
       port: 9000,
