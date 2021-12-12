@@ -1,3 +1,4 @@
 export interface OptionType {
-  isDefinition: boolean;
+  isDefinition?: boolean;
+  isParamOptional?: boolean;
 }

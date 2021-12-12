@@ -18,7 +18,7 @@ const TYPES: {
   sfixed64: 'string',
   bool: 'boolean',
   string: 'string',
-  bytes: 'string'
+  bytes: 'string',
 };
 
 function getKeyType(p: Partial<IMapField>) {
@@ -34,7 +34,7 @@ function readField(
     [k: string]: IField;
   }
 ) {
-  const params = Object.keys(content).map(paramName => {
+  const params = Object.keys(content).map((paramName) => {
     const paramValue = content[paramName];
 
     return {
@@ -42,14 +42,14 @@ function readField(
       keyType: getKeyType(paramValue),
       name: paramName,
       rule: paramValue.rule,
-      id: paramValue.id
+      id: paramValue.id,
     };
   });
 
   return {
     category: 'fields',
     name: name,
-    params: params.sort((a, b) => a.id - b.id)
+    params: params.sort((a, b) => a.id - b.id),
   };
 }
 
@@ -62,14 +62,19 @@ export function printField(
 
   const item = readField(name, content);
 
-  const strs = item.params.map(param => {
+  const strs = item.params.map((param) => {
+    let optionalChar = '';
+    if (options.isParamOptional) {
+      optionalChar = '?';
+    }
+
     if (param.rule === 'repeated') {
-      return `  ${param.name}?: ${param.type}[];\n`;
+      return `  ${param.name}${optionalChar}: ${param.type}[];\n`;
     }
     if (param.keyType) {
-      return `  ${param.name}?: {[key: ${param.keyType}]: ${param.type}};\n`;
+      return `  ${param.name}${optionalChar}: {[key: ${param.keyType}]: ${param.type}};\n`;
     }
-    return `  ${param.name}?: ${param.type};\n`;
+    return `  ${param.name}${optionalChar}: ${param.type};\n`;
   });
 
   // if (fieldParams.nested) {

@@ -148,7 +148,11 @@ textarea, pre {
 .type-selector {
   height: 30px;
   margin: 5px 0;
-  width: 130px;
+  width: 150px;
+}
+.tool-bar{
+  display: flex;
+  flex-direction: row;
 }
 textarea {
   flex: 1;

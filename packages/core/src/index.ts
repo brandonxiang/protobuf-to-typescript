@@ -6,7 +6,8 @@ import { getAllMethods, mockResponse } from './mock';
 import { OptionType } from './interface';
 
 const defaultOptions: OptionType = {
-  isDefinition: true
+  isDefinition: false,
+  isParamOptional: false,
 };
 
 export function printTypescript(
@@ -16,10 +17,10 @@ export function printTypescript(
   const nested = json.nested;
   if (nested) {
     const output = Object.keys(nested)
-      .map(name => {
+      .map((name) => {
         const value = nested[name];
 
-        const res = Object.keys(value).map(category => {
+        const res = Object.keys(value).map((category) => {
           if (category === 'fields')
             return printField(name, value as IType, options);
           if (category === 'methods')
@@ -62,5 +63,5 @@ export default {
   parseProto,
   parseProtoRoot,
   getAllMethods,
-  mockResponse
+  mockResponse,
 };

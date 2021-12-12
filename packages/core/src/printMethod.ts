@@ -9,7 +9,7 @@ function readMethod(
     [k: string]: IMethod;
   }
 ) {
-  const params = Object.keys(content).map(paramName => {
+  const params = Object.keys(content).map((paramName) => {
     const paramValue = content[paramName];
 
     return { name: paramName, ...paramValue };
@@ -18,7 +18,7 @@ function readMethod(
   return {
     category: 'methods',
     name: name,
-    params
+    params,
   };
 }
 
@@ -30,7 +30,7 @@ export function printMethod(
   const content = methodContent.methods;
   const item = readMethod(name, content);
 
-  const strs = item.params.map(param => {
+  const strs = item.params.map((param) => {
     const requestType =
       param.requestType === EMPTY ? '' : `params: ${param.requestType}`;
     const responseType =

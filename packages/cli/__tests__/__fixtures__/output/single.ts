@@ -3,10 +3,10 @@ interface MyMethod {
 }
 
 interface MyRequest {
-  path?: string;
+  path: string;
 }
 
 interface MyResponse {
-  status?: number;
+  status: number;
 }
 

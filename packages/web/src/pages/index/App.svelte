@@ -22,13 +22,18 @@ message MyResponse {
 
   let dest = '';
 
-  let selected;
+  let selectedDefinition = '0';
+  let selectedParameter = '0';
 
   let isWarning = false;
 
   function onProtobuf() {
-      const isDefinition = !!Number(selected);
-      dest = pbToTypescript.parseProto('syntax = "proto3";' + src, { isDefinition: isDefinition});
+      const isDefinition = !!Number(selectedDefinition);
+      const isParameter = !!Number(selectedParameter);
+      dest = pbToTypescript.parseProto('syntax = "proto3";' + src, { 
+        isDefinition: isDefinition, 
+        isParamOptional: isParameter 
+      });
       isWarning = false;
   }
 
@@ -51,11 +56,21 @@ message MyResponse {
  {/if}
   </div>
   <div class="col">
-    <select bind:value={selected} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
-      <option value="1">Typescript d.ts</option>
-      <option value="0">Typescript File</option>
-    </select>
+    <div calss="tool-bar">
+      <select bind:value={selectedDefinition} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
+        <option value="1">Typescript d.ts</option>
+        <option value="0">Typescript File</option>
+      </select>
+      <select bind:value={selectedParameter} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
+        <option value="1">Parameter Optional</option>
+        <option value="0">Parameter Required</option>
+      </select>
+    </div>
     <textarea name="" id="typescript" bind:value={dest}></textarea>
     <span class="rightcorner button" data-clipboard-target="#typescript">Copy to clipboard</span>
   </div>
 </div>
+
+<style>
+
+</style>

@@ -24,3 +24,21 @@ interface MyRequest {
   path: string;
 }
 ```
+
+## Parameter
+
+### Case 1 Typescript Definition File (.d.ts)
+
+Default is false.
+
+```javascript
+const ts = parseProto(source, {isDefinition: true});
+```
+
+### Case 2 Request and Response Parameter (Optional)
+
+Default is false.
+
+```javascript
+const ts = parseProto(source, {isParamOptional: true});
+```
