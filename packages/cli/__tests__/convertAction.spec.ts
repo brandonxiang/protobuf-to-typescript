@@ -1,4 +1,4 @@
-import convert from '../src/convert';
+import convert from '../src/commands/convert';
 
 test('convert it from proto to ts', async () => {
   expect(
