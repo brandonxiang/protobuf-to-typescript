@@ -6,10 +6,10 @@ It is the cli for pbts. You can convert pb to ts file by command line
 
 ### Tranditional Way
 
-step 1 Install @pbts/cli
+step 1 Install pbts
 
 ```shell
-npm i @pbts/cli -g
+npm i pbts -g
 ```
 
 step 2 Convert your protobuffer to Typescript Definition File

@@ -1,6 +1,6 @@
 {
   "name": "pbts",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "cli for pb-to-typescript",
   "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
@@ -27,7 +27,7 @@
   "dependencies": {
     "fs-extra": "^9.0.1",
     "globby": "^11.0.0",
-    "@pbts/core": "^1.1.0",
+    "@pbts/core": "^2.0.1",
     "pkg-updater": "^1.0.4",
     "protobufjs": "6.8.8",
     "sade": "^1.7.4"
