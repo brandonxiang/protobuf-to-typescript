@@ -13,6 +13,7 @@ Protobuf is currently used in micro-service for back end. As a front end web dev
 - [pbts](./packages/core)
 - [pbts-cli](./packages/cli)
 - [pbts-web](./packages/web)
+- [pbts-vscode](./packages/vscode)
 
 ## Demo
 
