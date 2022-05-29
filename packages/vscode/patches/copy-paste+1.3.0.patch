@@ -1,0 +1,14 @@
+diff --git a/node_modules/copy-paste/index.js b/node_modules/copy-paste/index.js
+index 174dc34..171b398 100644
+--- a/node_modules/copy-paste/index.js
++++ b/node_modules/copy-paste/index.js
+@@ -30,9 +30,6 @@ switch(process.platform) {
+ 	case "freebsd":
+ 		config = require("./platform/linux");
+ 		break;
+-	case "openbsd":
+-		config = require("./platform/openbsd");
+-		break;
+ 	default:
+ 		throw new Error("Unknown platform: '" + process.platform + "'.  Send this error to xavi.rmz@gmail.com.");
+ }
