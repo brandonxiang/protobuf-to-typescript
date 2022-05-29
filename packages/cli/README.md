@@ -1,4 +1,13 @@
-# `pbts-cli`
+# pbts-cli
+
+
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/pbts.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/pbts
+[download-image]: https://img.shields.io/npm/dm/pbts.svg?style=flat-square
+[download-url]: https://www.npmjs.com/package/pbts
 
 It is the cli for pbts. You can convert pb to ts file by command line
 
