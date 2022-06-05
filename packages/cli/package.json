@@ -29,7 +29,7 @@
     "globby": "^11.0.0",
     "@pbts/core": "^2.0.2",
     "pkg-updater": "^1.0.4",
-    "protobufjs": "6.8.8",
+    "protobufjs": "6.11.3",
     "sade": "^1.7.4"
   },
   "devDependencies": {

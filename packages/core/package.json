@@ -22,7 +22,7 @@
     "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
   },
   "scripts": {
-    "prepare": "pnpm run build && pnpm run tsd",
+    "prepare": "pnpm run build",
     "build": "rollup -c",
     "tsd": "tsc --emitDeclarationOnly"
   },
@@ -30,7 +30,7 @@
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
   },
   "dependencies": {
-    "protobufjs": "6.8.8"
+    "protobufjs": "6.11.3"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.0",

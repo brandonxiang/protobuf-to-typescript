@@ -1,13 +1,5 @@
 # vscode-protobuf-to-typescript
 
-[![NPM version][npm-image]][npm-url]
-[![npm download][download-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/vscode-protobuf-to-typescript.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/vscode-protobuf-to-typescript
-[download-image]: https://img.shields.io/npm/dm/vscode-protobuf-to-typescript.svg?style=flat-square
-[download-url]: https://www.npmjs.com/package/vscode-protobuf-to-typescript
-
 ## Usage
 
 We provide two ways to convert protobuf to typescript
