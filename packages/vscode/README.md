@@ -1,7 +1,8 @@
 # vscode-protobuf-to-typescript
 
 <a href="vscode:extension/yishi.vscode-protobuf-to-typescript" alt="Contributors">
-        <img src="https://img.shields.io/badge/vscode-marketplace-blue" /></a>
+  <img src="https://img.shields.io/badge/vscode-marketplace-blue" />
+</a>
 
 ## Usage
 
