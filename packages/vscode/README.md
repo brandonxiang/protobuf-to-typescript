@@ -1,12 +1,13 @@
 # vscode-protobuf-to-typescript
 
+<a href="vscode:extension/yishi.vscode-protobuf-to-typescript" alt="Contributors">
+        <img src="https://img.shields.io/badge/vscode-marketplace-blue" /></a>
+
 ## Usage
 
-Please search "Protobuf To Typescript" in your vscode Extensions marketplace.
+Please search "Protobuf To Typescript" in your vscode extensions marketplace.
 
 [Visual Studio Code Market Place: Protobuf to Typescript](https://marketplace.visualstudio.com/items?itemName=yishi.vscode-protobuf-to-typescript)
-
-[Extension Download: Protobuf to Typescript](vscode:extension/yishi.vscode-protobuf-to-typescript)
 
 We provide two ways to **convert protobuf to typescript**.
 
