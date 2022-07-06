@@ -2,7 +2,13 @@
 
 ## Usage
 
-We provide two ways to convert protobuf to typescript
+Please search "Protobuf To Typescript" in your vscode Extensions marketplace.
+
+[Visual Studio Code Market Place: Protobuf to Typescript](https://marketplace.visualstudio.com/items?itemName=yishi.vscode-protobuf-to-typescript)
+
+[Extension Download: Protobuf to Typescript](vscode:extension/yishi.vscode-protobuf-to-typescript)
+
+We provide two ways to **convert protobuf to typescript**.
 
 ### convert from selection
 
@@ -10,7 +16,7 @@ We provide two ways to convert protobuf to typescript
 
 - STEP 2: Open the vscode command palette (How to open please refer to [Vscode Official Website](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette))
 
-- STEP 3: Search **"pts:from selection"**, execute
+- STEP 3: Search **"pbts:from selection"**, execute
 
 ### convert from clipboard
 
@@ -18,7 +24,7 @@ We provide two ways to convert protobuf to typescript
 
 - STEP 2: Open the vscode command palette (How to open please refer to [Vscode Official Website](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette))
 
-- STEP 3: Search **"pts:from clipboard"**, execute，the converted typescript will be filled at the cursor of the currently active window
+- STEP 3: Search **"pbts:from clipboard"**, execute，the converted typescript will be filled at the cursor of the currently active window
 
 ## Problem
 
