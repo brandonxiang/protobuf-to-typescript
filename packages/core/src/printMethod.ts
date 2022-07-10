@@ -32,7 +32,7 @@ export function printMethod(
 
   const strs = item.params.map((param) => {
     const requestType =
-      param.requestType === EMPTY ? '' : `params: ${param.requestType}`;
+      param.requestType === EMPTY ? '_: unknown' : `params: ${param.requestType}`;
     const responseType =
       param.responseType === EMPTY ? '{}' : param.responseType;
 
