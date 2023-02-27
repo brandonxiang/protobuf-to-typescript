@@ -27,12 +27,12 @@
 			{
 				"command": "pbToTypescript.fromSelection",
 				"title": "from selection",
-				"category": "pts"
+				"category": "pbts"
 			},
 			{
 				"command": "pbToTypescript.fromClipboard",
 				"title": "from clipboard",
-				"category": "pts"
+				"category": "pbts"
 			}
 		]
 	},
