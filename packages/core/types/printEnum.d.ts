@@ -1,3 +1,8 @@
-import { IEnum } from 'protobufjs';
-import { OptionType } from './interface';
-export declare function printEnum(name: string, enumContent: IEnum, options: OptionType): string;
+/**
+ *
+ * @param {string} name
+ * @param {protobuf.IEnum} enumContent
+ * @param {OptionType} options
+ * @returns
+ */
+export function printEnum(name: string, enumContent: protobuf.IEnum, options: OptionType): string;

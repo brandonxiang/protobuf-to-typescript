@@ -5,13 +5,16 @@
   "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "lib/index.es.js",
-  "unpkg": "lib/index.umd.js",
-  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./types/index.d.ts"
+    }
+  },
+  "type": "module",
   "directories": {
     "lib": "lib",
-    "test": "__tests__"
+    "test": "tests"
   },
   "files": [
     "lib",
@@ -22,9 +25,8 @@
     "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
   },
   "scripts": {
-    "prepare": "pnpm run build",
-    "build": "rollup -c",
-    "tsd": "tsc --emitDeclarationOnly"
+    "tsd": "tsc --emitDeclarationOnly",
+    "test": "uvu tests"
   },
   "bugs": {
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
@@ -33,10 +35,8 @@
     "protobufjs": "6.11.3"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.2.0",
     "@types/node": "^17.0.36",
-    "rollup": "^2.42.1",
-    "tslib": "^2.1.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "uvu": "^0.5.6"
   }
 }

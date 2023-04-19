@@ -5,21 +5,20 @@
   "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
   "license": "MIT",
-  "main": "lib/index.js",
+  "type": "module",
+  "main": "src/index.js",
   "directories": {
-    "lib": "lib",
+    "src": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
   },
   "scripts": {
-    "prepare": "tsc",
-    "start": "ts-node src/index.ts"
   },
   "bugs": {
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"

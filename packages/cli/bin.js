@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const sade = require('sade');
-const { convert } = require('./lib');
+import sade from 'sade';
+import convert from './src/index.js';
 
 const updater = require('pkg-updater');
 const prog = sade('pbts');

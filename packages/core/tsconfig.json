@@ -1,12 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "checkJs": true,
     "rootDir": "src",
     "outDir": "lib",
     "declarationDir": "types",
     "declaration": true,
     "lib": ["ES2020"]
   },
-  "include": ["./src"],
+  "include": ["./src", "types/*"],
   "exclude": ["./lib"]
 }

@@ -1,14 +1,33 @@
-import protobuf, { Root } from 'protobufjs';
-import { getAllMethods, mockResponse } from './mock';
-import { OptionType } from './interface';
-export declare function printTypescript(json: protobuf.INamespace, options: OptionType): string;
-export declare function parseProtoRoot(root: Root, options: OptionType, packageName?: string): string;
-export declare function parseProto(source: string, _options?: OptionType): string;
-export { getAllMethods, mockResponse };
-declare const _default: {
-    parseProto: typeof parseProto;
-    parseProtoRoot: typeof parseProtoRoot;
-    getAllMethods: typeof getAllMethods;
-    mockResponse: typeof mockResponse;
-};
+/**
+ *
+ * @param {protobuf.INamespace} json
+ * @param {OptionType} options
+ * @returns {string}
+ */
+export function printTypesc../src/interfaceprotobuf.INamespace, options: OptionType): string;
+/**
+ *
+ * @param {protobuf.Root} root
+ * @param {OptionType} options
+ * @param {string=} packageName
+ * @returns
+ */
+export function parseProtoRoot(root: protobuf.Root, options: OptionType, packageName?: string | undefined): string;
+/**
+ *
+ * @param {string} source
+ * @param {OptionType=} _options
+ * @returns
+ */
+export function parseProto(source: string, _options?: OptionType | undefined): string;
+declare namespace _default {
+    export { parseProto };
+    export { parseProtoRoot };
+    export { getAllMethods };
+    export { mockResponse };
+}
 export default _default;
+import protobuf from "protobufjs";
+import { getAllMethods } from "./mock.js";
+import { mockResponse } from "./mock.js";
+export { getAllMethods, mockResponse };

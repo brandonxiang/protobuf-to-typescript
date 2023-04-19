@@ -1,3 +1,8 @@
-import { IType } from 'protobufjs';
-import { OptionType } from './interface';
-export declare function printField(name: string, fieldParams: IType, options: OptionType): string;
+/**
+ *
+ * @param {string} name
+ * @param {protobuf.IType} fieldParams
+ * @param {OptionType} options
+ * @returns
+ */
+export function printField(name: string, fieldParams: protobuf.IType, options: OptionType): string;
