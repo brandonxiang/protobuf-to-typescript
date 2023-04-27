@@ -26,31 +26,34 @@ Teacher teacher = 3;
 }
 `;
 
-   let dest;
+  let dest;
 
-   let isWarning = false;
+  let isWarning = false;
 
-   let methodNames = [];
+  let methodNames = [];
 
-    function onProtobuf() {
-        const methods = pbToTypescript.getAllMethods('syntax = "proto3";' + src);
-        methodNames = Object.keys(methods);
-        isWarning = false;
-    }
+  function onProtobuf() {
+    const methods = pbToTypescript.getAllMethods('syntax = "proto3";' + src);
+    methodNames = Object.keys(methods);
+    isWarning = false;
+  }
 
-    function getMockResponse(e) {
-      var ts = pbToTypescript.mockResponse('syntax = "proto3";' + src, e.target.innerText);
-      dest = JSON.stringify(ts, null, 4);
-      isWarning = false  
-    }
+  function getMockResponse(e) {
+    var ts = pbToTypescript.mockResponse(
+    'syntax = "proto3";' + src,
+    e.target.innerText
+  );
+    dest = JSON.stringify(ts, null, 4);
+    isWarning = false;
+  }
 
-    onMount(() => {
-      window.onerror = () => {
-        isWarning = true;
-      }
-      onProtobuf()
-      new ClipboardJS('.button');
-    });
+  onMount(() => {
+    window.onerror = () => {
+      isWarning = true;
+    };
+    onProtobuf();
+    new ClipboardJS('.button');
+  });
 </script>
 
 <Navbar current={1}/>

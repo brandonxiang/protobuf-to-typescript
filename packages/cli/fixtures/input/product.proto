@@ -1,0 +1,20 @@
+  syntax = "proto3";
+
+  import "order.proto";
+  
+  service AppService {
+      rpc GetProduct(GetProductReq) returns (GetProductResp) {}
+  }
+  
+  message GetProductReq {
+    uint64 product_id = 1;
+  }
+  
+  message GetProductResp {
+    repeated ProductInfo products = 1;
+  }
+
+  enum ErrorCode {
+    kSuccess = 0;
+    kFail = 1;
+  }

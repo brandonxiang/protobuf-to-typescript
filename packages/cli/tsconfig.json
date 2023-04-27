@@ -1,10 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "nodenext",
     "checkJs": true,
-    "outDir": "lib",
-    "declaration": true
   },
-  "include": ["./src"],
-  "exclude": ["./lib"]
+  "include": ["./src", "./bin.js"],
 }

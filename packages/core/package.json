@@ -32,11 +32,12 @@
     "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
   },
   "dependencies": {
-    "protobufjs": "6.11.3"
+    "protobufjs": "^7.2.3",
+    "magic-string": "^0.30.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.36",
-    "typescript": "^4.2.3",
+    "typescript": "^5.0.4",
     "uvu": "^0.5.6"
   }
 }

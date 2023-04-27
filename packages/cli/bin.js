@@ -2,10 +2,13 @@
 
 import sade from 'sade';
 import convert from './src/index.js';
-
-const updater = require('pkg-updater');
-const prog = sade('pbts');
-const pkg = require('./package.json');
+//@ts-ignore
+import updater from 'pkg-updater';
+import { readFile } from 'fs/promises';
+const prog = sade('pbts', true);
+const pkg = JSON.parse(
+  await readFile(new URL('./package.json', import.meta.url), 'utf-8')
+);
 
 updater({
   pkg: pkg,
@@ -14,11 +17,10 @@ updater({
   prog.version(pkg.version);
 
   prog
-    .command('convert')
     .describe('convert based on local protobuf')
-    .example('convert -i test.proto -o test.ts')
-    .option('-i, --input <env>', 'input file path', '')
-    .option('-o, --output <env>', 'output file path', '')
+    .example('-i test.proto -o test.ts')
+    .option('-i, --input <env>', 'input file path')
+    .option('-o, --output <env>', 'output file path')
     .action(convert);
 
   prog.parse(process.argv);

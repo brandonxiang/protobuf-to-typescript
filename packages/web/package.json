@@ -15,7 +15,7 @@
     "@sveltejs/vite-plugin-svelte": "2.0.3"
   },
   "dependencies": {
-    "svelte": "^3.0.0",
+    "svelte": "^3.58.0",
     "@pbts/core": "^2.0.1",
     "clipboard": "^2.0.8"
   },

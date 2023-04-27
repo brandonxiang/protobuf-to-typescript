@@ -1,0 +1,7 @@
+  syntax = "proto3";
+  
+  message ProductInfo {
+    string name = 1;
+    uint32 product_id =2;
+  }
+ 

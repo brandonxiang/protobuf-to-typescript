@@ -23,27 +23,24 @@ message MyResponse {
   let dest = '';
 
   let selectedDefinition = '0';
-  let selectedParameter = '0';
 
   let isWarning = false;
 
   function onProtobuf() {
-      const isDefinition = !!Number(selectedDefinition);
-      const isParameter = !!Number(selectedParameter);
-      dest = pbToTypescript.parseProto('syntax = "proto3";' + src, { 
-        isDefinition: isDefinition, 
-        isParamOptional: isParameter 
-      });
-      isWarning = false;
+    const isDefinition = !!Number(selectedDefinition);
+    dest = pbToTypescript.parseProto('syntax = "proto3";' + src, {
+      isDefinition: isDefinition,
+    });
+    isWarning = false;
   }
 
   onMount(() => {
     window.onerror = () => {
       isWarning = true;
-    }
-    onProtobuf()
+    };
+    onProtobuf();
     new ClipboardJS('.button');
-  })
+  });
 </script>
 
 <Navbar current={0}/>
@@ -61,10 +58,10 @@ message MyResponse {
         <option value="1">Typescript d.ts</option>
         <option value="0">Typescript File</option>
       </select>
-      <select bind:value={selectedParameter} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
+      <!-- <select bind:value={selectedParameter} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
         <option value="1">Parameter Optional</option>
         <option value="0">Parameter Required</option>
-      </select>
+      </select> -->
     </div>
     <textarea name="" id="typescript" bind:value={dest}></textarea>
     <span class="rightcorner button" data-clipboard-target="#typescript">Copy to clipboard</span>
