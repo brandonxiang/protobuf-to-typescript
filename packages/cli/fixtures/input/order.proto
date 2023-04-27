@@ -5,3 +5,7 @@
     uint32 product_id =2;
   }
  
+  enum ErrorCode {
+    kSuccess = 0;
+    kFail = 1;
+  }

@@ -62,5 +62,8 @@ export function genService(proto, options) {
     result.append('\n\n');
   });
 
-  return result.toString();
+  return {
+    definitions: result.toString(),
+    imports: '',
+  };
 }

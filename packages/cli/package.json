@@ -40,8 +40,7 @@
     "typescript": "^5.0.4",
     "@types/lodash.isplainobject": "4.0.7",
     "@types/sade": "^1.7.4",
-    "uvu": "^0.5.6",
-    "ts-unused-exports": "^9.0.4"
+    "uvu": "^0.5.6"
   },
   "bin": {
     "pbts": "bin.js"

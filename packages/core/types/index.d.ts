@@ -18,7 +18,7 @@ export function parseProto(source: string, _options?: OptionType | undefined): s
  * @param {OptionType} options
  * @returns
  */
-export function parseProtoFiles(files: string[], options: OptionType): Map<string, string[]>;
+export function parseProtoFiles(files: string[], options: OptionType): Map<any, any>;
 declare namespace _default {
     export { parseProto };
     export { parseProtoRoot };

@@ -1,10 +1,11 @@
 import protobuf from 'protobufjs';
 import { getAllMethods, mockResponse } from './utils/mock.js';
-import { genEnum } from './print/genEnum.js';
-import { genType } from './print/genType.js';
-import { genService } from './print/genService.js';
+import { genEnum } from './print/gen-enum.js';
+import { genType } from './print/gen-type.js';
+import { genService } from './print/gen-service.js';
 import { handleError } from './utils/log.js';
 import { defaultFilename } from './constant.js';
+import relativePath from './utils/relative-path.js';
 
 const { Root, Enum, Service, Type } = protobuf;
 
@@ -19,7 +20,7 @@ const defaultOptions = {
  * internal function
  * @param {protobuf.Root} proto
  * @param {OptionType} options
- * @returns {Map<string,string[]>}
+ * @returns
  */
 function getTypescript(proto, options) {
   const _types = new Map();
@@ -28,9 +29,10 @@ function getTypescript(proto, options) {
   while ((protoItem = processQueue.shift())) {
     let filename = defaultFilename;
     if (protoItem.filename && options.inputDir) {
-      filename = protoItem.filename
-        .replace(options.inputDir, '')
-        .replace('proto', 'ts');
+      filename = relativePath(options.inputDir, protoItem.filename).replace(
+        'proto',
+        'ts'
+      );
     }
 
     if (protoItem instanceof Enum) {
@@ -100,16 +102,22 @@ export function parseProto(source, _options) {
 
 /**
  *
- * @param {Map<string,string[]>} mapType
+ * @param {Map<string,{definitions: string[], imports: string[]}>} mapType
  * @param {string} key
- * @param {string} value
+ * @param {{definitions: string, imports: string}} value
  */
 function setType(mapType, key, value) {
   const existedValue = mapType.get(key);
   if (existedValue) {
-    mapType.set(key, [...existedValue, value]);
+    mapType.set(key, {
+      definitions: [...existedValue.definitions, value.definitions],
+      imports: [...existedValue.imports, value.imports],
+    });
   } else {
-    mapType.set(key, [value]);
+    mapType.set(key, {
+      definitions: [value.definitions],
+      imports: [value.imports],
+    });
   }
 }
 
@@ -119,17 +127,21 @@ function setType(mapType, key, value) {
  * @returns
  */
 export function parseProtoFiles(files, options) {
-  const proto = new Root();
+  try {
+    const proto = new Root();
 
-  files.forEach((file) => {
-    proto.loadSync(file, {
-      alternateCommentMode: true,
-      preferTrailingComment: true,
-      keepCase: true,
+    files.forEach((file) => {
+      proto.loadSync(file, {
+        alternateCommentMode: true,
+        preferTrailingComment: true,
+        keepCase: true,
+      });
     });
-  });
 
-  return getTypescript(proto, options);
+    return getTypescript(proto, options);
+  } catch (error) {
+    handleError(error);
+  }
 }
 
 // mock function

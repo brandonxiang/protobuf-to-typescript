@@ -10,7 +10,6 @@ test('Multi Proto should be converted', () => {
   const inputDir = path.resolve(__dirname, '../../fixtures/input');
   const outputDir = path.resolve(__dirname, '../../fixtures/output');
 
-  console.log(inputDir, outputDir);
   transformProtoFiles({ inputDir, outputDir });
   const files = readdirSync(outputDir);
   assert.equal(files, ['order.ts', 'product.ts']);

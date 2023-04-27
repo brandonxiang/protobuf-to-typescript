@@ -30,5 +30,8 @@ export function genEnum(proto, options) {
     .prepend(`${prefix}enum ${name} {\n`)
     .append('}\n\n');
 
-  return result.toString();
+  return {
+    definitions: result.toString(),
+    imports: '',
+  };
 }

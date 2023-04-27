@@ -12,9 +12,7 @@
   
   message GetProductResp {
     repeated ProductInfo products = 1;
+    ErrorCode error = 2;
   }
 
-  enum ErrorCode {
-    kSuccess = 0;
-    kFail = 1;
-  }
+ 
