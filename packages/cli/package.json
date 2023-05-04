@@ -1,6 +1,6 @@
 {
   "name": "pbts",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "cli for pb-to-typescript",
   "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
@@ -9,10 +9,12 @@
   "main": "src/index.js",
   "directories": {
     "src": "src",
-    "test": "__tests__"
+    "fixtures": "fixtures",
+    "test": "tests"
   },
   "files": [
-    "src"
+    "src",
+    "tests"
   ],
   "repository": {
     "type": "git",
@@ -27,7 +29,7 @@
   "dependencies": {
     "fs-extra": "^9.0.1",
     "globby": "^11.0.0",
-    "@pbts/core": "^3.0.0",
+    "@pbts/core": "^3.0.1",
     "pkg-updater": "^1.0.4",
     "protobufjs": "^7.2.3",
     "shelljs": "^0.8.5",
@@ -44,5 +46,8 @@
   },
   "bin": {
     "pbts": "bin.js"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

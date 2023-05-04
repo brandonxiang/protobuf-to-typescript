@@ -1,5 +1,13 @@
 # @pbts/cli
 
+## 3.0.1
+
+### Patch Changes
+
+- fix cli issue [#17](https://github.com/brandonxiang/pb-to-typescript/issues/17)
+- Updated dependencies [undefined]
+  - @pbts/core@3.0.1
+
 ## 3.0.0
 
 ### Major Changes
