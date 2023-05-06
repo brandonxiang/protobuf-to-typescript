@@ -5,4 +5,3 @@ export const EMPTY_PROTO: "google.protobuf.Empty";
 export const TYPE_REFLECTION: {
     [key: string]: string;
 };
-//# sourceMappingURL=constant.d.ts.map

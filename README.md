@@ -11,7 +11,6 @@ A converter to transform from Protobuf to Typescript definition files, which is 
 Protobuf is currently used in micro-service for back end. As a front end web developer, you can generate Typescript defination files based on Protobuf in case to develop your web page easily.
 
 - [pbts](./packages/core)
-- [pbts-cli](./packages/cli)
 - [pbts-web](./packages/web)
 - [pbts-vscode](./packages/vscode)
 

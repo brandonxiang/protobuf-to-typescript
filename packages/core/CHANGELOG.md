@@ -1,4 +1,10 @@
-# @pbts/core
+# pbts
+
+## 4.0.0
+
+### Major Changes
+
+- merge cli and core repo
 
 ## 3.0.1
 

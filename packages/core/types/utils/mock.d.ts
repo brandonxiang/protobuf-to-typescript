@@ -14,4 +14,3 @@ export function getAllMethods(source: string): {
  */
 export function mockResponse(source: string, methodName: string): Object | null;
 import protobuf from 'protobufjs';
-//# sourceMappingURL=mock.d.ts.map

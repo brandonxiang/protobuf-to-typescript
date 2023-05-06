@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/packages/cli/tests/multiproto/multiproto.spec.js"
+      "program": "${workspaceFolder}/packages/core/tests/print/enum.spec.js"
     }
   ]
 }

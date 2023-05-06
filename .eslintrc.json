@@ -1,0 +1,17 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    // add more generic rule sets here, such as:
+    // 'eslint:recommended',
+    "plugin:prettier/recommended",
+    "plugin:svelte/recommended"
+  ],
+  "rules": {
+    // override/add rules settings here, such as:
+    // 'svelte/rule-name': 'error'
+  }
+}

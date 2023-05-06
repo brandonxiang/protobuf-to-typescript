@@ -6,7 +6,7 @@ import {
   getSelectedText,
   validateLength,
 } from "./lib";
-import { parseProto } from '@pbts/core';
+import { parseProto } from 'pbts/core';
 
 const PB3_HEADER = `syntax = "proto3";`;
 
@@ -30,7 +30,7 @@ function transformFromSelection() {
       pasteToMarker(interfaces);
     })
     .catch(e=>{
-			handleError(`The selected pb format may be wrong`,e)
+			handleError(`The selected pb format may be wrong`,e);
 		});
 }
 
@@ -44,6 +44,6 @@ function transformFromClipboard() {
       pasteToMarker(interfaces);
     })
 		.catch(e=>{
-			handleError(`The Pb in clipboard may be wrong`,e)
+			handleError(`The Pb in clipboard may be wrong`,e);
 		});
 }

@@ -36,7 +36,7 @@ export default function relativePath(from, to) {
 
   const steps = new Array(popSections.length).fill('..');
   const res = steps.concat(pushSections).join('/');
-  return res.includes('/') ? res : './' + res;
+  return res.includes('/') || res.includes('.') ? res : './' + res;
 }
 
 /**

@@ -3,10 +3,12 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "checkJs": true,
+    "allowJs": true,
     "rootDir": "src",
     "outDir": "lib",
     "declarationDir": "types",
     "declaration": true,
+    "emitDeclarationOnly": true,
     "lib": ["ES2020"]
   },
   "include": ["./src", "./types/*"],

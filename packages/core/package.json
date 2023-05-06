@@ -1,16 +1,22 @@
 {
-  "name": "@pbts/core",
-  "version": "3.0.1",
-  "description": "pbts core",
+  "name": "pbts",
+  "version": "4.0.0",
+  "description": "pb-to-typescript",
   "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
   "license": "MIT",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
-      "import": "./src/index.js",
-      "types": "./types/index.d.ts"
+      "types": "./types/index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./core": {
+      "types": "./types/core.d.ts",
+      "import": "./src/core.js"
     }
   },
+  "types": "./types/index.d.ts",
   "type": "module",
   "directories": {
     "src": "src",
@@ -26,7 +32,8 @@
     "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
   },
   "scripts": {
-    "tsd": "tsc --emitDeclarationOnly",
+    "check": "tsc",
+    "tsd": "cp src/type.d.ts types/type.d.ts && tsc ----emitDeclarationOnly",
     "test": "uvu tests"
   },
   "bugs": {
@@ -34,13 +41,20 @@
   },
   "dependencies": {
     "protobufjs": "^7.2.3",
-    "magic-string": "^0.30.0"
+    "magic-string": "^0.30.0",
+    "fs-extra": "11.1.1",
+    "sade": "^1.7.4"
   },
   "devDependencies": {
+    "@types/fs-extra": "11.0.1",
     "@types/node": "^17.0.36",
+    "@types/sade": "^1.7.4",
     "typescript": "^5.0.4",
     "uvu": "^0.5.6",
     "ts-unused-exports": "^9.0.4"
+  },
+  "bin": {
+    "pbts": "bin.js"
   },
   "publishConfig": {
     "access": "public"
