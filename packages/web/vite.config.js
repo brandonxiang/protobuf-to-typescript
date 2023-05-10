@@ -9,8 +9,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'index.html'),
-        mock: resolve(__dirname, 'mock/index.html'),
+        index: resolve(__dirname, 'app', 'index.html'),
+        mock: resolve(__dirname, 'app', 'mock/index.html'),
       },
     },
   },
