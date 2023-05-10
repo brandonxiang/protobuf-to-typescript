@@ -31,8 +31,7 @@ jobs:
 
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3
-        run: ls
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: packages/web/dist
+          publish_dir: ./packages/web/dist
           cname: pb.brandonxiang.top
