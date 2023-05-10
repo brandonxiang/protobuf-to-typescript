@@ -28,7 +28,6 @@ jobs:
         run: pnpm install
       - name: build pages
         run: pnpm --filter @pbts/web run build
-        run: cd ./packages/web/dist && ls
 
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3

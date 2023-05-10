@@ -7,6 +7,7 @@ export default defineConfig({
   root: 'app',
   plugins: [svelte()],
   build: {
+    outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'app', 'index.html'),
