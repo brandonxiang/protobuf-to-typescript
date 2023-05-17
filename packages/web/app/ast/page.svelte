@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import pbToTypescript from 'pbts/core';
-  import ClipboardJS from 'clipboard';
+  import protobufjs from 'protobufjs';
   import Navbar from '../../components/nav-bar.svelte';
 
   let src = `
@@ -22,15 +21,15 @@ message MyResponse {
 
   let dest = '';
 
-  let selectedDefinition = '0';
-
   let isWarning = false;
 
   function onProtobuf() {
-    const isDefinition = !!Number(selectedDefinition);
-    dest = pbToTypescript.parseProto('syntax = "proto3";' + src, {
-      isDefinition: isDefinition,
+    const res = protobufjs.parse(src, {
+      alternateCommentMode: true,
+      preferTrailingComment: true,
+      keepCase: true,
     });
+    dest = JSON.stringify(res.root, null, 2);
     isWarning = false;
   }
 
@@ -39,11 +38,10 @@ message MyResponse {
       isWarning = true;
     };
     onProtobuf();
-    new ClipboardJS('.button');
   });
 </script>
 
-<Navbar current={0}/>
+<Navbar current={2}/>
 <div id="container">
   <div class="col">
     <h3>Protocol buffer</h3>
@@ -53,17 +51,8 @@ message MyResponse {
  {/if}
   </div>
   <div class="col">
-    <div class="tool-bar">
-      <select bind:value={selectedDefinition} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
-        <option value="1">Typescript d.ts</option>
-        <option value="0">Typescript File</option>
-      </select>
+    <div class="tool-bar" style="height: 40px">
     </div>
     <textarea name="" id="typescript" bind:value={dest}></textarea>
-    <span class="rightcorner button" data-clipboard-target="#typescript">Copy to clipboard</span>
   </div>
 </div>
-
-<style>
-
-</style>

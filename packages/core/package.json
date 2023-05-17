@@ -33,7 +33,6 @@
   },
   "scripts": {
     "check": "tsc",
-    "tsd": "cp src/type.d.ts types/type.d.ts && tsc ----emitDeclarationOnly",
     "test": "uvu tests"
   },
   "bugs": {

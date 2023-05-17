@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'app', 'index.html'),
         mock: resolve(__dirname, 'app', 'mock/index.html'),
+        ast: resolve(__dirname, 'app', 'ast/index.html'),
       },
     },
   },

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte/internal';
   import pbToTypescript from 'pbts/core';
   import ClipboardJS from 'clipboard';
-  import Navbar from '../../components/Navbar.svelte';
+  import Navbar from '../../components/nav-bar.svelte';
 
   let src = ` 
 syntax = "proto3";
