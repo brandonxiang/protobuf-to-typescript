@@ -12,6 +12,31 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/packages/core/tests/print/enum.spec.js"
-    }
+    },
+    {
+			"name": "Run Extension",
+			"type": "extensionHost",
+			"request": "launch",
+			"args": [
+				"--extensionDevelopmentPath=${workspaceFolder}/packages/vscode"
+			],
+			"outFiles": [
+				"${workspaceFolder}/packages/vscode/out/**/*.js"
+			],
+			"preLaunchTask": "${defaultBuildTask}"
+		},
+		{
+			"name": "Extension Tests",
+			"type": "extensionHost",
+			"request": "launch",
+			"args": [
+				"--extensionDevelopmentPath=${workspaceFolder}/packages/vscode",
+				"--extensionTestsPath=${workspaceFolder}/packages/vscode/out/test/suite/index"
+			],
+			"outFiles": [
+				"${workspaceFolder}/packages/vscode/out/test/**/*.js"
+			],
+			"preLaunchTask": "${defaultBuildTask}"
+		}
   ]
 }
