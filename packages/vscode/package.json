@@ -19,7 +19,8 @@
 	},
 	"activationEvents": [
 		"onCommand:pbToTypescript.fromSelection",
-		"onCommand:pbToTypescript.fromClipboard"
+		"onCommand:pbToTypescript.fromClipboard",
+		"onCommand:pbToTypescript.convertOnAir"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -33,8 +34,38 @@
 				"command": "pbToTypescript.fromClipboard",
 				"title": "from clipboard",
 				"category": "pbts"
-			}
-		]
+			},
+			{
+        "command": "pbToTypescript.convertOnAir",
+        "title": "convert on the air",
+        "category": "pbts"
+      }
+		],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pbts",
+          "title": "pb to typescript",
+          "icon": "media/dep.svg"
+        }
+      ]
+    },
+    "views": {
+      "pbts": [
+        {
+          "id": "package-dependencies",
+          "name": "Dependencies"
+        },
+        {
+          "id": "package-outline",
+          "name": "Outline"
+        },
+				{
+          "id": "package-hello",
+          "name": "Hello"
+        }
+      ]
+    }
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run -S esbuild-base -- --minify",
