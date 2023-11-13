@@ -36,8 +36,8 @@
 				"category": "pbts"
 			},
 			{
-        "command": "pbToTypescript.convertOnAir",
-        "title": "convert on the air",
+        "command": "pbToTypescript.transformOnPanel",
+        "title": "Open Convert Panel",
         "category": "pbts"
       }
 		],
@@ -53,19 +53,17 @@
     "views": {
       "pbts": [
         {
-          "id": "package-dependencies",
-          "name": "Dependencies"
-        },
-        {
-          "id": "package-outline",
-          "name": "Outline"
-        },
-				{
-          "id": "package-hello",
-          "name": "Hello"
+          "id": "introduction",
+          "name": "welcome to pbts"
         }
       ]
-    }
+    },
+		"viewsWelcome": [
+      {
+        "view": "introduction",
+        "contents": "This tool is able to help you convert protobuf file to typescript definition file. \n[Open Convert Panel](command:pbToTypescript.transformOnPanel)\n You can transform it from selection \n[from selection](command:pbToTypescript.fromSelection)\n You can transform it from clipboard \n[from clipboard](command:pbToTypescript.fromClipboard)\n"
+      }
+    ]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run -S esbuild-base -- --minify",

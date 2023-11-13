@@ -2,7 +2,6 @@
   import { onMount } from 'svelte/internal';
   import pbToTypescript from 'pbts/core';
   import ClipboardJS from 'clipboard';
-  import Navbar from '../../components/nav-bar.svelte';
 
   let src = ` 
 syntax = "proto3";
@@ -55,13 +54,12 @@ Teacher teacher = 3;
   });
 </script>
 
-<Navbar current={1}/>
 <div id="container">
   <div class="editor">
     <h3>Protocol buffer</h3>
     <textarea name="" bind:value={src} on:input={onProtobuf}/>
     {#if isWarning}
-      <span class="rightcorner warning">Invald Protobuf</span>
+      <span class="rightcorner warning">Invalid Protobuf</span>
     {/if}
     
   </div>

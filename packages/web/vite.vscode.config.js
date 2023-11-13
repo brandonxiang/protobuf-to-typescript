@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
+import { viteSingleFile } from 'vite-plugin-singlefile';
 import { resolve } from 'path';
 import { createHtmlPlugin } from 'vite-plugin-html';
 
@@ -8,24 +9,18 @@ export default defineConfig({
   root: 'app',
   plugins: [
     svelte(),
+    viteSingleFile(),
     createHtmlPlugin({
       minify: true,
       inject: {
         data: {
           injectHead:
-            "<link rel='icon' type='image/png' href='/static/favicon.png'>",
+            "<script>document.documentElement.classList.add('dark');</script>",
         },
       },
     }),
   ],
   build: {
-    outDir: resolve(__dirname, 'dist'),
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['protobufjs', 'clipboard'],
-        },
-      },
-    },
+    outDir: resolve(__dirname, '../vscode', 'webview'),
   },
 });

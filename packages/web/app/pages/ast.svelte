@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
   import protobufjs from 'protobufjs';
-  import Navbar from '../../components/nav-bar.svelte';
 
   let src = `
 syntax = "proto3";
@@ -41,13 +40,12 @@ message MyResponse {
   });
 </script>
 
-<Navbar current={2}/>
 <div id="container">
   <div class="col">
     <h3>Protocol buffer</h3>
 <textarea name="" bind:value={src} on:input={onProtobuf}></textarea>
  {#if isWarning}
-    <span class="rightcorner warning">Invald Protobuf</span>
+    <span class="rightcorner warning">Invalid Protobuf</span>
  {/if}
   </div>
   <div class="col">
