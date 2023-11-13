@@ -111,7 +111,6 @@ dist/
 
 .DS_Store
 
-pnpm-lock.yaml
 
 # lock files
 yarn.lock
