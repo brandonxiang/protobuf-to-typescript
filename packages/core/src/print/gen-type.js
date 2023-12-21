@@ -63,21 +63,24 @@ export function genType(proto, options) {
 
   const result = new MagicString('');
 
-  const imports =
-    items.importItems
-      .map((item) => {
-        const typeOrEnum = proto.lookupTypeOrEnum(item);
+  let imports = items.importItems
+    .map((item) => {
+      const typeOrEnum = proto.lookupTypeOrEnum(item);
 
-        if (filename && typeOrEnum.filename) {
-          const from = getDirectory(filename);
-          const to = typeOrEnum.filename;
-          const importPath = relativePath(from, to).replace('.proto', '');
-          return `import { ${item} } from '${importPath}';\n`;
-        }
-        return '';
-      })
-      .filter((s) => s)
-      .join('') + '\n';
+      if (filename && typeOrEnum.filename) {
+        const from = getDirectory(filename);
+        const to = typeOrEnum.filename;
+        const importPath = relativePath(from, to).replace('.proto', '');
+        return `import { ${item} } from '${importPath}';\n`;
+      }
+      return '';
+    })
+    .filter((s) => s)
+    .join('');
+
+  if (imports) {
+    imports = imports + '\n';
+  }
 
   items.params.forEach((item) => {
     const optionalChar = item.required ? '' : '?';
