@@ -19,8 +19,10 @@ updater({
   prog
     .describe('convert based on local protobuf')
     .example('-i test.proto -o test.ts')
-    .option('-i, --input <env>', 'input file path')
-    .option('-o, --output <env>', 'output file path')
+    .option('-i, --input <input>', 'input file path')
+    .option('-o, --output <output>', 'output file path')
+    .option('--isDefinition <isDefinition>', 'is typescript definition')
+    .option('---isJsdoc <isJsdoc>', 'is typescript definition')
     .action(convertCommand);
 
   prog.parse(process.argv);

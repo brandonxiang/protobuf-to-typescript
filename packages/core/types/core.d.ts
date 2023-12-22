@@ -1,3 +1,28 @@
+import protobuf$1 from 'protobufjs';
+
+type OptionType = {
+    isDefinition?: boolean | undefined;
+    isJsdoc?: boolean | undefined;
+    inputDir?: string | undefined;
+    outputDir?: string | undefined;
+};
+
+/**
+ *
+ * @param {string} source
+ * @returns
+ */
+declare function getAllMethods(source: string): {
+    [k: string]: protobuf.Method;
+} | null;
+/**
+ *
+ * @param {string} source
+ * @param {string} methodName
+ * @returns
+ */
+declare function mockResponse(source: string, methodName: string): Object | null;
+
 declare namespace _default {
     export { getAllMethods };
     export { mockResponse };
@@ -5,30 +30,27 @@ declare namespace _default {
     export { parseProtoRoot };
     export { parseProtoFiles };
 }
-export default _default;
-import { getAllMethods } from './utils/mock.js';
-import { mockResponse } from './utils/mock.js';
+
 /**
  * parse protobuf text plain
  * @param {string} source
- * @param {OptionType=} _options
+ * @param {import('./typedef.js').OptionType=} _options
  * @returns
  */
-export function parseProto(source: string, _options?: OptionType | undefined): string;
+declare function parseProto(source: string, _options?: OptionType | undefined): string;
 /**
  * parse protobuf root object
  * @param {protobuf.Root} root
- * @param {OptionType} options
+ * @param {import('./typedef.js').OptionType} options
  * @param {string=} packageName
  * @returns {string}
  */
-export function parseProtoRoot(root: protobuf.Root, options: OptionType, packageName?: string | undefined): string;
+declare function parseProtoRoot(root: protobuf$1.Root, options: OptionType, packageName?: string | undefined): string;
 /**
  * @param {string[]} files
- * @param {OptionType} options
+ * @param {import('./typedef.js').OptionType} options
  * @returns
  */
-export function parseProtoFiles(files: string[], options: OptionType): Map<any, any> | undefined;
-import protobuf from 'protobufjs';
-declare const Root: typeof protobuf.Root;
-export { getAllMethods, mockResponse };
+declare function parseProtoFiles(files: string[], options: OptionType): Map<any, any> | undefined;
+
+export { _default as default, getAllMethods, mockResponse, parseProto, parseProtoFiles, parseProtoRoot };

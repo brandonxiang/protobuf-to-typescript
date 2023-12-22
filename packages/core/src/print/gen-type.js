@@ -51,9 +51,9 @@ function readField(name, fields) {
 }
 
 /**
- *
+ * generate typescript files from proto info
  * @param {protobuf.Type} proto
- * @param {OptionType} options
+ * @param {import('../typedef.js').OptionType} options
  * @returns
  */
 export function genType(proto, options) {
@@ -114,5 +114,54 @@ export function genType(proto, options) {
   return {
     definitions: result.toString(),
     imports,
+  };
+}
+
+/**
+ * generate jsdoc from proto info
+ * @param {protobuf.Type} proto
+ * @param {import('../typedef.js').OptionType} options
+ * @returns
+ */
+export function getJsdocType(proto, options) {
+  const { name, fields, comment, filename } = proto;
+
+  const items = readField(name, fields);
+
+  const result = new MagicString('');
+
+  items.params.forEach((item) => {
+    const optionalChar = item.required ? '' : '=';
+
+    const paramComment = item.comment || '';
+
+    if (item.repeated) {
+      result.append(
+        ` * @prop {${item.type}[]${optionalChar}} ${item.name} ${paramComment}`
+      );
+    } else if (item.keyType) {
+      result.append(
+        ` * @prop {{[key: ${item.keyType}]: ${item.type}}${optionalChar}} ${item.name} ${paramComment}`
+      );
+    } else {
+      result.append(
+        ` * @prop {${item.type}${optionalChar}} ${item.name} ${paramComment}`
+      );
+    }
+
+    result.append('\n');
+  });
+
+  result
+    .prepend(` * @typedef {Object} ${items.name}\n`)
+    .prepend(` * ${comment || ''}\n`)
+    .prepend(`/**\n`)
+    .append(` */\n\n`);
+
+  console.log(66666, result.toString());
+
+  return {
+    definitions: result.toString(),
+    imports: '',
   };
 }

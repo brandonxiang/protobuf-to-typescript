@@ -27,9 +27,9 @@ function readMethod(name, methods) {
 }
 
 /**
- *
+ * generate typescript files from proto info
  * @param {protobuf.Service} proto
- * @param {OptionType} options
+ * @param {import('../typedef.js').OptionType} options
  * @returns
  */
 export function genService(proto, options) {
@@ -60,6 +60,45 @@ export function genService(proto, options) {
     );
 
     result.append('\n\n');
+  });
+
+  return {
+    definitions: result.toString(),
+    imports: '',
+  };
+}
+
+/**
+ * generate jsdoc from proto info
+ * @param {protobuf.Service} proto
+ * @param {import('../typedef.js').OptionType} options
+ */
+export function getJsdocService(proto, options) {
+  const { name, methods, comment } = proto;
+
+  const items = readMethod(name, methods);
+
+  const result = new MagicString(``);
+
+  items.params.forEach((item) => {
+    const requestType =
+      item.requestType === EMPTY_PROTO ? '*' : item.requestType;
+    const responseType =
+      item.responseType === EMPTY_PROTO ? '*' : item.responseType;
+
+    if (item.comment) {
+      result.append(` * ${item.comment}\n`);
+    }
+
+    result.append(` * @callback ${item.name}\n`);
+    result.append(` * @param {${requestType}} params\n`);
+    result.append(` * @returns {Promise<${responseType}>}\n`);
+
+    result
+      .prepend(` * ${comment || ''}\n`)
+      .prepend(`/**\n`)
+      .prepend(`//Service: ${name}\n`)
+      .append(` */\n\n`);
   });
 
   return {

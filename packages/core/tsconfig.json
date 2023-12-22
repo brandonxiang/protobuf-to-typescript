@@ -11,7 +11,7 @@
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["ES2020"],
-    "target": "ES2020",
+    "target": "ES2020"
   },
   "include": ["./src", "./types/*"],
 }

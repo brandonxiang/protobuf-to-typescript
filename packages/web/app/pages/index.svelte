@@ -26,9 +26,11 @@ message MyResponse {
   let isWarning = false;
 
   function onProtobuf() {
-    const isDefinition = !!Number(selectedDefinition);
+    const isDefinition = selectedDefinition === '1';
+    const isJsdoc = selectedDefinition === '2';
     dest = pbToTypescript.parseProto('syntax = "proto3";' + src, {
-      isDefinition: isDefinition,
+      isDefinition,
+      isJsdoc,
     });
     isWarning = false;
   }
@@ -55,6 +57,7 @@ message MyResponse {
       <select bind:value={selectedDefinition} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
         <option value="1">Typescript d.ts</option>
         <option value="0">Typescript File</option>
+        <option value="2">Jsdoc</option>
       </select>
     </div>
     <textarea name="" id="typescript" bind:value={dest}></textarea>

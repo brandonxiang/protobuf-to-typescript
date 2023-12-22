@@ -1,8 +1,8 @@
 import protobuf from 'protobufjs';
 import { getAllMethods, mockResponse } from './utils/mock.js';
-import { genEnum } from './print/gen-enum.js';
-import { genType } from './print/gen-type.js';
-import { genService } from './print/gen-service.js';
+import { genEnum, getJsdocEnum } from './print/gen-enum.js';
+import { genType, getJsdocType } from './print/gen-type.js';
+import { genService, getJsdocService } from './print/gen-service.js';
 import { handleError } from './utils/log.js';
 import { defaultFilename } from './constant.js';
 import relativePath from './utils/relative-path.js';
@@ -10,7 +10,7 @@ import relativePath from './utils/relative-path.js';
 const { Root, Enum, Service, Type } = protobuf;
 
 /**
- * @type {OptionType}
+ * @type {import('./typedef.js').OptionType}
  */
 const defaultOptions = {
   isDefinition: false,
@@ -19,7 +19,7 @@ const defaultOptions = {
 /**
  * internal function
  * @param {protobuf.Root} proto
- * @param {OptionType} options
+ * @param {import('./typedef.js').OptionType} options
  * @returns
  */
 function getTypescript(proto, options) {
@@ -35,19 +35,35 @@ function getTypescript(proto, options) {
       );
     }
 
-    if (protoItem instanceof Enum) {
-      const result = genEnum(protoItem, options);
-      setType(_types, filename, result);
-    } else if (protoItem instanceof Type) {
-      const result = genType(protoItem, options);
-      setType(_types, filename, result);
-    } else if (protoItem instanceof Service) {
-      const result = genService(protoItem, options);
-      setType(_types, filename, result);
-    } else if (protoItem.nested) {
+    if (protoItem.nested) {
       // 继续处理下一层
       //@ts-ignore
       processQueue = processQueue.concat(Object.values(protoItem.nested));
+    } else {
+      /** @type {{definitions: string;imports: string;} | null} */
+      let result = null;
+      if (protoItem instanceof Enum) {
+        if (options.isJsdoc) {
+          result = getJsdocEnum(protoItem, options);
+        } else {
+          result = genEnum(protoItem, options);
+        }
+      } else if (protoItem instanceof Type) {
+        if (options.isJsdoc) {
+          result = getJsdocType(protoItem, options);
+        } else {
+          result = genType(protoItem, options);
+        }
+      } else if (protoItem instanceof Service) {
+        if (options.isJsdoc) {
+          result = getJsdocService(protoItem, options);
+        } else {
+          result = genService(protoItem, options);
+        }
+      }
+      if (result) {
+        setType(_types, filename, result);
+      }
     }
   }
 
@@ -57,7 +73,7 @@ function getTypescript(proto, options) {
 /**
  * parse protobuf root object
  * @param {protobuf.Root} root
- * @param {OptionType} options
+ * @param {import('./typedef.js').OptionType} options
  * @param {string=} packageName
  * @returns {string}
  */
@@ -92,7 +108,7 @@ function parseProtoRoot(root, options, packageName) {
 /**
  * parse protobuf text plain
  * @param {string} source
- * @param {OptionType=} _options
+ * @param {import('./typedef.js').OptionType=} _options
  * @returns
  */
 function parseProto(source, _options) {
@@ -128,7 +144,7 @@ function setType(mapType, key, value) {
 
 /**
  * @param {string[]} files
- * @param {OptionType} options
+ * @param {import('./typedef.js').OptionType} options
  * @returns
  */
 function parseProtoFiles(files, options) {
