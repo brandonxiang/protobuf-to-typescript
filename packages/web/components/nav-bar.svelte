@@ -19,7 +19,7 @@
 
 
 <header class="header">
-  <a href="/#" class={current === 0 ? "active": ""} on:click={() => routerChange(PAGE_HASH.INDEX_PAGE)}>PB Converter</a>
+  <a href="/#" class={current === 0 ? "active": ""} on:click={() => routerChange(PAGE_HASH.INDEX_PAGE)}>Convert</a>
   <a href="/#mock" class={current === 1 ? "active": ""} on:click={() => routerChange(PAGE_HASH.MOCK_PAGE)}>Mock</a>
   <a href="/#ast" class={current === 2 ? "active": ""} on:click={() => routerChange(PAGE_HASH.AST_PAGE)}>AST</a>
   <a href="http://www.jsontots.com/" target="_blank">JSON Converter</a>

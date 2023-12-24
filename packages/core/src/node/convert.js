@@ -2,7 +2,7 @@ import { parseProtoRoot } from '../core.js';
 import { transformProtoFiles } from './io.js';
 import protobuf from 'protobufjs';
 import path from 'path';
-import fs from 'fs-extra';
+import fs from 'node:fs';
 import { handleError } from '../utils/log.js';
 
 /**

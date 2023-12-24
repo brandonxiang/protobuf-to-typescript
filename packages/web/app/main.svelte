@@ -87,6 +87,7 @@
     float: left;
     height: calc(100vh - 83px);
     overflow: scroll;
+    background-color: white;
   }
   :global(.header) {
     height: 63px;

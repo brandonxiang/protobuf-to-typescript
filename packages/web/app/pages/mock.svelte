@@ -7,21 +7,21 @@
 syntax = "proto3";
 
 service Greeter {
-rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
 message HelloRequest {
-string name = 1;
+  string name = 1;
 }
 
 message Teacher {
-string name = 1;
+  string name = 1;
 }
 
 message HelloReply {
-string message = 1;
-number test = 2;
-Teacher teacher = 3;
+  string message = 1;
+  number test = 2;
+  Teacher teacher = 3;
 }
 `;
   let dest;
@@ -67,7 +67,9 @@ Teacher teacher = 3;
     <h3>Methods</h3>
     <ul>
       {#each methodNames as methodName }
-        <li class="method-item" on:click={getMockResponse}>{methodName}</li>
+        <li class="method-item" >
+          <button on:click={getMockResponse}>{methodName}</button>
+        </li>
       {/each}
     </ul>
   </div>
@@ -77,3 +79,11 @@ Teacher teacher = 3;
     <span class="rightcorner button" data-clipboard-target="#typescript">Copy to clipboard</span>
   </div>
 </div>
+
+<style>
+  button {
+    background: transparent;
+    border: 0;
+    width: 100%;
+  }
+</style>

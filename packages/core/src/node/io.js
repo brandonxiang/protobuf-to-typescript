@@ -1,4 +1,4 @@
-import fs from 'fs-extra';
+import fs from 'node:fs';
 import path from 'node:path';
 import { handleError } from '../utils/log.js';
 import { parseProtoFiles } from '../core.js';
@@ -6,7 +6,7 @@ import { parseProtoFiles } from '../core.js';
 const { mkdirSync, readdirSync, writeFileSync } = fs;
 
 /**
- * @param {OptionType} options
+ * @param {import('../typedef.js').OptionType} options
  */
 export function transformProtoFiles(options) {
   const { inputDir, outputDir } = options;
