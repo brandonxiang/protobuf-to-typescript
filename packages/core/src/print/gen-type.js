@@ -9,9 +9,32 @@ import relativePath, { getDirectory } from '../utils/relative-path.js';
  */
 function getKeyType(p) {
   if (p.keyType) {
-    return TYPE_REFLECTION[p.keyType] || p.keyType;
+    if(TYPE_REFLECTION[p.keyType]) {
+      return TYPE_REFLECTION[p.keyType];
+    }
+  
+
+    return p.keyType;
   }
   return '';
+}
+
+
+/**
+ * 
+ * @param {string} type 
+ *  @param {Partial<protobuf.Field>} paramValue
+ * @returns 
+ */
+function getType(type, paramValue) {
+  if(TYPE_REFLECTION[type]) {
+    return TYPE_REFLECTION[type];
+  }
+  if(paramValue.parent?.nested) {
+    return paramValue.parent.name + type;
+  }
+  
+  return type;
 }
 
 /**
@@ -34,7 +57,7 @@ function readField(name, fields) {
 
     return {
       name: paramName,
-      type: TYPE_REFLECTION[type] || type,
+      type: getType(type, paramValue),
       keyType: getKeyType(paramValue),
       repeated,
       id,
@@ -57,7 +80,7 @@ function readField(name, fields) {
  * @returns
  */
 export function genType(proto, options) {
-  const { name, fields, comment, filename } = proto;
+  const { name, fields, comment, filename, parent } = proto;
 
   const items = readField(name, fields);
 
@@ -102,10 +125,18 @@ export function genType(proto, options) {
 
   const prefix = options.isDefinition ? '' : 'export ';
 
+  let interfaceName = items.name;
+
+  if(parent && parent.name) {
+    interfaceName = parent.name + interfaceName;
+  }
+
   result
-    .indent(indentPrefix)
-    .prepend(`${prefix}interface ${items.name} {\n`)
-    .append(`}\n\n`);
+  .indent(indentPrefix)
+  .prepend(`${prefix}interface ${interfaceName} {\n`)
+  .append(`}\n\n`);
+
+
 
   if (comment) {
     result.prepend(`//${comment}\n`);
@@ -124,7 +155,7 @@ export function genType(proto, options) {
  * @returns
  */
 export function getJsdocType(proto, options) {
-  const { name, fields, comment, filename } = proto;
+  const { name, fields, comment, parent } = proto;
 
   const items = readField(name, fields);
 
@@ -152,13 +183,18 @@ export function getJsdocType(proto, options) {
     result.append('\n');
   });
 
+  let interfaceName = items.name;
+
+  if(parent && parent.name) {
+    interfaceName = parent.name + interfaceName;
+  }
+
+
   result
-    .prepend(` * @typedef {Object} ${items.name}\n`)
+    .prepend(` * @typedef {Object} ${interfaceName}\n`)
     .prepend(` * ${comment || ''}\n`)
     .prepend(`/**\n`)
     .append(` */\n\n`);
-
-  console.log(66666, result.toString());
 
   return {
     definitions: result.toString(),
