@@ -17,6 +17,36 @@ const defaultOptions = {
 };
 
 /**
+ * 
+ * @param {protobuf.Root} protoItem
+ * @param {import('./typedef.js').OptionType} options
+ */
+function getTypescriptString(protoItem, options) {
+
+  let result = null;
+  if (protoItem instanceof Enum) {
+    if (options.isJsdoc) {
+      result = getJsdocEnum(protoItem, options);
+    } else {
+      result = genEnum(protoItem, options);
+    }
+  } else if (protoItem instanceof Type) {
+    if (options.isJsdoc) {
+      result = getJsdocType(protoItem, options);
+    } else {
+      result = genType(protoItem, options);
+    }
+  } else if (protoItem instanceof Service) {
+    if (options.isJsdoc) {
+      result = getJsdocService(protoItem, options);
+    } else {
+      result = genService(protoItem, options);
+    }
+  }
+  return result
+}
+
+/**
  * internal function
  * @param {protobuf.Root} proto
  * @param {import('./typedef.js').OptionType} options
@@ -35,38 +65,24 @@ function getTypescript(proto, options) {
       );
     }
 
+
     if (protoItem.nested) {
+
       // 继续处理下一层
       //@ts-ignore
       processQueue = processQueue.concat(Object.values(protoItem.nested));
-    } else {
-      /** @type {{definitions: string;imports: string;} | null} */
-      let result = null;
-      if (protoItem instanceof Enum) {
-        if (options.isJsdoc) {
-          result = getJsdocEnum(protoItem, options);
-        } else {
-          result = genEnum(protoItem, options);
-        }
-      } else if (protoItem instanceof Type) {
-        if (options.isJsdoc) {
-          result = getJsdocType(protoItem, options);
-        } else {
-          result = genType(protoItem, options);
-        }
-      } else if (protoItem instanceof Service) {
-        if (options.isJsdoc) {
-          result = getJsdocService(protoItem, options);
-        } else {
-          result = genService(protoItem, options);
-        }
+
+      const result = getTypescriptString(protoItem, options);
+      if (result) {
+        setType(_types, filename, result);
       }
+    } else {
+      const result = getTypescriptString(protoItem, options);
       if (result) {
         setType(_types, filename, result);
       }
     }
   }
-
   return _types;
 }
 

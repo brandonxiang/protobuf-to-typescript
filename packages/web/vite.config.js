@@ -13,7 +13,15 @@ export default defineConfig({
       inject: {
         data: {
           injectHead:
-            "<link rel='icon' type='image/png' href='/static/favicon.png'>",
+            `
+            <meta name="keywords" content="protobuffer,typescript,convert,transform,generate typescript definition,jsdoc">
+            <meta name="description" content="how to convert protobuffer for frontend web developing">
+            <meta property="og:url" content="https://pb.brandonxiang.top">
+            <meta property="og:type" content="article">
+            <meta property="og:title" content="protobuffer to typescript">
+            <meta property="og:description" content="how to convert protobuffer for frontend web developing">
+            <meta property="og:image" content="/static/favicon.png">
+            <link rel='icon' type='image/png' href='/static/favicon.png'>`,
         },
       },
     }),
