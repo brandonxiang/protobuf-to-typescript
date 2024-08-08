@@ -1,6 +1,9 @@
 import MagicString from 'magic-string';
 import { TYPE_REFLECTION, indentPrefix } from '../constant.js';
 import relativePath, { getDirectory } from '../utils/relative-path.js';
+import protobuf from 'protobufjs';
+
+const { Type } = protobuf;
 
 /**
  *
@@ -127,7 +130,7 @@ export function genType(proto, options) {
 
   let interfaceName = items.name;
 
-  if(parent && parent.name) {
+  if(parent && parent instanceof Type && parent.name) {
     interfaceName = parent.name + interfaceName;
   }
 
@@ -185,7 +188,7 @@ export function getJsdocType(proto, options) {
 
   let interfaceName = items.name;
 
-  if(parent && parent.name) {
+  if(parent && parent instanceof Type && parent.name) {
     interfaceName = parent.name + interfaceName;
   }
 
