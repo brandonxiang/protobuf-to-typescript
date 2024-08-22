@@ -1,10 +1,24 @@
 # pbts
 
+## 4.0.3
+
+### Patch Changes
+
+- change the comment position
+
+## 4.0.2
+
+### Patch Changes
+
+- fix [#16](https://github.com/brandonxiang/protobuf-to-typescript/issues/16)
+- 支持注释转换
+- 支持 jsdoc 转换
+
 ## 4.0.1
 
 ### Patch Changes
 
-- fix #18
+- fix [#18](https://github.com/brandonxiang/protobuf-to-typescript/issues/18)
 
 ## 4.0.0
 

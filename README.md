@@ -16,7 +16,7 @@ Protobuf is currently used in micro-service for back end. As a front end web dev
 
 ## Demo
 
-[Live Demo](https://brandonxiang.github.io/pb-to-typescript/)
+[Live Demo](https://pb.brandonxiang.top)
 
 ## License
 

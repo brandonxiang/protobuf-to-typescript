@@ -7,10 +7,12 @@
 syntax = "proto3";
 
 service MyService {
+    // This is a comment.
     rpc MyMethod (MyRequest) returns (MyResponse);
 }
 
 message MyRequest {
+    // path is a required field.
     string path = 1;
 }
 

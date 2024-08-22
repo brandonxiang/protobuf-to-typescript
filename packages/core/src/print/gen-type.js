@@ -121,7 +121,7 @@ export function genType(proto, options) {
       result.append(`${item.name}${optionalChar}: ${item.type};`);
     }
     if (item.comment) {
-      result.append(` //${item.comment}`);
+      result.prepend(`//${item.comment}\n`);
     }
     result.append('\n');
   });
