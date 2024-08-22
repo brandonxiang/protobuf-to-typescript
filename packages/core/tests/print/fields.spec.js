@@ -21,12 +21,14 @@ test('Comment should be converted', () => {
 
   // my request msg
   message MyRequest {
-    string path = 1; //path msg
+    //path msg
+    string path = 1;
   }
   `;
   const ts = parseProto(source);
   assert.match(ts, '//my request msg');
-  assert.match(ts, 'path?: string; //path msg');
+  assert.match(ts, '//path msg');
+  assert.match(ts, 'path?: string;');
 });
 
 test('Field type should be converted', () => {
