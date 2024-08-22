@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - name: Install pnpm
-        run: curl -L https://pnpm.js.org/pnpm.js
+        run: curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=8.15.7 sh -
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile

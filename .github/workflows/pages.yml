@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-${{ matrix.node-version }}
 
       - name: install pnpm and npm
-        run: curl -L https://pnpm.js.org/pnpm.js
+        run: curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=8.15.7 sh -
       - name: pnpm install
         run: pnpm install --no-frozen-lockfile
       - name: build pages
