@@ -1,30 +1,35 @@
-name: ci
+name: CI
 
-on: push
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
-      - name: Cache .pnpm-store
-        uses: actions/cache@v2
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
         with:
           path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}
+            ${{ runner.os }}-pnpm-
 
-      - name: install pnpm and npm
-        run: |
-          curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@dev npm@6
-      - name: pnpm install
-        run: pnpm install
-      - name: ci
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run tests
         run: pnpm test
