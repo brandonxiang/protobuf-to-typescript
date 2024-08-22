@@ -2,6 +2,8 @@
   import { onMount } from 'svelte';
   import pbToTypescript from 'pbts/core';
   import ClipboardJS from 'clipboard';
+  import CodeMirror from "svelte-codemirror-editor";
+  import { javascript } from "@codemirror/lang-javascript";
 
   let src = `
 syntax = "proto3";
@@ -49,24 +51,28 @@ message MyResponse {
 <div id="container">
   <div class="col">
     <h3>Protocol buffer</h3>
-<textarea name="" bind:value={src} on:input={onProtobuf}></textarea>
- {#if isWarning}
-    <span class="rightcorner warning">Invalid Protobuf</span>
- {/if}
+    <CodeMirror bind:value={src} lang={javascript()} on:change={onProtobuf}/>
+    {#if isWarning}
+      <span class="rightcorner warning">Invalid Protobuf</span>
+    {/if}
   </div>
   <div class="col">
     <div class="tool-bar">
-      <select bind:value={selectedDefinition} on:change={onProtobuf} on:blur={onProtobuf} class="type-selector">
+      <select
+        bind:value={selectedDefinition}
+        on:change={onProtobuf}
+        on:blur={onProtobuf}
+        class="type-selector"
+      >
         <option value="1">Typescript d.ts</option>
         <option value="0">Typescript File</option>
         <option value="2">Jsdoc</option>
       </select>
     </div>
-    <textarea name="" id="typescript" bind:value={dest}></textarea>
-    <span class="rightcorner button" data-clipboard-target="#typescript">Copy to clipboard</span>
+    <CodeMirror bind:value={dest} lang={javascript()} readonly/>
+    <span class="rightcorner button" data-clipboard-text={dest}>Copy to clipboard</span>
   </div>
 </div>
 
 <style>
-
 </style>

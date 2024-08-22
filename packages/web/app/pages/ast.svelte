@@ -1,20 +1,22 @@
 <script>
   import { onMount } from 'svelte';
   import protobufjs from 'protobufjs';
+  import CodeMirror from "svelte-codemirror-editor";
+  import { javascript } from "@codemirror/lang-javascript";
 
   let src = `
 syntax = "proto3";
 
 service MyService {
-    rpc MyMethod (MyRequest) returns (MyResponse);
+  rpc MyMethod (MyRequest) returns (MyResponse);
 }
 
 message MyRequest {
-    string path = 1;
+  string path = 1;
 }
 
 message MyResponse {
-    int32 status = 1;
+  int32 status = 1;
 }
   `;
 
@@ -24,8 +26,8 @@ message MyResponse {
 
   function onProtobuf() {
     const res = protobufjs.parse(src, {
-      alternateCommentMode: true,
-      preferTrailingComment: true,
+      alternateCommentMode: false,
+      preferTrailingComment: false,
       keepCase: true,
     });
     dest = JSON.stringify(res.root, null, 2);
@@ -43,14 +45,13 @@ message MyResponse {
 <div id="container">
   <div class="col">
     <h3>Protocol buffer</h3>
-<textarea name="" bind:value={src} on:input={onProtobuf}></textarea>
- {#if isWarning}
-    <span class="rightcorner warning">Invalid Protobuf</span>
- {/if}
+    <CodeMirror bind:value={src} lang={javascript()} on:change={onProtobuf}/>
+    {#if isWarning}
+      <span class="rightcorner warning">Invalid Protobuf</span>
+    {/if}
   </div>
   <div class="col">
-    <div class="tool-bar" style="height: 40px">
-    </div>
-    <textarea name="" id="typescript" bind:value={dest}></textarea>
+    <div class="tool-bar" style="height: 40px"></div>
+    <CodeMirror bind:value={dest} lang={javascript()} readonly/>
   </div>
 </div>

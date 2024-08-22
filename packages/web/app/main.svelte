@@ -15,7 +15,7 @@
 
 <Navbar current={routeIndex} on:change={onRouteChange} />
 
-<div>
+<div class="content">
   {#if routeIndex === PAGE_HASH.MOCK_PAGE}
     <MockPage />
   {:else if routeIndex === PAGE_HASH.AST_PAGE}
@@ -75,8 +75,10 @@
     color: var(--white);
   }
   :global(#container) {
-    height: calc(100vh - 83px);
+    height: calc(100vh - 63px);
     padding-top: 20px;
+    background: #eeeeee;
+    padding-bottom: 10px;
   }
   :global(.error) {
     color: red;
@@ -85,9 +87,7 @@
   :global(.selector) {
     width: 20%;
     float: left;
-    height: calc(100vh - 83px);
-    overflow: scroll;
-    background-color: white;
+    height: calc(100vh - 63px);
   }
   :global(.header) {
     height: 63px;
