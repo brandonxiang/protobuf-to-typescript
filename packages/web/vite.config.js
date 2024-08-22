@@ -20,8 +20,8 @@ export default defineConfig({
             <meta property="og:type" content="article">
             <meta property="og:title" content="protobuffer to typescript">
             <meta property="og:description" content="how to convert protobuffer for frontend web developing">
-            <meta property="og:image" content="/static/favicon.png">
-            <link rel='icon' type='image/png' href='/static/favicon.png'>`,
+            <meta property="og:image" content="/static/favicon.ico">
+            <link rel='icon' type='image/png' href='/static/favicon.ico'>`,
         },
       },
     }),
