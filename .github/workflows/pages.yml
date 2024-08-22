@@ -21,8 +21,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}
 
-      - name: install pnpm and npm
-        run: curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=8.15.7 sh -
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
       - name: pnpm install
         run: pnpm install --no-frozen-lockfile
       - name: build pages
