@@ -22,8 +22,7 @@ jobs:
             ${{ runner.os }}-${{ matrix.node-version }}
 
       - name: install pnpm and npm
-        run: |
-          curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm@dev npm@6
+        run: curl -L https://pnpm.js.org/pnpm.js
       - name: pnpm install
         run: pnpm install --no-frozen-lockfile
       - name: build pages
