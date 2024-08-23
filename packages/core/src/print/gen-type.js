@@ -91,13 +91,21 @@ export function genType(proto, options) {
 
   let imports = items.importItems
     .map((item) => {
-      const typeOrEnum = proto.lookupTypeOrEnum(item);
+      try {
+        const typeOrEnum = proto.lookupTypeOrEnum(item);
 
-      if (filename && typeOrEnum.filename) {
-        const from = getDirectory(filename);
-        const to = typeOrEnum.filename;
-        const importPath = relativePath(from, to).replace('.proto', '');
-        return `import { ${item} } from '${importPath}';\n`;
+        if (filename && typeOrEnum.filename) {
+          const from = getDirectory(filename);
+          const to = typeOrEnum.filename;
+          const importPath = relativePath(from, to).replace('.proto', '');
+          return `import { ${item} } from '${importPath}';\n`;
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.log('lookup protobuf type error:' + error.message);
+        } else {
+          console.log('lookup protobuf type error: Unknown error');
+        }
       }
       return '';
     })
@@ -121,7 +129,7 @@ export function genType(proto, options) {
       result.append(`${item.name}${optionalChar}: ${item.type};`);
     }
     if (item.comment) {
-      result.prepend(`//${item.comment}\n`);
+      result.append(` //${item.comment}`);
     }
     result.append('\n');
   });
