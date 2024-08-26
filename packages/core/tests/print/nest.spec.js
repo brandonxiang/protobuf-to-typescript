@@ -101,4 +101,44 @@ test('nest type4 should be converted', () => {
   assert.match(ts, '@typedef {Object} Message2');
 });
 
+test('nest type5 should be converted', () => {
+  const source = `
+  syntax = "proto3";
+
+  message Message1 {
+    message Data {
+      int32 id = 1;
+    }
+    Data data = 1;
+    Finder finder = 2;
+  }
+  `;
+  const ts = parseProto(source);
+  assert.match(ts, 'interface Message1');
+  assert.match(ts, 'data?: Message1Data');
+  assert.match(ts, 'finder?: Finder');
+  assert.match(ts, 'interface Message1Data');
+  assert.match(ts, 'id?: number');
+});
+
+test('nest type6 should be converted', () => {
+  const source = `
+  syntax = "proto3";
+
+  message Message1 {
+    message Data {
+      int32 id = 1;
+    }
+    Data data = 1;
+    Finder finder = 2;
+  }
+
+  `;
+  const ts = parseProto(source, { isJsdoc: true });
+  assert.match(ts, '@typedef {Object} Message1Data');
+  assert.match(ts, '* @prop {Finder=} finder ');
+  assert.match(ts, '@typedef {Object} Message1');
+});
+
 test.run();
+

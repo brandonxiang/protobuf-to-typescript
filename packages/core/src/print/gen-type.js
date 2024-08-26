@@ -34,7 +34,19 @@ function getType(type, paramValue) {
     return TYPE_REFLECTION[type];
   }
   if(paramValue.parent?.nested) {
-    return paramValue.parent.name + type;
+    try {
+      if(paramValue.parent.lookupTypeOrEnum(type)) {
+        return paramValue.parent.name + type;
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log('lookup protobuf type error:' + error.message);
+      } else {
+        console.log('lookup protobuf type error: Unknown error');
+      }
+
+    }
+    return type; 
   }
   
   return type;
@@ -119,6 +131,12 @@ export function genType(proto, options) {
   items.params.forEach((item) => {
     const optionalChar = item.required ? '' : '?';
 
+    if (item.comment) {
+      item.comment.split('\n').forEach((line) => {
+        result.append(`//${line} \n`);
+      })
+    }
+
     if (item.repeated) {
       result.append(`${item.name}${optionalChar}: ${item.type}[];`);
     } else if (item.keyType) {
@@ -128,9 +146,7 @@ export function genType(proto, options) {
     } else {
       result.append(`${item.name}${optionalChar}: ${item.type};`);
     }
-    if (item.comment) {
-      result.append(` //${item.comment}`);
-    }
+    
     result.append('\n');
   });
 
@@ -138,6 +154,7 @@ export function genType(proto, options) {
 
   let interfaceName = items.name;
 
+  // deal with nested type conflict problem
   if(parent && parent instanceof Type && parent.name) {
     interfaceName = parent.name + interfaceName;
   }
