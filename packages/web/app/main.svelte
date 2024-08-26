@@ -3,14 +3,13 @@
   import IndexPage from './pages/index.svelte';
   import MockPage from './pages/mock.svelte';
   import AstPage from './pages/ast.svelte';
-  import {PAGE_HASH} from './constants/index';
+  import { PAGE_HASH } from './constants/index';
 
   let routeIndex = PAGE_HASH.INDEX_PAGE;
 
-  function onRouteChange (event) {
+  function onRouteChange(event) {
     routeIndex = event.detail.route || 0;
   }
-
 </script>
 
 <Navbar current={routeIndex} on:change={onRouteChange} />
@@ -33,15 +32,14 @@
     --gray: #f0f1f2;
     --dark-gray: #5c5c5c;
   }
-  :global(.dark) {
-    background-color: var(--black);
-    color: var(--white);
+  :global(.dark #container) {
+    color: var(--black); 
   }
-  :global(body,html)  {
+  :global(body, html) {
     font-family: Sans-Serif;
     margin: 0;
   }
-  :global(h1,h2) {
+  :global(h1, h2) {
     margin: 16px 8px;
   }
   :global(h3) {
@@ -66,13 +64,13 @@
     flex-direction: column;
     position: relative;
   }
-  :global(textarea,pre) {
+  :global(textarea, pre) {
     border: 1px solid var(--gray);
     border-radius: 4px;
   }
-  :global(.dark textarea,pre) {
+  :global(.dark textarea, pre) {
     background-color: var(--black);
-    color: var(--white);
+    /* color: var(--white); */
   }
   :global(#container) {
     height: calc(100vh - 63px);
@@ -163,4 +161,11 @@
     border-left: 2px solid red;
     border-bottom: 2px solid red;
   }
+  :global(.codemirror-wrapper) {
+    flex: 1;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 10px;
+  }
+
 </style>

@@ -56,8 +56,8 @@ function transformFromClipboard() {
 
 function transformOnPanel (ctx: ExtensionContext) {
   const panel = window.createWebviewPanel(
-    'pb to typescript', // Identifies the type of the webview. Used internally
-    'pb to typescript', // Title of the panel displayed to the user
+    'protobuf to typescript', // Identifies the type of the webview. Used internally
+    'protobuf to typescript', // Title of the panel displayed to the user
     ViewColumn.One, // Editor column to show the new webview panel in.
     { enableScripts: true} // Webview options. More on these later.
   );

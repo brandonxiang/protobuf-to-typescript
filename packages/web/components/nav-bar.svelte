@@ -23,5 +23,5 @@
   <a href="/#mock" class={current === 1 ? "active": ""} on:click={() => routerChange(PAGE_HASH.MOCK_PAGE)}>Mock</a>
   <a href="/#ast" class={current === 2 ? "active": ""} on:click={() => routerChange(PAGE_HASH.AST_PAGE)}>AST</a>
   <!-- <a href="http://www.jsontots.com/" target="_blank">JSON Converter</a> -->
-  <a class="github-link" href="https://github.com/brandonxiang/pb-to-typescript">Github</a>
+  <a class="github-link" href="https://github.com/brandonxiang/protobuf-to-typescript">Github</a>
 </header>

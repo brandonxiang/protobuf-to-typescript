@@ -1,9 +1,9 @@
 {
   "name": "pbts",
   "version": "4.0.3",
-  "description": "pb-to-typescript",
+  "description": "protobuf-to-typescript",
   "author": "weiping.xiang <1542453460@qq.com>",
-  "homepage": "https://github.com/brandonxiang/pb-to-typescript#readme",
+  "homepage": "https://github.com/brandonxiang/protobuf-to-typescript#readme",
   "license": "MIT",
   "exports": {
     "./package.json": "./package.json",
@@ -29,14 +29,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brandonxiang/pb-to-typescript.git"
+    "url": "git+https://github.com/brandonxiang/protobuf-to-typescript.git"
   },
   "scripts": {
     "check": "rollup -c",
     "test": "uvu tests"
   },
   "bugs": {
-    "url": "https://github.com/brandonxiang/pb-to-typescript/issues"
+    "url": "https://github.com/brandonxiang/protobuf-to-typescript/issues"
   },
   "dependencies": {
     "protobufjs": "^7.3.3",

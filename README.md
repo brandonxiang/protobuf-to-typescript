@@ -1,7 +1,7 @@
 # protobuf-to-typescript
 
-<a href="https://github.com/brandonxiang/pb-to-typescript/blob/master/LICENSE">
-  <img src="https://img.shields.io/github/license/brandonxiang/pb-to-typescript" alt="license">
+<a href="https://github.com/brandonxiang/protobuf-to-typescript/blob/master/LICENSE">
+  <img src="https://img.shields.io/github/license/brandonxiang/protobuf-to-typescript" alt="license">
 </a>
 
 ## Intro

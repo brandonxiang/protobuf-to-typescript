@@ -30,7 +30,7 @@
 
 ### Patch Changes
 
-- fix cli issue [#17](https://github.com/brandonxiang/pb-to-typescript/issues/17)
+- fix cli issue [#17](https://github.com/brandonxiang/protobuf-to-typescript/issues/17)
 
 ## 3.0.0
 

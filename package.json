@@ -1,7 +1,7 @@
 {
-  "name": "pb-to-typescript",
+  "name": "protobuf-to-typescript",
   "version": "0.0.0",
-  "repository": "https://github.com/brandonxiang/pb-to-typescript.git",
+  "repository": "https://github.com/brandonxiang/protobuf-to-typescript.git",
   "author": "Weiping Xiang <weiping.xiang@shopee.com>",
   "license": "MIT",
   "private": "true",
