@@ -110,7 +110,7 @@ export function genType(proto, options) {
           const from = getDirectory(filename);
           const to = typeOrEnum.filename;
           const importPath = relativePath(from, to).replace('.proto', '');
-          return `import { ${item} } from '${importPath}';\n`;
+          return `import { ${item} } from './${importPath}';\n`;
         }
       } catch (error) {
         if (error instanceof Error) {

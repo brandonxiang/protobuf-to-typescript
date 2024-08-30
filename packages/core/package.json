@@ -1,6 +1,6 @@
 {
   "name": "pbts",
-  "version": "4.0.3",
+  "version": "4.0.5",
   "description": "protobuf-to-typescript",
   "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/protobuf-to-typescript#readme",
@@ -40,17 +40,17 @@
   },
   "dependencies": {
     "protobufjs": "^7.3.3",
-    "magic-string": "^0.30.0"
+    "magic-string": "^0.30.0",
+    "sade": "^1.7.4",
+    "pkg-updater": "^1.0.4"
   },
   "devDependencies": {
-    "rollup": "^4.9.1",
-    "rollup-plugin-dts": "^6.1.0",
+    "rollup": "^4.21.1",
+    "rollup-plugin-dts": "^6.1.1",
     "@types/node": "^17.0.36",
     "@types/sade": "^1.7.4",
     "typescript": "^5.0.4",
     "uvu": "^0.5.6",
-    "sade": "^1.7.4",
-    "pkg-updater": "^1.0.4",
     "release-it": "^17.6.0"
   },
   "bin": {

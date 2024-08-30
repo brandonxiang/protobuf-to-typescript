@@ -12,8 +12,26 @@ test('Enum type should be converted', () => {
   }
   `;
   const ts = parseProto(source);
-  assert.match(ts, 'kSuccess = 0, //success');
-  assert.match(ts, 'kFail = 1, //fail');
+  assert.match(ts, 'kSuccess = 0,');
+  assert.match(ts, '//success');
+  assert.match(ts, 'kFail = 1,');
+  assert.match(ts, '//fail');
+});
+
+
+test('Enum type should be converted', () => {
+  const source = `
+  syntax = "proto3";
+
+  enum ErrorCode {
+    kSuccess = 0; 
+    kFail = 1;
+  }
+  `;
+  const ts = parseProto(source);
+  assert.match(ts, 'kSuccess = 0,');
+  assert.match(ts, 'kFail = 1,');
+  assert.not.match(ts, '//null');
 });
 
 test.run();

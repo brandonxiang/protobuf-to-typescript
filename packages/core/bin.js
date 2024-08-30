@@ -21,8 +21,8 @@ updater({
     .example('-i test.proto -o test.ts')
     .option('-i, --input <input>', 'input file path')
     .option('-o, --output <output>', 'output file path')
-    .option('--isDefinition <isDefinition>', 'is typescript definition')
-    .option('---isJsdoc <isJsdoc>', 'is typescript definition')
+    .option('--isDefinition <isDefinition>', 'convert to typescript definitio file')
+    .option('--isJsdoc <isJsdoc>', 'convert to jsdoc file')
     .action(convertCommand);
 
   prog.parse(process.argv);

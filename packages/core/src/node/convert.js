@@ -6,6 +6,18 @@ import fs from 'node:fs';
 import { handleError } from '../utils/log.js';
 
 /**
+ * 
+ * @param {string} input 
+ * @param {string} output 
+ */
+function convertFileTypescript (input, output) {
+  const root = protobuf.loadSync(input);
+  const definition = parseProtoRoot(root, { isDefinition: true });
+  fs.writeFileSync(output, definition);
+  console.log(`[Success] "${output}" is converted successfully`);
+}
+
+/**
  * @param {{ input: string, output: string }} params
  */
 const convertCommand = async (params) => {
@@ -19,35 +31,53 @@ const convertCommand = async (params) => {
     return;
   }
 
+
   const input = path.resolve(params.input);
   const output = path.resolve(params.output);
 
+  if (!fs.existsSync(input)) {
+    handleError(`[Error] input file not found: ${input}`);
+    return;
+  }
+
   const inputStat = fs.statSync(input);
-  const outputStat = fs.statSync(output);
 
-  if (inputStat.isDirectory() && !outputStat.isDirectory()) {
-    handleError('Parameter input is a directory, but output is not');
-    return;
-  }
-  if (!inputStat.isDirectory() && outputStat.isDirectory()) {
-    handleError('Parameter output is a directory, but input is not');
-    return;
-  }
+  /**
+   * @type {import('node:fs').Stats}
+   */
+  let outputStat;
 
-  if (inputStat.isDirectory() && outputStat.isDirectory()) {
+  if (inputStat.isDirectory()) {
+    // if input is a directory, output must be a directory
+    if(!fs.existsSync(output)) {
+      fs.mkdirSync(output, { recursive: true });
+    }  
+    outputStat = fs.statSync(output);
+    if(!outputStat.isDirectory()) {
+      handleError('Parameter input is a directory, but output is not');
+      return;
+    }
+
     transformProtoFiles({
       inputDir: input,
       outputDir: output,
       isDefinition: true,
     });
     console.log(`[Success] all are converted successfully`);
-  }
-
-  if (!inputStat.isDirectory() && !outputStat.isDirectory()) {
-    const root = protobuf.loadSync(input);
-    const definition = parseProtoRoot(root, { isDefinition: true });
-    fs.writeFileSync(params.output, definition);
-    console.log(`[Success] "${params.output}" is converted successfully`);
+  } else {
+    // if input is a file, output must be a file
+    if(!fs.existsSync(output)) {
+      const outputDir = path.dirname(output);
+      fs.mkdirSync(outputDir, { recursive: true });
+      convertFileTypescript(input, output);
+    } else {
+      outputStat = fs.statSync(output);
+      if (outputStat.isDirectory()) {
+        handleError('Parameter output is a directory, but input is not');
+        return;
+      }
+      convertFileTypescript(input, output);
+    }
   }
 };
 

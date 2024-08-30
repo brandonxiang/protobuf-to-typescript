@@ -1,5 +1,17 @@
 # pbts
 
+## 4.0.5
+
+### Patch Changes
+
+- fix pbts command line description
+
+## 4.0.4
+
+### Patch Changes
+
+- fix cli problem
+
 ## 4.0.3
 
 ### Patch Changes

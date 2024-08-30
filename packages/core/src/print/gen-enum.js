@@ -21,7 +21,10 @@ export function genEnum(proto, options) {
   const result = new MagicString('');
 
   items.forEach((s) => {
-    result.append(`${s.name} = ${s.id}, //${s.comment}\n`);
+    if(s.comment) {
+      result.append(`//${s.comment}\n`);
+    }
+    result.append(`${s.name} = ${s.id},\n`);
   });
 
   const prefix = options.isDefinition ? '' : 'export ';
@@ -57,7 +60,10 @@ export function getJsdocEnum(proto, options) {
   const result = new MagicString('');
 
   items.forEach((s) => {
-    result.append(`${s.name} = ${s.id}, //${s.comment}\n`);
+    if(s.comment) {
+      result.append(`//${s.comment}\n`);
+    }
+    result.append(`${s.name} = ${s.id},\n`);
   });
 
   const prefix = 'export ';
