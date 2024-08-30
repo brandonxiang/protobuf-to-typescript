@@ -4,7 +4,7 @@ export interface ProductInfo {
 }
 
 export enum ErrorCode {
-  kSuccess = 0, //null
-  kFail = 1, //null
+  kSuccess = 0,
+  kFail = 1,
 }
 

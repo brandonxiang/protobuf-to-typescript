@@ -109,6 +109,9 @@ export function genType(proto, options) {
         if (filename && typeOrEnum.filename) {
           const from = getDirectory(filename);
           const to = typeOrEnum.filename;
+          if(filename === typeOrEnum.filename) {
+            return '';
+          }
           const importPath = relativePath(from, to).replace('.proto', '');
           return `import { ${item} } from './${importPath}';\n`;
         }
