@@ -8,3 +8,13 @@
  * @prop {string=} outputDir
  */
 export { OptionType };
+
+
+/**
+ * @typedef {Object} CommandOptionType
+ * @prop {boolean=} isDefinition
+ * @prop {boolean=} isJsdoc
+ * @prop {string=} input
+ * @prop {string=} output
+ */
+export { CommandOptionType };

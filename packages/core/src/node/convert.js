@@ -18,22 +18,25 @@ function convertFileTypescript (input, output) {
 }
 
 /**
- * @param {{ input: string, output: string }} params
+ * @param {import('../typedef.js').CommandOptionType} params
  */
 const convertCommand = async (params) => {
-  if (!params.input) {
+
+  const {input: inputParams, output: outputParams, ...rest} = params;
+
+  if (!inputParams) {
     handleError('Please enter the input file path');
     return;
   }
 
-  if (!params.output) {
+  if (!outputParams) {
     handleError('Please enter the output file path');
     return;
   }
 
 
-  const input = path.resolve(params.input);
-  const output = path.resolve(params.output);
+  const input = path.resolve(inputParams);
+  const output = path.resolve(outputParams);
 
   if (!fs.existsSync(input)) {
     handleError(`[Error] input file not found: ${input}`);
@@ -61,7 +64,7 @@ const convertCommand = async (params) => {
     transformProtoFiles({
       inputDir: input,
       outputDir: output,
-      isDefinition: true,
+      ...rest,
     });
     console.log(`[Success] all are converted successfully`);
   } else {
