@@ -37,9 +37,11 @@ export function getAllMethods(source) {
 /**
  *
  * @param {string} type
+ * @param {import('../typedef.js').MockOptionType} options
  * @returns
  */
-function mockScalar(type) {
+function mockScalar(type, options) {
+  const strictMode = options?.mode === 'strict'
   switch (type) {
     case 'string':
       return 'Hello';
@@ -50,23 +52,23 @@ function mockScalar(type) {
     case 'int32':
       return 10;
     case 'int64':
-      return '20';
+      return strictMode ? '20' : 20;
     case 'uint32':
       return 100;
     case 'uint64':
-      return '100';
+      return strictMode ? '100' : 20;
     case 'sint32':
       return 100;
     case 'sint64':
-      return '-1200';
+      return strictMode ? '-1200' : 1200;
     case 'fixed32':
       return 1400;
     case 'fixed64':
-      return '1500';
+      return strictMode ? '1500' : 1500;
     case 'sfixed32':
       return 1600;
     case 'sfixed64':
-      return '-1700';
+      return strictMode ? '-1700' : 1500;
     case 'double':
       return 1.4;
     case 'float':
@@ -82,9 +84,10 @@ function mockScalar(type) {
  *
  * @param {protobuf.Root} root
  * @param {string} typeName
+ * @param {import('../typedef.js').MockOptionType} options
  * @returns {Object}
  */
-function mockType(root, typeName) {
+function mockType(root, typeName, options) {
   const type = root.lookupTypeOrEnum(typeName);
 
   if (type instanceof Enum) {
@@ -96,8 +99,8 @@ function mockType(root, typeName) {
     type.fieldsArray &&
     type.fieldsArray.reduce((a, b) => {
       if (b instanceof MapField) {
-        const mockKey = mockScalar(b.keyType);
-        const mockData = mockScalar(b.type);
+        const mockKey = mockScalar(b.keyType, options);
+        const mockData = mockScalar(b.type, options);
         const val = mockData
           ? //@ts-ignore
             { [b.name]: { [mockKey]: mockData } }
@@ -106,16 +109,16 @@ function mockType(root, typeName) {
         return { ...a, ...val };
       }
       if (b.repeated) {
-        const mockData = mockScalar(b.type);
+        const mockData = mockScalar(b.type, options);
         const val = mockData
           ? { [b.name]: [mockData] }
-          : { [b.name]: [mockType(root, b.type)] };
+          : { [b.name]: [mockType(root, b.type, options)] };
         return { ...a, ...val };
       }
-      const mockData = mockScalar(b.type);
+      const mockData = mockScalar(b.type, options);
       const val = mockData
         ? { [b.name]: mockData }
-        : { [b.name]: mockType(root, b.type) };
+        : { [b.name]: mockType(root, b.type, options) };
       return { ...a, ...val };
     }, {});
 
@@ -140,14 +143,15 @@ function mockType(root, typeName) {
  *
  * @param {protobuf.Root} root
  * @param {string} methodName
+ * @param {import('../typedef.js').MockOptionType} options
  * @returns
  */
-function _mockResponse(root, methodName) {
+function _mockResponse(root, methodName, options) {
   const service = root.nestedArray.find((s) => s instanceof Service);
   if (!service) return null;
   const firstService = root.lookupService(service.name);
   const { responseType } = firstService.methods[methodName];
-  const res = mockType(root, responseType);
+  const res = mockType(root, responseType, options);
   return res;
 }
 
@@ -155,9 +159,10 @@ function _mockResponse(root, methodName) {
  *
  * @param {string} source
  * @param {string} methodName
+ * @param {import('../typedef.js').MockOptionType=} options
  * @returns
  */
-export function mockResponse(source, methodName) {
+export function mockResponse(source, methodName, options) {
   const res = protobuf.parse(source, {
     keepCase: true,
     alternateCommentMode: true,
@@ -165,8 +170,8 @@ export function mockResponse(source, methodName) {
   if (res.package) {
     const reflect = res.root.lookup(res.package);
     if (reflect) {
-      return _mockResponse(/** @type {protobuf.Root} */ (reflect), methodName);
+      return _mockResponse(/** @type {protobuf.Root} */ (reflect), methodName, options || {});
     }
   }
-  return _mockResponse(res.root, methodName);
+  return _mockResponse(res.root, methodName, options || {});
 }

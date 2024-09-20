@@ -1,10 +1,13 @@
-import protobuf$1 from 'protobufjs';
+import protobuf from 'protobufjs';
 
 type OptionType = {
-    isDefinition?: boolean | undefined;
-    isJsdoc?: boolean | undefined;
+    outputType?: string | undefined;
+    mode?: string | undefined;
     inputDir?: string | undefined;
     outputDir?: string | undefined;
+};
+type MockOptionType = {
+    mode?: string | undefined;
 };
 
 /**
@@ -19,9 +22,10 @@ declare function getAllMethods(source: string): {
  *
  * @param {string} source
  * @param {string} methodName
+ * @param {import('../typedef.js').MockOptionType=} options
  * @returns
  */
-declare function mockResponse(source: string, methodName: string): Object | null;
+declare function mockResponse(source: string, methodName: string, options?: MockOptionType | undefined): Object | null;
 
 declare namespace _default {
     export { getAllMethods };
@@ -45,7 +49,7 @@ declare function parseProto(source: string, _options?: OptionType | undefined): 
  * @param {string=} packageName
  * @returns {string}
  */
-declare function parseProtoRoot(root: protobuf$1.Root, options: OptionType, packageName?: string | undefined): string;
+declare function parseProtoRoot(root: protobuf.Root, options: OptionType, packageName?: string | undefined): string;
 /**
  * @param {string[]} files
  * @param {import('./typedef.js').OptionType} options

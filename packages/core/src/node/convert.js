@@ -4,15 +4,17 @@ import protobuf from 'protobufjs';
 import path from 'path';
 import fs from 'node:fs';
 import { handleError } from '../utils/log.js';
+import { MODE, OUTPUT_TYPE } from '../constant.js';
 
 /**
  * 
  * @param {string} input 
  * @param {string} output 
+ * @param {import('../typedef.js').OptionType} options
  */
-function convertFileTypescript (input, output) {
+function convertFileTypescript (input, output, options) {
   const root = protobuf.loadSync(input);
-  const definition = parseProtoRoot(root, { isDefinition: true });
+  const definition = parseProtoRoot(root, options);
   fs.writeFileSync(output, definition);
   console.log(`[Success] "${output}" is converted successfully`);
 }
@@ -34,6 +36,15 @@ const convertCommand = async (params) => {
     return;
   }
 
+  if (rest.outputType && !Object.values(OUTPUT_TYPE).includes(rest.outputType)) {
+    handleError('Please enter the correct outputType, including jsdoc,typescript,definition');
+    return;
+  }
+
+  if (rest.mode && !Object.values(MODE).includes(rest.mode)) {
+    handleError('Please enter the correct mode, including normal,strict');
+    return;
+  }
 
   const input = path.resolve(inputParams);
   const output = path.resolve(outputParams);
@@ -72,14 +83,14 @@ const convertCommand = async (params) => {
     if(!fs.existsSync(output)) {
       const outputDir = path.dirname(output);
       fs.mkdirSync(outputDir, { recursive: true });
-      convertFileTypescript(input, output);
+      convertFileTypescript(input, output, rest);
     } else {
       outputStat = fs.statSync(output);
       if (outputStat.isDirectory()) {
         handleError('Parameter output is a directory, but input is not');
         return;
       }
-      convertFileTypescript(input, output);
+      convertFileTypescript(input, output, rest);
     }
   }
 };

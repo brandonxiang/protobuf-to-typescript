@@ -1,5 +1,5 @@
 import MagicString from 'magic-string';
-import { indentPrefix } from '../constant.js';
+import { indentPrefix, OUTPUT_TYPE } from '../constant.js';
 
 /**
  * generate typescript files from proto info
@@ -27,7 +27,7 @@ export function genEnum(proto, options) {
     result.append(`${s.name} = ${s.id},\n`);
   });
 
-  const prefix = options.isDefinition ? '' : 'export ';
+  const prefix = options.outputType === OUTPUT_TYPE.definition ? '' : 'export ';
 
   result
     .indent(indentPrefix)

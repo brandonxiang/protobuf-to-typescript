@@ -4,7 +4,7 @@ import { genEnum, getJsdocEnum } from './print/gen-enum.js';
 import { genType, getJsdocType } from './print/gen-type.js';
 import { genService, getJsdocService } from './print/gen-service.js';
 import { handleError } from './utils/log.js';
-import { defaultFilename } from './constant.js';
+import { defaultFilename, OUTPUT_TYPE } from './constant.js';
 import relativePath from './utils/relative-path.js';
 
 const { Root, Enum, Service, Type } = protobuf;
@@ -13,7 +13,8 @@ const { Root, Enum, Service, Type } = protobuf;
  * @type {import('./typedef.js').OptionType}
  */
 const defaultOptions = {
-  isDefinition: false,
+  outputType: 'typescript',
+  mode: 'normal',
 };
 
 /**
@@ -25,19 +26,19 @@ function getTypescriptString(protoItem, options) {
 
   let result = null;
   if (protoItem instanceof Enum) {
-    if (options.isJsdoc) {
+    if (options.outputType === OUTPUT_TYPE.jsdoc) {
       result = getJsdocEnum(protoItem, options);
     } else {
       result = genEnum(protoItem, options);
     }
   } else if (protoItem instanceof Type) {
-    if (options.isJsdoc) {
+    if (options.outputType === OUTPUT_TYPE.jsdoc) {
       result = getJsdocType(protoItem, options);
     } else {
       result = genType(protoItem, options);
     }
   } else if (protoItem instanceof Service) {
-    if (options.isJsdoc) {
+    if (options.outputType === OUTPUT_TYPE.jsdoc) {
       result = getJsdocService(protoItem, options);
     } else {
       result = genService(protoItem, options);

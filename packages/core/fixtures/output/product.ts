@@ -5,7 +5,7 @@ import { ErrorCode } from './order';
 export type GetProduct = (params: GetProductReq) => Promise<GetProductResp>;
 
 export interface GetProductReq {
-  product_id?: string;
+  product_id?: number;
 }
 
 export interface GetProductResp {

@@ -22,7 +22,7 @@ message Teacher {
 
 message HelloReply {
   string message = 1;
-  number test = 2;
+  int64 test = 2;
   Teacher teacher = 3;
 }
 `;
@@ -31,6 +31,7 @@ message HelloReply {
   let isWarning = false;
 
   let methodNames = [];
+  let selectedMode = localStorage.getItem('selectedMode') || 'normal';
 
   function onProtobuf() {
     const methods = pbToTypescript.getAllMethods('syntax = "proto3";' + src);
@@ -52,7 +53,10 @@ message HelloReply {
   function getMockResponse(innerText) {
     var ts = pbToTypescript.mockResponse(
       'syntax = "proto3";' + src,
-      innerText
+      innerText,
+      {
+        mode: selectedMode,
+      },
     );
     dest = JSON.stringify(ts, null, 4);
     isWarning = false;
@@ -86,7 +90,18 @@ message HelloReply {
     </ul>
   </div>
   <div class="editor">
-    <h3>Response Mock Result</h3>
+    <div class="tool-bar">
+      <h3>Response Mock Result</h3>
+      <select
+        bind:value={selectedMode}
+        on:change={onProtobuf}
+        on:blur={onProtobuf}
+        class="type-selector"
+      >
+        <option value="normal">Normal</option>
+        <option value="strict">Strict</option>
+      </select>
+    </div>
     <CodeMirror bind:value={dest} lang={javascript()} readonly/>
     <span class="rightcorner button" data-clipboard-text={dest}>Copy to clipboard</span>
   </div>

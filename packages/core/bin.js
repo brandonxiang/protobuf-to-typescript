@@ -21,8 +21,8 @@ updater({
     .example('-i test.proto -o test.ts')
     .option('-i, --input <input>', 'input file path')
     .option('-o, --output <output>', 'output file path')
-    .option('--isDefinition <isDefinition>', 'convert to typescript definitio file')
-    .option('--isJsdoc <isJsdoc>', 'convert to jsdoc file')
+    .option('--outputType <outputType>', 'output file type, including typescript,definition,jsdoc, default typescript')
+    .option('--mode <mode>', 'edge case for int64(long type), including normal,strict, default normal')
     .action(convertCommand);
 
   prog.parse(process.argv);

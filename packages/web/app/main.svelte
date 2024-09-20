@@ -139,6 +139,10 @@
   :global(.tool-bar) {
     display: flex;
     flex-direction: row;
+    align-items: center;
+  }
+  :global(.label) {
+    margin: 0 10px;
   }
   :global(textarea) {
     flex: 1;

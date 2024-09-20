@@ -1,5 +1,5 @@
 import MagicString from 'magic-string';
-import { TYPE_REFLECTION, indentPrefix } from '../constant.js';
+import { OUTPUT_TYPE, TYPE_REFLECTION_NORMAL, TYPE_REFLECTION_STRICT, indentPrefix } from '../constant.js';
 import relativePath, { getDirectory } from '../utils/relative-path.js';
 import protobuf from 'protobufjs';
 
@@ -8,10 +8,12 @@ const { Type } = protobuf;
 /**
  *
  * @param {Partial<protobuf.IMapField>} p
+ * @param {import('../typedef.js').OptionType} options
  * @returns
  */
-function getKeyType(p) {
+function getKeyType(p, options) {
   if (p.keyType) {
+    const TYPE_REFLECTION = options.mode === 'strict' ? TYPE_REFLECTION_STRICT : TYPE_REFLECTION_NORMAL;
     if(TYPE_REFLECTION[p.keyType]) {
       return TYPE_REFLECTION[p.keyType];
     }
@@ -26,10 +28,12 @@ function getKeyType(p) {
 /**
  * 
  * @param {string} type 
- *  @param {Partial<protobuf.Field>} paramValue
+ * @param {Partial<protobuf.Field>} paramValue
+ * @param {import('../typedef.js').OptionType} options
  * @returns 
  */
-function getType(type, paramValue) {
+function getType(type, paramValue, options) {
+  const TYPE_REFLECTION = options.mode === 'strict' ? TYPE_REFLECTION_STRICT : TYPE_REFLECTION_NORMAL;
   if(TYPE_REFLECTION[type]) {
     return TYPE_REFLECTION[type];
   }
@@ -56,24 +60,25 @@ function getType(type, paramValue) {
  *
  * @param {string} name
  * @param {{[k: string]: protobuf.Field }} fields
+ * @param {import('../typedef.js').OptionType} options
  * @returns
  */
-function readField(name, fields) {
+function readField(name, fields, options) {
   /** @type {string[]} */
   let importItems = [];
 
   const params = Object.keys(fields).map((paramName) => {
     const paramValue = fields[paramName];
     const { type, repeated, id, comment, required } = paramValue;
-
+    const TYPE_REFLECTION = options.mode === 'strict' ? TYPE_REFLECTION_STRICT : TYPE_REFLECTION_NORMAL;
     if (!TYPE_REFLECTION[type]) {
       importItems.push(type);
     }
 
     return {
       name: paramName,
-      type: getType(type, paramValue),
-      keyType: getKeyType(paramValue),
+      type: getType(type, paramValue, options),
+      keyType: getKeyType(paramValue, options),
       repeated,
       id,
       comment,
@@ -97,7 +102,7 @@ function readField(name, fields) {
 export function genType(proto, options) {
   const { name, fields, comment, filename, parent } = proto;
 
-  const items = readField(name, fields);
+  const items = readField(name, fields, options);
 
   const result = new MagicString('');
 
@@ -153,7 +158,7 @@ export function genType(proto, options) {
     result.append('\n');
   });
 
-  const prefix = options.isDefinition ? '' : 'export ';
+  const prefix = options.outputType === OUTPUT_TYPE.definition ? '' : 'export ';
 
   let interfaceName = items.name;
 
@@ -188,7 +193,7 @@ export function genType(proto, options) {
 export function getJsdocType(proto, options) {
   const { name, fields, comment, parent } = proto;
 
-  const items = readField(name, fields);
+  const items = readField(name, fields, options);
 
   const result = new MagicString('');
 

@@ -25,17 +25,18 @@ message MyResponse {
 
   let dest = '';
 
-  let selectedDefinition = '0';
+  let selectedDefinition = localStorage.getItem('selectedDefinition') || 'typescript';
+  let selectedMode = localStorage.getItem('selectedMode') || 'normal';
 
   let isWarning = false;
 
   function onProtobuf() {
-    const isDefinition = selectedDefinition === '1';
-    const isJsdoc = selectedDefinition === '2';
     dest = pbToTypescript.parseProto('syntax = "proto3";' + src, {
-      isDefinition,
-      isJsdoc,
+      outputType: selectedDefinition,
+      mode: selectedMode,
     });
+    localStorage.setItem('selectedDefinition', selectedDefinition);
+    localStorage.setItem('selectedMode', selectedMode);
     isWarning = false;
   }
 
@@ -58,15 +59,26 @@ message MyResponse {
   </div>
   <div class="col">
     <div class="tool-bar">
+      <span class="label">Output Type</span>
       <select
         bind:value={selectedDefinition}
         on:change={onProtobuf}
         on:blur={onProtobuf}
         class="type-selector"
       >
-        <option value="1">Typescript d.ts</option>
-        <option value="0">Typescript File</option>
-        <option value="2">Jsdoc</option>
+        <option value="typescript">Typescript File</option>
+        <option value="definition">Typescript d.ts</option>
+        <option value="jsdoc">Jsdoc</option>
+      </select>
+      <span class="label">Mode</span>
+      <select
+        bind:value={selectedMode}
+        on:change={onProtobuf}
+        on:blur={onProtobuf}
+        class="type-selector"
+      >
+        <option value="normal">Normal</option>
+        <option value="strict">Strict</option>
       </select>
     </div>
     <CodeMirror bind:value={dest} lang={javascript()} readonly/>

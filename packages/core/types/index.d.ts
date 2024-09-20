@@ -1,10 +1,19 @@
-import protobuf$1 from 'protobufjs';
+import protobuf from 'protobufjs';
 
 type OptionType = {
-    isDefinition?: boolean | undefined;
-    isJsdoc?: boolean | undefined;
+    outputType?: string | undefined;
+    mode?: string | undefined;
     inputDir?: string | undefined;
     outputDir?: string | undefined;
+};
+type CommandOptionType = {
+    outputType?: string | undefined;
+    mode?: string | undefined;
+    input?: string | undefined;
+    output?: string | undefined;
+};
+type MockOptionType = {
+    mode?: string | undefined;
 };
 
 /**
@@ -19,9 +28,10 @@ declare function getAllMethods(source: string): {
  *
  * @param {string} source
  * @param {string} methodName
+ * @param {import('../typedef.js').MockOptionType=} options
  * @returns
  */
-declare function mockResponse(source: string, methodName: string): Object | null;
+declare function mockResponse(source: string, methodName: string, options?: MockOptionType | undefined): Object | null;
 
 /**
  * parse protobuf text plain
@@ -37,7 +47,7 @@ declare function parseProto(source: string, _options?: OptionType | undefined): 
  * @param {string=} packageName
  * @returns {string}
  */
-declare function parseProtoRoot(root: protobuf$1.Root, options: OptionType, packageName?: string | undefined): string;
+declare function parseProtoRoot(root: protobuf.Root, options: OptionType, packageName?: string | undefined): string;
 /**
  * @param {string[]} files
  * @param {import('./typedef.js').OptionType} options
@@ -46,11 +56,8 @@ declare function parseProtoRoot(root: protobuf$1.Root, options: OptionType, pack
 declare function parseProtoFiles(files: string[], options: OptionType): Map<any, any> | undefined;
 
 /**
- * @param {{ input: string, output: string }} params
+ * @param {import('../typedef.js').CommandOptionType} params
  */
-declare function convertCommand(params: {
-    input: string;
-    output: string;
-}): Promise<void>;
+declare function convertCommand(params: CommandOptionType): Promise<void>;
 
 export { convertCommand, getAllMethods, mockResponse, parseProto, parseProtoFiles, parseProtoRoot };

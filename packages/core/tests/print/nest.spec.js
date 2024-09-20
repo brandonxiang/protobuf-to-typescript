@@ -70,7 +70,7 @@ test('nest type3 should be converted', () => {
     Data data = 1;
   }
   `;
-  const ts = parseProto(source, { isJsdoc: true });
+  const ts = parseProto(source, { outputType: 'jsdoc' });
   assert.match(ts, '@typedef {Object} Message1');
   assert.match(ts, '@typedef {Object} Message2');
   assert.match(ts, '@typedef {Object} Data');
@@ -94,7 +94,7 @@ test('nest type4 should be converted', () => {
     Data data = 1;
   }
   `;
-  const ts = parseProto(source, { isJsdoc: true });
+  const ts = parseProto(source, { outputType: 'jsdoc' });
   assert.match(ts, '@typedef {Object} Message1Data');
   assert.match(ts, '@typedef {Object} Message2Data');
   assert.match(ts, '@typedef {Object} Message1');
@@ -134,7 +134,7 @@ test('nest type6 should be converted', () => {
   }
 
   `;
-  const ts = parseProto(source, { isJsdoc: true });
+  const ts = parseProto(source, { outputType: 'jsdoc' });
   assert.match(ts, '@typedef {Object} Message1Data');
   assert.match(ts, '* @prop {Finder=} finder ');
   assert.match(ts, '@typedef {Object} Message1');

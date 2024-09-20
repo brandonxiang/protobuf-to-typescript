@@ -1,5 +1,5 @@
 import MagicString from 'magic-string';
-import { EMPTY_PROTO } from '../constant.js';
+import { EMPTY_PROTO, OUTPUT_TYPE } from '../constant.js';
 
 /**
  *
@@ -49,7 +49,7 @@ export function genService(proto, options) {
     const responseType =
       item.responseType === EMPTY_PROTO ? '{}' : item.responseType;
 
-    const prefix = options.isDefinition ? '' : 'export ';
+    const prefix = options.outputType === OUTPUT_TYPE.definition ? '' : 'export ';
 
     if (item.comment) {
       result.append(`//${item.comment}\n`);
