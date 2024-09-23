@@ -24,7 +24,7 @@ test('Method type should be converted to number', () => {
       Teacher teacher = 3;
   }
   `;
-  const ts = mockResponse(source, 'SayHello');
+  const ts = mockResponse(source, 'SayHello', { mode: 'normal' });
   assert.equal(ts, {
     message: 'Hello',
     test: 20,

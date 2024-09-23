@@ -1,5 +1,11 @@
 # pbts
 
+## 4.0.6
+
+### Patch Changes
+
+- support vscode for new feature
+
 ## 4.0.5
 
 ### Patch Changes

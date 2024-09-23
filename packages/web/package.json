@@ -20,11 +20,12 @@
   },
   "dependencies": {
     "svelte": "^4.2.18",
-    "pbts": "^4.0.2",
+    "pbts": "^4.0.5",
     "clipboard": "^2.0.11",
     "protobufjs": "^7.3.3",
     "svelte-codemirror-editor": "^1.4.0",
-    "@codemirror/lang-javascript": "^6.2.2"
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@rollup/rollup-darwin-x64": "4.21.1"
   },
   "browserslist": [
     "last 1 version",

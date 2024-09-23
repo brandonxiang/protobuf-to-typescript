@@ -1,36 +1,41 @@
-import { ExtensionContext, ViewColumn, commands, window } from "vscode";
+import { ExtensionContext, ViewColumn, commands, window, workspace } from "vscode";
 import {
   handleError,
   getClipboardText,
   pasteToMarker,
   getSelectedText,
   validateLength,
-} from "./lib";
+} from "./utils/lib";
 import { parseProto } from 'pbts/core';
 import fs from 'fs';
 import path from 'path';
-import { cwd } from "process";
+// import { FileExplorer } from './fileExplorer';
 
 const PB3_HEADER = `syntax = "proto3";`;
 
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(
-    commands.registerCommand("pbToTypescript.fromSelection", transformFromSelection)
+    commands.registerCommand("protobufToTypescript.fromSelection", transformFromSelection)
   );
   context.subscriptions.push(
-    commands.registerCommand("pbToTypescript.fromClipboard", transformFromClipboard)
+    commands.registerCommand("protobufToTypescript.fromClipboard", transformFromClipboard)
   );
   context.subscriptions.push(
-    commands.registerCommand("pbToTypescript.transformOnPanel", () => transformOnPanel(context))
+    commands.registerCommand("protobufToTypescript.transformOnPanel", () => transformOnPanel(context))
   );
+
+  // new FileExplorer(context);
 }
 
 function transformFromSelection() {
+  const config = workspace.getConfiguration('protobufToTypescript');
+  const outputType = config.get('outputType') as string;
+  const mode = config.get('mode') as string;
 
   getSelectedText()
     .then(validateLength)
     .then(str => {
-      return parseProto(PB3_HEADER + str);
+      return parseProto(PB3_HEADER + str, { outputType, mode });
     })
 		.then(interfaces => {
       pasteToMarker(interfaces);
@@ -41,10 +46,14 @@ function transformFromSelection() {
 }
 
 function transformFromClipboard() {
+  const config = workspace.getConfiguration('protobufToTypescript');
+  const outputType = config.get('outputType') as string;
+  const mode = config.get('mode') as string;
+
   getClipboardText()
     .then(validateLength)
     .then(str => {
-      return parseProto(PB3_HEADER + str);
+      return parseProto(PB3_HEADER + str, { outputType, mode });
     })
     .then(interfaces => {
       pasteToMarker(interfaces);

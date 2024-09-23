@@ -13,62 +13,81 @@
 	"categories": [
 		"Other"
 	],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brandonxiang/protobuf-to-typescript.git"
-  },
-	"activationEvents": [
-		"onCommand:pbToTypescript.fromSelection",
-		"onCommand:pbToTypescript.fromClipboard",
-		"onCommand:pbToTypescript.convertOnAir"
-	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/brandonxiang/protobuf-to-typescript.git"
+	},
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "Protobuf to TypeScript",
+			"properties": {
+				"protobufToTypescript.outputType": {
+					"type": "string",
+					"enum": [
+						"jsdoc",
+						"typescript",
+						"definition"
+					],
+					"default": "typescript",
+					"description": "Specify the output type for the converted files"
+				},
+				"protobufToTypescript.mode": {
+					"type": "string",
+					"enum": [
+						"normal",
+						"strict"
+					],
+					"default": "strict",
+					"description": "Specify the edge case for int64(long type)"
+				}
+			}
+		},
 		"commands": [
 			{
-				"command": "pbToTypescript.fromSelection",
+				"command": "protobufToTypescript.fromSelection",
 				"title": "from selection",
 				"category": "pbts"
 			},
 			{
-				"command": "pbToTypescript.fromClipboard",
+				"command": "protobufToTypescript.fromClipboard",
 				"title": "from clipboard",
 				"category": "pbts"
 			},
 			{
-        "command": "pbToTypescript.transformOnPanel",
-        "title": "Open Convert Panel",
-        "category": "pbts"
-      }
+				"command": "protobufToTypescript.transformOnPanel",
+				"title": "Open Convert Panel",
+				"category": "pbts"
+			}
 		],
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "pbts",
-          "title": "protobuf to typescript",
-          "icon": "media/cat2.svg"
-        }
-      ]
-    },
-    "views": {
-      "pbts": [
-        {
-          "id": "introduction",
-          "name": "welcome to pbts"
-        }
-      ]
-    },
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "pbts",
+					"title": "protobuf to typescript",
+					"icon": "media/cat2.svg"
+				}
+			]
+		},
+		"views": {
+			"pbts": [
+				{
+					"id": "introduction",
+					"name": "welcome to pbts"
+				}
+			]
+		},
 		"viewsWelcome": [
-      {
-        "view": "introduction",
-        "contents": "This tool is able to help you convert protobuf file to typescript definition file. \n[Open Convert Panel](command:pbToTypescript.transformOnPanel)\n You can transform it from selection \n[from selection](command:pbToTypescript.fromSelection)\n You can transform it from clipboard \n[from clipboard](command:pbToTypescript.fromClipboard)\n"
-      }
-    ]
+			{
+				"view": "introduction",
+				"contents": "This tool is able to help you convert protobuf file to typescript definition file. \n[Open Convert Panel](command:protobufToTypescript.transformOnPanel)\n You can transform it from clipboard \n[from clipboard](command:protobufToTypescript.fromClipboard)\n You can transform it from selection \n[from selection](command:protobufToTypescript.fromSelection)\n"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run -S esbuild-base -- --minify",
 		"postinstall": "patch-package",
-		"esbuild-base": "rimraf out && esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+		"esbuild-base": "rimraf out && esbuild ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
 		"build": "npm run -S esbuild-base -- --sourcemap",
 		"watch": "npm run -S esbuild-base -- --sourcemap --watch",
 		"pretest": "npm run build && npm run lint",
@@ -93,7 +112,7 @@
 		"rimraf": "^3.0.2"
 	},
 	"dependencies": {
-		"pbts": "^4.0.3",
+		"pbts": "^4.0.5",
 		"copy-paste": "1.3.0"
 	}
 }

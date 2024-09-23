@@ -28,6 +28,19 @@ We provide two ways to **convert protobuf to typescript**.
 
 - STEP 3: Search **"pbts:from clipboard"**, execute，the converted typescript will be filled at the cursor of the currently active window
 
+### Settings
+
+Users can then control this setting by creating a .vscode/settings.json file in their project root
+
+```json
+{
+  //Specify the output type for the converted files
+  "protobufToTypescript.outputType": "jsdoc",
+  //Specify the edge case for int64(long type)
+  "protobufToTypescript.mode": "strict"
+}
+```
+
 ## Problem
 
-If you have any questions, you can contact me by email **@kukudeshiyi1999@gmail.com**
+If you have any questions, you can contact me by email **@brandon.xiang@gmail.com**

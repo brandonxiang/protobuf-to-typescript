@@ -1,6 +1,6 @@
 {
   "name": "pbts",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "protobuf-to-typescript",
   "author": "weiping.xiang <1542453460@qq.com>",
   "homepage": "https://github.com/brandonxiang/protobuf-to-typescript#readme",

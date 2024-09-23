@@ -14,7 +14,7 @@ const { Root, Enum, Service, Type } = protobuf;
  */
 const defaultOptions = {
   outputType: 'typescript',
-  mode: 'normal',
+  mode: 'strict',
 };
 
 /**

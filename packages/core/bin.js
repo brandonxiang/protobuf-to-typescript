@@ -22,7 +22,7 @@ updater({
     .option('-i, --input <input>', 'input file path')
     .option('-o, --output <output>', 'output file path')
     .option('--outputType <outputType>', 'output file type, including typescript,definition,jsdoc, default typescript')
-    .option('--mode <mode>', 'edge case for int64(long type), including normal,strict, default normal')
+    .option('--mode <mode>', 'edge case for int64(long type), including normal,strict, default strict')
     .action(convertCommand);
 
   prog.parse(process.argv);
