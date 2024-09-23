@@ -27,7 +27,7 @@ const source = `
   const ts = parseProto(source);
 
   assert.match(ts, 'type GetProduct');
-  assert.match(ts, 'product_id?: number;');
+  assert.match(ts, 'product_id?: string;');
   assert.match(ts, 'products?: ProductInfo[];');
 });
 

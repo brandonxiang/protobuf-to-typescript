@@ -31,7 +31,7 @@ message HelloReply {
   let isWarning = false;
 
   let methodNames = [];
-  let selectedMode = localStorage.getItem('selectedMode') || 'normal';
+  let selectedMode = localStorage.getItem('selectedMode') || 'strict';
 
   function onProtobuf() {
     const methods = pbToTypescript.getAllMethods('syntax = "proto3";' + src);

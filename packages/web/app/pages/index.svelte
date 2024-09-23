@@ -26,7 +26,7 @@ message MyResponse {
   let dest = '';
 
   let selectedDefinition = localStorage.getItem('selectedDefinition') || 'typescript';
-  let selectedMode = localStorage.getItem('selectedMode') || 'normal';
+  let selectedMode = localStorage.getItem('selectedMode') || 'strict';
 
   let isWarning = false;
 
