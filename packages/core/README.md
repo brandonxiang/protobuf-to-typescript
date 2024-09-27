@@ -70,6 +70,8 @@ message MyRequest {
 
 const ts = parseProto(source, {
   // Options
+  outputType,
+  mode,
 });
 ```
 
@@ -101,4 +103,5 @@ message MyRequest {
 `;
 
 const ts = parseProto(source);
+
 ```

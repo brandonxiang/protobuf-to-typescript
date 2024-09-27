@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { handleError } from '../utils/log.js';
 import { parseProtoFiles } from '../core.js';
+import { defaultFilename } from '../constant.js';
 
 const { mkdirSync, readdirSync, writeFileSync } = fs;
 
@@ -28,6 +29,10 @@ export function transformProtoFiles(options) {
   if (!res) return;
 
   mkdirSync(outputDir, { recursive: true });
+  
+  if(res.has(defaultFilename)) {
+    res.delete(defaultFilename);
+  }
 
   res.forEach((value, key) => {
     const outputFile = path.join(outputDir, key);
