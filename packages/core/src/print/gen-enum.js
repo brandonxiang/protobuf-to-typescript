@@ -1,5 +1,8 @@
 import MagicString from 'magic-string';
 import { indentPrefix, OUTPUT_TYPE } from '../constant.js';
+import protobuf from 'protobufjs';
+
+const { Type } = protobuf;
 
 /**
  * generate typescript files from proto info
@@ -8,7 +11,7 @@ import { indentPrefix, OUTPUT_TYPE } from '../constant.js';
  * @returns
  */
 export function genEnum(proto, options) {
-  const { values, comments, name } = proto;
+  const { values, comments, name, parent } = proto;
 
   const items = Object.keys(values)
     .map((key) => ({
@@ -21,7 +24,7 @@ export function genEnum(proto, options) {
   const result = new MagicString('');
 
   items.forEach((s) => {
-    if(s.comment) {
+    if (s.comment) {
       result.append(`//${s.comment}\n`);
     }
     result.append(`${s.name} = ${s.id},\n`);
@@ -29,9 +32,16 @@ export function genEnum(proto, options) {
 
   const prefix = options.outputType === OUTPUT_TYPE.definition ? '' : 'export ';
 
+  let interfaceName = name;
+
+  // deal with nested type conflict problem
+  if (parent && parent instanceof Type && parent.name) {
+    interfaceName = parent.name + interfaceName;
+  }
+
   result
     .indent(indentPrefix)
-    .prepend(`${prefix}enum ${name} {\n`)
+    .prepend(`${prefix}enum ${interfaceName} {\n`)
     .append('}\n\n');
 
   return {
@@ -60,7 +70,7 @@ export function getJsdocEnum(proto, options) {
   const result = new MagicString('');
 
   items.forEach((s) => {
-    if(s.comment) {
+    if (s.comment) {
       result.append(`//${s.comment}\n`);
     }
     result.append(`${s.name} = ${s.id},\n`);

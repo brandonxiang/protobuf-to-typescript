@@ -140,5 +140,27 @@ test('nest type6 should be converted', () => {
   assert.match(ts, '@typedef {Object} Message1');
 });
 
+
+test('nest type7 should be converted', () => {
+  const source = `
+    syntax = "proto3";
+    message UpdateUserRoleReq {
+      enum Type {
+        PLATFORM = 0;
+        PROJECT = 1;
+        MODULE = 2;
+        PLUGIN = 3;
+      }
+      int32 user_id = 1;
+      int32 role_id = 2;
+      Type type = 3;
+    }
+ `;
+
+ const ts = parseProto(source);
+ assert.match(ts, 'type?: UpdateUserRoleReqType;');
+ assert.match(ts, 'enum UpdateUserRoleReqType');
+}) 
+
 test.run();
 

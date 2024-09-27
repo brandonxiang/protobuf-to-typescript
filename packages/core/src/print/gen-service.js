@@ -52,7 +52,9 @@ export function genService(proto, options) {
     const prefix = options.outputType === OUTPUT_TYPE.definition ? '' : 'export ';
 
     if (item.comment) {
-      result.append(`//${item.comment}\n`);
+      item.comment.split('\n').forEach((line) => {
+        result.append(`//${line} \n`);
+      })
     }
 
     result.append(
