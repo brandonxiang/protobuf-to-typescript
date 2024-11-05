@@ -1,5 +1,6 @@
 import { window } from "vscode";
-import * as copyPaste from "copy-paste";
+//@ts-ignore
+import * as copyPaste from "@brandonxiang/copy-paste";
 
 
 export function getClipboardText() {
